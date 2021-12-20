@@ -13,7 +13,7 @@ HEADERS_DIRECTORY = ./includes/
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SRCS_DIRECTORY = ./src/
-SRCS_LIST	= minishell.c
+SRCS_LIST	= minishell.c ./parser/parser.c ./builtin/builtin.c
 SRCS = $(addprefix $(SRCS_DIRECTORY), $(SRCS_LIST))
 
 OBJS_DIRECTORY = objects/
@@ -22,7 +22,7 @@ OBJS = $(addprefix $(OBJS_DIRECTORY), $(OBJS_LIST))
 
 CC			= gcc
 
-CFLAGS	= -g
+CFLAGS	= -lreadline
 
 all:		${NAME}
 
