@@ -6,13 +6,13 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 15:38:12 by achanel           #+#    #+#             */
-/*   Updated: 2021/12/20 15:59:47 by achanel          ###   ########.fr       */
+/*   Updated: 2021/12/20 17:11:54 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <../includes/minishell.h>
 
-void	get_builtin(char *command)
+void	get_builtin(char *command, char **av, char **env)
 {
 	if (ft_strncmp(command, "echo", 4) == 0)
 		do_echo();
