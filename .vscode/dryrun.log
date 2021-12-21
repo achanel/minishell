@@ -1,10 +1,8 @@
 make --dry-run --always-make --keep-going --print-directory
-make: Entering directory `/Users/achanel/Desktop/ms'
-/Applications/Xcode.app/Contents/Developer/usr/bin/make -sC ./libft/
- 
-make[1]: Entering directory `/Users/achanel/Desktop/ms/libft'
+make: Entering directory `/Users/macintosh/Desktop/minishell'
+/Library/Developer/CommandLineTools/usr/bin/make -sC ./libft/
+make[1]: Entering directory `/Users/macintosh/Desktop/minishell/libft'
 gcc -Wall -Wextra -Werror -c ft_atoi.c -o ft_atoi.o
- 
 gcc -Wall -Wextra -Werror -c ft_bzero.c -o ft_bzero.o
 gcc -Wall -Wextra -Werror -c ft_calloc.c -o ft_calloc.o
 gcc -Wall -Wextra -Werror -c ft_isalnum.c -o ft_isalnum.o
@@ -18,14 +16,12 @@ gcc -Wall -Wextra -Werror -c ft_memchr.c -o ft_memchr.o
 gcc -Wall -Wextra -Werror -c ft_memcmp.c -o ft_memcmp.o
 gcc -Wall -Wextra -Werror -c ft_memcpy.c -o ft_memcpy.o
 gcc -Wall -Wextra -Werror -c ft_memmove.c -o ft_memmove.o
- 
 gcc -Wall -Wextra -Werror -c ft_memset.c -o ft_memset.o
 gcc -Wall -Wextra -Werror -c ft_putchar_fd.c -o ft_putchar_fd.o
 gcc -Wall -Wextra -Werror -c ft_putendl_fd.c -o ft_putendl_fd.o
 gcc -Wall -Wextra -Werror -c ft_putnbr_fd.c -o ft_putnbr_fd.o
 gcc -Wall -Wextra -Werror -c ft_putstr_fd.c -o ft_putstr_fd.o
 gcc -Wall -Wextra -Werror -c ft_split.c -o ft_split.o
- 
 gcc -Wall -Wextra -Werror -c ft_strchr.c -o ft_strchr.o
 gcc -Wall -Wextra -Werror -c ft_strdup.c -o ft_strdup.o
 gcc -Wall -Wextra -Werror -c ft_strjoin.c -o ft_strjoin.o
@@ -41,13 +37,12 @@ gcc -Wall -Wextra -Werror -c ft_substr.c -o ft_substr.o
 gcc -Wall -Wextra -Werror -c ft_tolower.c -o ft_tolower.o
 gcc -Wall -Wextra -Werror -c ft_toupper.c -o ft_toupper.o
 ar rcs libft.a ft_atoi.o ft_bzero.o ft_calloc.o ft_isalnum.o ft_isalpha.o ft_isascii.o ft_isdigit.o ft_isprint.o ft_itoa.o ft_memccpy.o ft_memchr.o ft_memcmp.o ft_memcpy.o ft_memmove.o ft_memset.o ft_putchar_fd.o ft_putendl_fd.o ft_putnbr_fd.o ft_putstr_fd.o ft_split.o ft_strchr.o ft_strdup.o ft_strjoin.o ft_strlcat.o ft_strlcpy.o ft_strlen.o ft_strmapi.o ft_strncmp.o ft_strnstr.o ft_strrchr.o ft_strtrim.o ft_substr.o ft_tolower.o ft_toupper.o
-make[1]: Leaving directory `/Users/achanel/Desktop/ms/libft'
+make[1]: Leaving directory `/Users/macintosh/Desktop/minishell/libft'
+ 
 mkdir -p objects/
- 
 gcc -lreadline -c -I./includes/ -I./libft/ src/minishell.c -o objects/minishell.o
- 
 gcc -lreadline -c -I./includes/ -I./libft/ src/./parser/parser.c -o objects/./parser/parser.o
 gcc -lreadline -c -I./includes/ -I./libft/ src/./builtin/builtin.c -o objects/./builtin/builtin.o
 gcc -lreadline -lft -L./libft/ -I./includes/ -I./libft/ objects/minishell.o objects/./parser/parser.o objects/./builtin/builtin.o -o minishell
-make: Leaving directory `/Users/achanel/Desktop/ms'
+make: Leaving directory `/Users/macintosh/Desktop/minishell'
  

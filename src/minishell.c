@@ -17,6 +17,7 @@ int	main(int ac, char **av, char **env)
 	char	*str;
 	while(1)
 	{
+		input_signal_catcher();
 		str = readline("$lol_kek> ");
 		if (str[0] != '\0')
 			parser(str);
