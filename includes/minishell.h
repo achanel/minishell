@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:13 by achanel           #+#    #+#             */
-/*   Updated: 2021/12/21 11:25:53 by achanel          ###   ########.fr       */
+/*   Updated: 2021/12/21 12:44:51 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ void	do_pwd(void);
 void	do_echo(char **av);
 void	do_echo_n(char **av);
 void	error_msg(char *cmd, char *error, int status);
+void	do_exit(int	ac, char **av);
 
 #endif

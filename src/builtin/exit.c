@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 18:12:50 by achanel           #+#    #+#             */
-/*   Updated: 2021/12/21 12:41:18 by achanel          ###   ########.fr       */
+/*   Updated: 2021/12/21 12:44:36 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	not_num_args(char *s)
 	exit(255);
 }
 
-int	ft_atoi(char *str)
+static int	ex_atoi(char *str)
 {
 	uint64_t	num;
 	int			i;
@@ -77,7 +77,7 @@ void	do_exit(int	ac, char **av)
 	}
 	if (check_arg(av[1]) )
 		not_num_args(av[1]);
-	error_status = ft_atoi(av[1]);
+	error_status = ex_atoi(av[1]);
 	g_status = error_status % 256;
 	printf("exit\n");
 	exit(g_status);
