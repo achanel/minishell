@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 10:49:35 by achanel           #+#    #+#             */
-/*   Updated: 2021/12/21 14:11:14 by achanel          ###   ########.fr       */
+/*   Updated: 2021/12/21 14:12:45 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	dir_to_home(void)
 	free(path);
 }
 
-void	do_cd(char *path)
+void	do_cd(char *path)//arg?????
 {
 	char	*cur_path;
 

@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 15:38:12 by achanel           #+#    #+#             */
-/*   Updated: 2021/12/21 11:24:38 by achanel          ###   ########.fr       */
+/*   Updated: 2021/12/21 14:12:36 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	get_builtin(char *command, int ac, char **av, char **env)
 	if (ft_strncmp(command, "exit", 4) == 0)
 		do_exit(ac, av);
 	if (ft_strncmp(command, "cd", 2) == 0)
-		do_cd();
+		do_cd();//arg = ?????
 	if (ft_strncmp(command, "export", 6) == 0)
 		do_export();
 	if (ft_strncmp(command, "unset", 5) == 0)
