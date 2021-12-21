@@ -14,13 +14,11 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
- 
 
-# Make data base, printed on Mon Dec 20 16:45:12 2021
+# Make data base, printed on Tue Dec 21 10:48:00 2021
 
 # Variables
 
- 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
@@ -50,13 +48,13 @@ VSCODE_VERBOSE_LOGGING = true
 # makefile (from `Makefile', line 28)
 BONUS = ft_lstnew.c		ft_lstadd_front.c	ft_lstsize.c ft_lstlast.c	ft_lstadd_back.c	ft_lstdelone.c ft_lstclear.c	ft_lstiter.c		ft_lstmap.c
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n003vm6800yx1k/T/vscode-ipc-4f9316d2-f47b-4527-a342-a35be531af6d.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n003vm6800yx1k/T/vscode-ipc-17c2a31a-9902-4be1-969d-4418a7d75a26.sock
 # environment
 VSCODE_CWD = /
 # environment
-Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.16Re11OJQR/Render
+Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.SrDCZMJOA2/Render
 # environment
-PATH = /Users/achanel/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
+PATH = /Users/achanel/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:/usr/local/munki:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
@@ -66,7 +64,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.4Zxm6BYVVD/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.ssvmOc8Rq2/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -134,13 +132,15 @@ MFLAGS = -sRrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.microsoft.VSCode.1268
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000011.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
 +F = $(notdir $+)
 # environment
 __CF_USER_TEXT_ENCODING = 0xF7432:0x0:0x0
+# environment
+COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
 # automatic
@@ -149,6 +149,8 @@ MAKEFILES :=
 PAGER = less
 # environment
 LC_ALL = C
+# environment
+SECURITYSESSIONID = 18724
 # automatic
 ^F = $(notdir $^)
 # default
@@ -164,9 +166,9 @@ LIST = ft_atoi.c		ft_bzero.c		ft_calloc.c ft_isalnum.c	ft_isalpha.c	ft_isascii.c
 # environment
 LANG = C
 # environment
-VSCODE_PID = 6424
+VSCODE_PID = 82301
 # variable set hash-table stats:
-# Load=72/1024=7%, Rehash=0, Collisions=3/105=3%
+# Load=74/1024=7%, Rehash=0, Collisions=3/107=3%
 
 # Pattern-specific Variable Values
 
@@ -205,7 +207,6 @@ ft_memcpy.o:
 ft_itoa.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
- 
 #  File has not been updated.
 
 # Not a target:
@@ -306,6 +307,7 @@ ft_isprint.o:
 #  Modification time never checked.
 #  File has not been updated.
 
+ 
 libft.a: ft_atoi.o ft_bzero.o ft_calloc.o ft_isalnum.o ft_isalpha.o ft_isascii.o ft_isdigit.o ft_isprint.o ft_itoa.o ft_memccpy.o ft_memchr.o ft_memcmp.o ft_memcpy.o ft_memmove.o ft_memset.o ft_putchar_fd.o ft_putendl_fd.o ft_putnbr_fd.o ft_putstr_fd.o ft_split.o ft_strchr.o ft_strdup.o ft_strjoin.o ft_strlcat.o ft_strlcpy.o ft_strlen.o ft_strmapi.o ft_strncmp.o ft_strnstr.o ft_strrchr.o ft_strtrim.o ft_substr.o ft_tolower.o ft_toupper.o
 #  Implicit rule search has not been done.
 #  File does not exist.
@@ -516,11 +518,10 @@ ft_putendl_fd.o:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Mon Dec 20 16:45:12 2021
+# Finished Make data base on Tue Dec 21 10:48:00 2021
 
- 
 
-# Make data base, printed on Mon Dec 20 16:45:12 2021
+# Make data base, printed on Tue Dec 21 10:48:00 2021
 
 # Variables
 
@@ -561,13 +562,13 @@ OBJS = $(addprefix $(OBJS_DIRECTORY), $(OBJS_LIST))
 # makefile (from `Makefile', line 19)
 OBJS_DIRECTORY = objects/
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n003vm6800yx1k/T/vscode-ipc-4f9316d2-f47b-4527-a342-a35be531af6d.sock
+VSCODE_IPC_HOOK_EXTHOST = /var/folders/zz/zyxvpxvq6csfxvn_n003vm6800yx1k/T/vscode-ipc-17c2a31a-9902-4be1-969d-4418a7d75a26.sock
 # environment
 VSCODE_CWD = /
 # environment
-Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.16Re11OJQR/Render
+Apple_PubSub_Socket_Render = /private/tmp/com.apple.launchd.SrDCZMJOA2/Render
 # environment
-PATH = /Users/achanel/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
+PATH = /Users/achanel/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:/usr/local/munki:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
@@ -577,7 +578,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.4Zxm6BYVVD/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.ssvmOc8Rq2/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -604,6 +605,9 @@ VSCODE_CODE_CACHE_PATH = /Users/achanel/Library/Application Support/Code/CachedD
 LOGNAME = achanel
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+ 
+make: *** [libft/libft.a] Error 1
+ 
 # makefile (from `Makefile', line 13)
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 # environment
@@ -655,7 +659,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = com.microsoft.VSCode.1268
+XPC_SERVICE_NAME = com.apple.xpc.launchd.oneshot.0x10000011.Electron
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # makefile (from `Makefile', line 12)
@@ -668,6 +672,8 @@ LIBFT_HEADERS = $(LIBFT_DIRECTORY)
 SRCS_DIRECTORY = ./src/
 # environment
 __CF_USER_TEXT_ENCODING = 0xF7432:0x0:0x0
+# environment
+COMMAND_MODE = unix2003
 # default
 MAKEFILES := 
 # makefile (from `Makefile', line 8)
@@ -680,6 +686,8 @@ OBJS_LIST = $(patsubst %.c, %.o, $(SRCS_LIST))
 PAGER = less
 # environment
 LC_ALL = C
+# environment
+SECURITYSESSIONID = 18724
 # automatic
 ^F = $(notdir $^)
 # default
@@ -691,12 +699,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
- 
-make: *** [libft/libft.a] Error 1
- 
-VSCODE_PID = 6424
+VSCODE_PID = 82301
 # variable set hash-table stats:
-# Load=84/1024=8%, Rehash=0, Collisions=6/130=5%
+# Load=86/1024=8%, Rehash=0, Collisions=6/132=5%
 
 # Pattern-specific Variable Values
 
@@ -863,6 +868,6 @@ objects/./builtin/builtin.o:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Mon Dec 20 16:45:12 2021
+# Finished Make data base on Tue Dec 21 10:48:00 2021
 
  

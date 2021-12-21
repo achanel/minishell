@@ -6,22 +6,22 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 15:38:12 by achanel           #+#    #+#             */
-/*   Updated: 2021/12/20 17:11:54 by achanel          ###   ########.fr       */
+/*   Updated: 2021/12/21 11:12:16 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <../includes/minishell.h>
+#include "../../includes/minishell.h"
 
 void	get_builtin(char *command, char **av, char **env)
 {
+	if (ft_strncmp(command, "pwd", 3) == 0)
+		do_pwd();
 	if (ft_strncmp(command, "echo", 4) == 0)
-		do_echo();
+		do_echo(av);
 	if (ft_strncmp(command, "echo -n", 7) == 0)
 		do_echo_n();
 	if (ft_strncmp(command, "cd", 2) == 0)
 		do_cd();
-	if (ft_strncmp(command, "pwd", 3) == 0)
-		do_pwd();
 	if (ft_strncmp(command, "export", 6) == 0)
 		do_export();
 	if (ft_strncmp(command, "unset", 5) == 0)
