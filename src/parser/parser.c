@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dery_ru <dery_ru@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 16:33:21 by dery_ru           #+#    #+#             */
-/*   Updated: 2021/12/19 22:39:41 by dery_ru          ###   ########.fr       */
+/*   Updated: 2021/12/22 17:13:58 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*ft_quote(char *str,int *i, char **env)
 	while (str[++(*i)])
 	{
 		if (str[(*i)] == '$' && str[j] == '\"')
-			str = ft_perem(str, i, env);
+			str = ft_perem(str, i--, env);
 		if (str[(*i)] == '\'' || str[(*i)] == '\"')
 			break ;
 	}
@@ -60,7 +60,7 @@ char	*ft_quote(char *str,int *i, char **env)
 	free(str);
 	free(tmp2);
 	free(tmp3);
-	printf("tmp == %s\n", tmp);
+	printf("tmp in \" == %s\n", tmp);
 	return (tmp);
 }
 
@@ -103,8 +103,8 @@ char	*ft_perem(char *str, int *i, char **env)
 		return(tmp);
 	printf("tmp == %s\n", tmp);
 	tmp2 = ft_substr(str, j + 1, *i - j - 1);
-	tmp2 = get_envp(tmp2, env);
 	printf("tmp2 == %s\n", tmp2);
+	tmp2 = get_envp(tmp2, env);
 	tmp3 = ft_strdup(str + *i);
 	printf("tmp3 == %s\n", tmp3);
 	tmp = ft_strjoin(tmp, tmp2);
@@ -155,7 +155,7 @@ int	main(int argc, char **argv, char **env)
 {
 	// '' "" \ $ ; | > >> <
 
-	char *src = ft_strdup("lol\'$USER\'kek");
+	char *src = ft_strdup("e\"c$USER\"o kek");
 	if (argc == 2)
 	{
 		preparser(src, env);
