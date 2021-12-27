@@ -12,7 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-void	do_export()
+void	do_export(t_envbase *base, t_args *args)
 {
 	
 }
