@@ -24,10 +24,10 @@ void	get_builtin(t_args *args, t_two_env *env)
 		do_exit(args);
 	if (ft_strncmp(base->command, "env", 3) == 0)
 		do_env(env);
+	if (ft_strncmp(base->command, "unset", 5) == 0)
+		do_unset(args->av, env);
 	if (ft_strncmp(base->command, "export", 6) == 0)
 		do_export(base);
-	if (ft_strncmp(base->command, "unset", 5) == 0)
-		do_unset(base);
 	if (ft_strncmp(args->command, "cd", 2) == 0)
 		do_cd(base);
 }

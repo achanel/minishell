@@ -12,6 +12,28 @@
 
 #include "../../includes/minishell.h"
 
+static void	unset_list(t_envbase *base char *str)
+{
+	t_envbase *first;
+
+	first = base;
+	while(base)
+	{
+		if (ft_strncmp(first->val, str, ft_strlen(str)) == 0)
+		{
+			del_env_first(first);
+			return ;
+		}
+		if (base->next && ft_strncmp(first->next->val, str, ft_strlen(str)) == 0)
+		{
+			del_env(base);
+			break ;
+		}
+		first = first->next;
+	}
+	first = base;
+}
+
 static void	path_error(char *str)
 {
 	ft_putstr_fd(MSL, 2);
@@ -50,17 +72,21 @@ static int	unset_arg_check(char *str)
 	return (1);
 }
 
-void	do_unset(char *str)
+void	do_unset(char **av, t_two_env *env)
 {
+	int	i;
+
+	i = 1;
 	g_status = 0;
-	if (!str)
+	if (!av[i])
 		return ;
-	while(str)
+	while(av[i])
 	{
-		if (unset_arg_check(str))
+		if (unset_arg_check(av[i]))
 		{
-			//unset sorted env
-			//unset env
+			unset_list(env->origin, av[i]);
+			unset_list(env->sortedm av[i]);
 		}
+		i++;
 	}
 }

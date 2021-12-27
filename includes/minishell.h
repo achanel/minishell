@@ -52,8 +52,11 @@ void	do_echo(char **av);
 void	do_echo_n(char **av);
 void	do_exit(t_args *args);
 void	do_env(t_two_env *env);
-
+void	do_unset(char **av, t_two_env *env);
 
 void	error_msg(char *cmd, char *error, int status);
+
+void    del_env(t_envbase *base)
+void    del_env_first(t_envbase *base);
 
 #endif
