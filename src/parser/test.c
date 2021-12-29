@@ -21,7 +21,6 @@ int	*args_count(char *str, char c, int *j)
 			printf("count[%d] = %d == %c\n", (*j), i, str[i]);
 			count[++(*j)] = i;
 		}
-
 	}
 	return (count);
 }
@@ -30,17 +29,19 @@ void	comand_clean(char **str, char c)
 {
 	
 	int i;
-	int j;
-	char **tmp;
+	char *tmp;
+
+	tmp = *str;
 
 	i = 0;
-	while(*str[i] == c || *str[i] == '\t' || *str[i] == ' ')
-		i++;
-	while (str[i])
+	while((tmp[i] == c || tmp[i] == '\t' || tmp[i] == ' '))
 	{
-		if(*str[i] == '\t' || *str[i] == ' ')	
+		// printf ("in clean %s\n", *str);
+		i++;
+		if ((tmp[i] == '\'' || tmp[i] == '\"') && ft_isalpha(tmp[i]))
+			break ;
 	}
-
+	*str = ft_strdup(tmp + i);
 }
 
 char **args_split(char *str, char c)
@@ -67,9 +68,10 @@ char **args_split(char *str, char c)
 
 int main (int argc, char **argv, char **envp)
 {
-	char *str = ft_strdup("lol | ke\"osl|o|beck\"k | chebureck");
+	char *str = ft_strdup("echo l$_\"o\"l | cat > \"osl|o|beck\"k | chebureck");
 	char **str1 = args_split(str, '|');
 	int i = 0;
+	main_parcer(str1, envp);
 	while(str1[i])
 	{
 		printf("str%d == %s\n", i, str1[i]);
