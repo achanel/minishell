@@ -6,11 +6,11 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2021/12/20 17:25:08 by achanel          ###   ########.fr       */
+/*   Updated: 2021/12/29 19:09:36 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 int	main(int ac, char **av, char **env)
 {

@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:13 by achanel           #+#    #+#             */
-/*   Updated: 2021/12/29 18:56:57 by achanel          ###   ########.fr       */
+/*   Updated: 2021/12/29 18:59:09 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	do_cd(t_args *args, t_envbase *base);
 void	error_msg(char *cmd, char *error, int status);
 
 //utils_builtin.c
-void    del_env(t_envbase *base)
+void    del_env(t_envbase *base);
 void    del_env_first(t_envbase *base);
 //utils_env.c
 char	*search_in_env(t_envbase *base, char *s);
