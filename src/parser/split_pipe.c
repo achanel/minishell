@@ -68,7 +68,7 @@ char **args_split(char *str, char c)
 
 int main (int argc, char **argv, char **envp)
 {
-	char *str = ft_strdup("echo l$_\"o\"l | cat > \"osl|o|beck\"k | chebureck");
+	char *str = ft_strdup("/bin/echo l$_\"o\"l | cat > \"osl|o|beck\"k | chebureck");
 	char **str1 = args_split(str, '|');
 	int i = 0;
 	main_parcer(str1, envp);
@@ -77,5 +77,6 @@ int main (int argc, char **argv, char **envp)
 		printf("str%d == %s\n", i, str1[i]);
 		i++;
 	}
+	pipex(i, str1, envp);
 	return (0);
 }
