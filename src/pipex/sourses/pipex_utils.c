@@ -6,11 +6,11 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 15:51:30 by rhoke             #+#    #+#             */
-/*   Updated: 2021/08/25 15:52:56 by rhoke            ###   ########.fr       */
+/*   Updated: 2021/12/29 19:05:09 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "parser.h"
 
 void	ft_error(char *str)
 {

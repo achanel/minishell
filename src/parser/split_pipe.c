@@ -25,7 +25,7 @@ int	*args_count(char *str, char c, int *j)
 	return (count);
 }
 
-void	comand_clean(char **str, char c)
+void	comand_clean(char **str, char *c)
 {
 	
 	int i;
@@ -44,7 +44,7 @@ void	comand_clean(char **str, char c)
 	*str = ft_strdup(tmp + i);
 }
 
-char **args_split(char *str, char c)
+char **args_split(char *str, char *c)
 {
 	char	**av;
 	int		i;
@@ -66,17 +66,19 @@ char **args_split(char *str, char c)
 	return (av);
 }
 
-int main (int argc, char **argv, char **envp)
-{
-	char *str = ft_strdup("/bin/echo l$_\"o\"l | cat > \"osl|o|beck\"k | chebureck");
-	char **str1 = args_split(str, '|');
-	int i = 0;
-	main_parcer(str1, envp);
-	while(str1[i])
-	{
-		printf("str%d == %s\n", i, str1[i]);
-		i++;
-	}
-	pipex(i, str1, envp);
-	return (0);
-}
+// int main (int argc, char **argv, char **envp)
+// {
+// 	char *str = ft_strdup("/bin/echo l$_\"o\"l | cat > \"osl|o|beck\"k | chebureck");
+// 	char **str1 = args_split(str, '|');
+// 	int i = 0;
+// 	main_parcer(str1, envp);
+// 	while(str1[i])
+// 	{
+// 		printf("str%d == %s\n", i, str1[i]);
+// 		i++;
+// 	}
+// 	pipex(i, str1, envp);
+// 	return (0);
+// }
+
+
