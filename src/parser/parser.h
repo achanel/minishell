@@ -9,8 +9,11 @@
 #include <fcntl.h>
 # include "../../libft/libft.h"
 
+typedef struct s_parcer
+{
+	
+}	t_parcer;
 
-
-
+void	main_parcer(char **argv, char **env);
 
 #endif
