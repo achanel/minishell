@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 15:38:12 by achanel           #+#    #+#             */
-/*   Updated: 2021/12/21 14:12:36 by achanel          ###   ########.fr       */
+/*   Updated: 2021/12/29 17:34:23 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	get_builtin(t_args *args, t_two_env *env)
 		do_env(env);
 	if (ft_strncmp(base->command, "unset", 5) == 0)
 		do_unset(args->av, env);
+	if (ft_strncmp(args->command, "cd", 2) == 0)
+		do_cd(args, base);
 	if (ft_strncmp(base->command, "export", 6) == 0)
 		do_export(base);
-	if (ft_strncmp(args->command, "cd", 2) == 0)
-		do_cd(base);
 }

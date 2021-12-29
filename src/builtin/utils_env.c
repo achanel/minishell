@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export.c                                           :+:      :+:    :+:   */
+/*   utils_env.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/21 14:17:53 by achanel           #+#    #+#             */
-/*   Updated: 2021/12/29 19:17:05 by achanel          ###   ########.fr       */
+/*   Created: 2021/12/29 18:23:56 by achanel           #+#    #+#             */
+/*   Updated: 2021/12/29 18:54:27 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	print_export(t_envbase *base)
+char	*search_in_env(t_envbase *base, char *s)
 {
 	t_envbase	*tmp;
 
 	tmp = base;
 	while(tmp)
 	{
-		printf("declare -x%s=\"%s", tmp->key, tmp->val);
+		if (tmp->key == s)
+			return(tmp->val);
 		tmp = tmp->next;
 	}
+	return(NULL);
 }
 
-void	do_export(t_envbase *base, t_args *args)
+void	rewrite_pwd(t_envbase base, char *pwd, char *s)
 {
-	if ()
+	t_envbase	*path;
+
+	path = base;
+	while(path)
+	{
+		if (base->key == s)
+			break ;
+		path = path->next;
+	}
+	free(path->val);
+	path->val = ft_strdup(s);
 }
