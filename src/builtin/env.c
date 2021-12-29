@@ -12,14 +12,40 @@
 
 #include "../../includes/minishell.h"
 
-void	do_env()///args???
+static void	check_env(t_two_env *env, t_envbase *first)
 {
-	while()
+	while(env->origin)
 	{
-		printf("%s", key);
-		printf("=");
-		printf("%s", value);
-		printf("\n");
+		if (ft_strncmp(env->origin->key, "PATH", 4) == 0)
+		{
+			env->origin = first;
+			break ;
+		}
+		env->origin = env->origin->next;
 	}
+}
+
+void	do_env(t_two_env *env)
+{
+	t_envbase	*first;
+
+	g_status = 0;
+	first = env->origin;
+	check_env(env, first);
+	if (!(env->origin))
+	{
+		error_msg(env, ": No such file or directory\n", 1);
+		env->origin = first;
+		return ;
+	}
+	while(env->origin)
+	{
+		printf("%s", env->origin->key);
+		printf("=");
+		printf("%s", env->origin->val);
+		printf("\n");
+		env->origin = env->origin->next;
+	}
+	env->origin = first;
 	return ;
 }

@@ -12,22 +12,22 @@
 
 #include "../../includes/minishell.h"
 
-void	get_builtin(char *command, int ac, char **av, char **env)
+void	get_builtin(t_args *args, t_two_env *env)
 {
-	if (ft_strncmp(command, "pwd", 3) == 0)
+	if (ft_strncmp(args->command, "pwd", 3) == 0)
 		do_pwd();
-	if (ft_strncmp(command, "echo", 4) == 0)
-		do_echo(av);
-	if (ft_strncmp(command, "echo -n", 7) == 0)
-		do_echo_n(av);
-	if (ft_strncmp(command, "exit", 4) == 0)
-		do_exit(ac, av);
-	if (ft_strncmp(command, "cd", 2) == 0)
-		do_cd();//arg = ?????
-	if (ft_strncmp(command, "export", 6) == 0)
-		do_export();
-	if (ft_strncmp(command, "unset", 5) == 0)
-		do_unset();
-	if (ft_strncmp(command, "env", 3) == 0)
-		do_env();
+	if (ft_strncmp(args->command, "echo", 4) == 0)
+		do_echo(args->av);
+	if (ft_strncmp(args->command, "echo -n", 7) == 0)
+		do_echo_n(args->av);
+	if (ft_strncmp(args->command, "exit", 4) == 0)
+		do_exit(args);
+	if (ft_strncmp(base->command, "env", 3) == 0)
+		do_env(env);
+	if (ft_strncmp(base->command, "unset", 5) == 0)
+		do_unset(args->av, env);
+	if (ft_strncmp(base->command, "export", 6) == 0)
+		do_export(base);
+	if (ft_strncmp(args->command, "cd", 2) == 0)
+		do_cd(base);
 }

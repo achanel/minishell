@@ -58,7 +58,7 @@ static void	dir_to_home(void)
 	free(path);
 }
 
-void	do_cd(char *path)//arg?????
+void	do_cd(t_envbase *base)
 {
 	char	*cur_path;
 

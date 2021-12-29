@@ -61,23 +61,23 @@ static int	check_arg(char *arg)
 	return (0);
 }
 
-void	do_exit(int	ac, char **av)
+void	do_exit(t_args *args)
 {
 	int	error_status;
 
-	if (ac == 1)
+	if (args->ac == 1)
 	{
 		printf("exit\n");
 		exit(0);
 	}
-	if (ac > 2)
+	if (args->ac > 2)
 	{
 		error_msg("exit", "too many arguments", 1);
 		return ;
 	}
-	if (check_arg(av[1]) )
-		not_num_args(av[1]);
-	error_status = ex_atoi(av[1]);
+	if (check_arg(args->av[1]) )
+		not_num_args(args->av[1]);
+	error_status = ex_atoi(args->av[1]);
 	g_status = error_status % 256;
 	printf("exit\n");
 	exit(g_status);

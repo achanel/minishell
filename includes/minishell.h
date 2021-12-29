@@ -26,17 +26,37 @@
 
 int		g_status;
 
-typedef	struct s_base
+typedef	struct s_args
 {
-	int	status;
-}	t_base;
+	int		ac;
+	char	**av;
+	char	*command;
+}	t_args;
 
+typedef	struct s_envbase
+{
+	char				*key;
+	char				*val;
+	struct s_envbase	*next;
+}	t_envbase;
+
+typedef	struct s_two_env
+{
+	t_envbase	*origin;
+	t_envbase	*sorted;
+}	t_two_env;
 
 //builtin
 void	do_pwd(void);
 void	do_echo(char **av);
 void	do_echo_n(char **av);
+void	do_exit(t_args *args);
+void	do_env(t_two_env *env);
+void	do_unset(char **av, t_two_env *env);
+
 void	error_msg(char *cmd, char *error, int status);
-void	do_exit(int	ac, char **av);
+
+void    del_env(t_envbase *base)
+void    del_env_first(t_envbase *base);
 
 #endif
