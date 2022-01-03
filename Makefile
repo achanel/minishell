@@ -12,29 +12,38 @@ HEADERS_LIST = minishell.h
 HEADERS_DIRECTORY = ./includes/
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
-SRCS_DIRECTORY = ./src/builtin/
-SRCS_LIST	= ../minishell.c\
-				builtin.c\
-				cd.c\
-				echo.c\
-				env.c\
-				error_msg.c\
-				exit.c\
-				export.c\
-				pwd.c\
-				unset.c\
-				utils_builtin.c\
-				utils_env.c\
-				utils_stack.c
+SRCS_DIRECTORY = ./src/
+SRCS_LIST	=	minishell.c\
+				builtin/builtin.c\
+				builtin/cd.c\
+				builtin/echo.c\
+				builtin/env.c\
+				builtin/error_msg.c\
+				builtin/exit.c\
+				builtin/export.c\
+				builtin/pwd.c\
+				builtin/unset.c\
+				builtin/utils_builtin.c\
+				builtin/utils_env.c\
+				builtin/utils_stack.c\
+				parser/parser.c\
+				parser/pipex_bonus.c\
+				parser/pipex_utils.c\
+				parser/redirects.c\
+				parser/split_pipe.c\
+
 SRCS = $(addprefix $(SRCS_DIRECTORY), $(SRCS_LIST))
 
-OBJS_DIRECTORY = objects/
+# изменить поддтягивание файлов 			@rm -rf $(OBJS_DIRECTORY)
+
+OBJS_DIRECTORY = src/
 OBJS_LIST = $(patsubst %.c, %.o, $(SRCS_LIST))
 OBJS = $(addprefix $(OBJS_DIRECTORY), $(OBJS_LIST))
 
 CC			= gcc 
 
-CFLAGS		= -Wall -Wextra -Werror
+# CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		=
 
 READLINE	= -lreadline -L ~/.brew/opt/readline/lib/
 
@@ -54,7 +63,7 @@ $(LIBFT):
 		
 clean:
 			@$(MAKE) -sC $(LIBFT_DIRECTORY) clean
-			@rm -rf $(OBJS_DIRECTORY)
+			@rm -rf $(OBJS)
 
 fclean:		clean
 			@rm -f $(LIBFT)

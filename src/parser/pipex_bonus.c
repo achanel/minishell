@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 15:51:25 by rhoke             #+#    #+#             */
-/*   Updated: 2022/01/03 16:59:23 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/03 17:11:54 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,19 @@ void	redir(char *cmd, char **envp, int filein)
 	}
 }
 
-int	main(int argc, char **argv, char **envp)
-{
-	int	filein;
-	int	fileout;
-	int	i;
+// int	main(int argc, char **argv, char **envp)
+// {
+// 	int	filein;
+// 	int	fileout;
+// 	int	i;
 
-	filein = open(argv[1], O_RDONLY);
-	fileout = open(argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 420);
-	dup2(filein, 0);
-	dup2(fileout, 1);
-	redir(argv[2], envp, filein);
-	while (i < argc - 2)
-		redir(argv[i++], envp, 1);
-	exec(argv[i], envp);
-	return (0);
-}
+// 	filein = open(argv[1], O_RDONLY);
+// 	fileout = open(argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 420);
+// 	dup2(filein, 0);
+// 	dup2(fileout, 1);
+// 	redir(argv[2], envp, filein);
+// 	while (i < argc - 2)
+// 		redir(argv[i++], envp, 1);
+// 	exec(argv[i], envp);
+// 	return (0);
+// }

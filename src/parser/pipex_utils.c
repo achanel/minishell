@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 15:51:30 by rhoke             #+#    #+#             */
-/*   Updated: 2022/01/03 16:59:30 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/03 17:12:31 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ft_error(char *str)
-{
-	write(2, str, ft_strlen(str));
-	exit(EXIT_FAILURE);
-}
+// void	ft_error(char *str)
+// {
+// 	write(2, str, ft_strlen(str));
+// 	exit(EXIT_FAILURE);
+// }
 
 char	*get_path(char **envp, char *cmd)
 {

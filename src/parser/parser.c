@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 16:33:21 by dery_ru           #+#    #+#             */
-/*   Updated: 2022/01/03 16:59:17 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/03 17:08:45 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	ft_error(char *str)
 	exit (1);
 }
 
-char	*get_envp(char *perem, char **envp, int *j)
+// char	*get_envp(char *perem, char **envp, int *j)
+char	*get_envp(char *perem, char **envp)
 {
 	char *str;
 	char *tmp = NULL;
@@ -67,29 +68,6 @@ char	*ft_quote(char *str,int *i, char **env)
 	return (tmp);
 }
 
-// char	*ft_slesh(char *str, int *i)
-// {
-// 	int		j;
-// 	char	*tmp;
-// 	char	*tmp2;
-// 	char	*tmp3;
-
-// 	j = *i;
-// 	// write(1,"lol\n", 4);
-// 	while (str[++(*i)])
-// 		if (str[(*i)] == '\\')
-// 			break ;
-// 	tmp = ft_substr(str, 0, j);
-// 	tmp2 = ft_substr(str, j + 1, *i - j - 1);
-// 	tmp3 = ft_strdup(str + *i);
-// 	tmp = ft_strjoin(tmp, tmp2);
-// 	tmp = ft_strjoin(tmp, tmp3);
-// 	free(tmp2);
-// 	free(tmp3);
-// 	printf("tmp no slesh == %s\n", tmp);
-// 	return (tmp);
-// }
-
 char	*ft_perem(char *str, int *i, char **env)
 {
 	int j;
@@ -108,7 +86,8 @@ char	*ft_perem(char *str, int *i, char **env)
 		return(tmp);
 	// printf("tmp == %s\n", tmp);
 	tmp2 = ft_substr(str, j + 1, *i - j - 1);
-	tmp2 = get_envp(tmp2, env, i); // убрать сдвиг по i когда переменная не найдена
+	// tmp2 = get_envp(tmp2, env, i); // убрать сдвиг по i когда переменная не найдена
+	tmp2 = get_envp(tmp2, env); // убрать сдвиг по i когда переменная не найдена
 	tmp3 = ft_strdup(str + *i);
 	// printf(" !!!tmp3 == %s\n", tmp3);
 	if (tmp2[0] == '\0'){

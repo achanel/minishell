@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:13 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/03 16:51:29 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/03 17:11:35 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ void	main_parcer(char **argv, char **env);
 char	**args_split(char *str, char *c);
 char	*get_path(char **envp, char *cmd);
 char	*ft_perem(char *str, int *i, char **env);
+void	ft_error(char *str);
 
 #endif

@@ -44,10 +44,10 @@ void	parcer(char *str, char **env)
 	}
 }
 
-int main(int argc, char *argv[], char **env)
-{
-	char *str = ft_strdup("<< 	kek <1 lol");
-	parcer(str,env);
-	return 0;
-}
+// int main(int argc, char *argv[], char **env)
+// {
+// 	char *str = ft_strdup("<< 	kek <1 lol");
+// 	parcer(str,env);
+// 	return 0;
+// }
 

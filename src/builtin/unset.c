@@ -6,17 +6,17 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 14:18:55 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/03 15:09:16 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/03 16:50:29 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	unset_list(t_envbase **base, char *str)
+static void	unset_list(t_envbase *base, char *str)
 {
 	t_envbase *first;
 
-	first = &base;
+	first = base;
 	while(base)
 	{
 		// printf("here\n");
@@ -32,7 +32,7 @@ static void	unset_list(t_envbase **base, char *str)
 		}
 		base = base->next;
 	}
-	base = *first;
+	base = first;
 }
 
 static void	path_error(char *str)
@@ -85,7 +85,7 @@ void	do_unset(char **av, t_two_env *env)
 	{
 		if (unset_arg_check(av[i]))
 		{
-			unset_list(&env->origin, av[i]);
+			unset_list(env->origin, av[i]);
 			// unset_list(env->sorted, av[i]);
 		}
 		i++;

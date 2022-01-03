@@ -69,14 +69,14 @@ char **args_split(char *str, char *c)
 char **str_parse(char *str1, char **envp)
 {
 	// char *str = ft_strdup("/bin/echo l$_\"o\"l | cat > \"osl|o|beck\"k | chebureck");
-	char **str2 = args_split(str, "|");
+	char **str2 = args_split(str1, "|");
 	char **str3 = NULL;
 	int i = 0;
 	main_parcer(str2, envp);
 	while(str2[i])
 	{
 		// printf("str%d == %s\n", i, str2[i]);
-		srt3 = args_split(str2[i], " ");
+		str3 = args_split(str2[i], " ");
 		i++;
 	}
 	// pipex(i, str1, envp);
