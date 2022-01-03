@@ -6,32 +6,33 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 14:18:55 by achanel           #+#    #+#             */
-/*   Updated: 2021/12/21 14:45:14 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/03 15:09:16 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	unset_list(t_envbase *base char *str)
+static void	unset_list(t_envbase **base, char *str)
 {
 	t_envbase *first;
 
-	first = base;
+	first = &base;
 	while(base)
 	{
-		if (ft_strncmp(first->val, str, ft_strlen(str)) == 0)
+		// printf("here\n");
+		if (ft_strncmp(base->key, str, ft_strlen(str)) == 0)
 		{
-			del_env_first(first);
+			del_env_first(base);
 			return ;
 		}
-		if (base->next && ft_strncmp(first->next->val, str, ft_strlen(str)) == 0)
+		if (base->next && ft_strncmp(base->next->key, str, ft_strlen(str)) == 0)
 		{
 			del_env(base);
 			break ;
 		}
-		first = first->next;
+		base = base->next;
 	}
-	first = base;
+	base = *first;
 }
 
 static void	path_error(char *str)
@@ -46,7 +47,7 @@ static void	path_error(char *str)
 
 static int	is_valid(int n)
 {
-	if ((n >= 'A' && <= 'Z') || (n >= 'a' && <= 'z') || c == '_')
+	if ((n >= 'A' && n <= 'Z') || (n >= 'a' && n <= 'z') || n == '_')
 		return (0);
 	return (1);
 }
@@ -60,12 +61,12 @@ static int	unset_arg_check(char *str)
 	{
 		if (i == 0 && is_valid(str[i]))
 		{
-			unset_error(str);
+			path_error(str);
 			return (0);
 		}
-		if (is_valid(str[i] && !ft_isdigit(str[i]))
+		if (is_valid(str[i]) && ft_isdigit(str[i]))
 		{
-			unset_error(str);
+			path_error(str);
 			return (0);
 		}
 	}
@@ -84,8 +85,8 @@ void	do_unset(char **av, t_two_env *env)
 	{
 		if (unset_arg_check(av[i]))
 		{
-			unset_list(env->origin, av[i]);
-			unset_list(env->sortedm av[i]);
+			unset_list(&env->origin, av[i]);
+			// unset_list(env->sorted, av[i]);
 		}
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 10:49:35 by achanel           #+#    #+#             */
-/*   Updated: 2021/12/29 18:55:57 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/03 14:04:18 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	dir_to_path(t_envbase *base, char *path)
 
 static void	dir_to_oldpwd(t_envbase *base, char *path)
 {
-	pritf("%s\n", path);
+	printf("%s\n", path);
 	dir_to_path(base, path);
 }
 
@@ -58,7 +58,7 @@ static void	dir_to_home(t_envbase *base)
 	free(path);
 }
 
-void	do_cd(t_args *args, t_envbase *base)
+void	do_cd(t_envbase *base)
 {
 	char		*cur_path;
 	t_envbase	*path;
@@ -66,16 +66,16 @@ void	do_cd(t_args *args, t_envbase *base)
 	path = base;
 	while(path)
 	{
-		if (base->key == "PATH")
+		if (ft_strncmp(base->key, "PATH", 4) == 0)
 			break ;
 		path = path->next;
 	}
-	if ((!path->key) || path->val == "~"))
+	if ((!path->key) || ft_strncmp(path->val, "~", 1) == 0)
 	{
 		dir_to_home(base);
 		return ;
 	}
-	else if (path->val "-")
+	else if (ft_strncmp(path->val, "-", 1) == 0)
 	{
 		cur_path = ft_strdup(search_in_env(base, "OLDPWD"));
 		if (!cur_path)

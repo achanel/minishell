@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 18:12:50 by achanel           #+#    #+#             */
-/*   Updated: 2021/12/21 12:44:36 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/03 13:21:30 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,23 +61,23 @@ static int	check_arg(char *arg)
 	return (0);
 }
 
-void	do_exit(t_args *args)
+void	do_exit(char **cmd)
 {
 	int	error_status;
 
-	if (args->ac == 1)
+	if (!cmd[1])
 	{
 		printf("exit\n");
 		exit(0);
 	}
-	if (args->ac > 2)
+	if (cmd[2])
 	{
-		error_msg("exit", "too many arguments", 1);
+		error_msg("exit", "too many arguments\n", 1);
 		return ;
 	}
-	if (check_arg(args->av[1]) )
-		not_num_args(args->av[1]);
-	error_status = ex_atoi(args->av[1]);
+	if (check_arg(cmd[1]) )
+		not_num_args(cmd[1]);
+	error_status = ex_atoi(cmd[1]);
 	g_status = error_status % 256;
 	printf("exit\n");
 	exit(g_status);

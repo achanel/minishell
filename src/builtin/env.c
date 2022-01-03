@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 12:46:34 by achanel           #+#    #+#             */
-/*   Updated: 2021/12/21 14:17:26 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/03 13:35:12 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,20 @@ static void	check_env(t_two_env *env, t_envbase *first)
 	}
 }
 
-void	do_env(t_two_env *env)
+void	do_env(t_two_env *env, char **cmd)
 {
 	t_envbase	*first;
+	char		*str;
 
 	g_status = 0;
 	first = env->origin;
 	check_env(env, first);
-	if (!(env->origin))
+	if (!(env->origin) || cmd[1])
 	{
-		error_msg(env, ": No such file or directory\n", 1);
+		str = ft_strjoin("env: ", cmd[1]);
+		error_msg(str, "No such file or directory\n", 1);
 		env->origin = first;
+		free(str);
 		return ;
 	}
 	while(env->origin)

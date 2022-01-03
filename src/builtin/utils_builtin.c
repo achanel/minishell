@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_builtin.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 18:24:05 by achanel           #+#    #+#             */
-/*   Updated: 2021/12/29 18:25:21 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/03 14:48:17 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void    del_env(t_envbase *base)
         base->next = tmp;
     else
         base->next = NULL;
-    first = tmp;
 }
 
 void    del_env_first(t_envbase *base)
@@ -35,8 +34,11 @@ void    del_env_first(t_envbase *base)
 
     first = base;
     tmp = base->next;
+	printf("!!!!FFF!!!%s    %s\n", first->key, first->val);
+	printf("!!!!TTT!!!%s    %s\n", tmp->key, tmp->val);
     free(base->key);
     free(base->val);
     free(base);
-    first = tmp;
+    base = tmp;
+	printf("!!!!FFF!!!%s    %s\n", base->key, base->val);
 }

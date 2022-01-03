@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:13 by achanel           #+#    #+#             */
-/*   Updated: 2021/12/29 18:59:09 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/03 14:07:04 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <readline/history.h>
 # include <errno.h>
 # include <signal.h>
+# include "../libft/libft.h"
 
 int		g_status;
 
@@ -47,21 +48,28 @@ typedef	struct s_two_env
 }	t_two_env;
 
 //builtin
+void	get_builtin(char **cmd, t_two_env *env_list);
 void	do_pwd(void);
 void	do_echo(char **av);
-void	do_echo_n(char **av);
-void	do_exit(t_args *args);
-void	do_env(t_two_env *env);
+void	do_exit(char **cmd);
+void	do_env(t_two_env *env, char **cmd);
 void	do_unset(char **av, t_two_env *env);
-void	do_cd(t_args *args, t_envbase *base);
-
+void	do_cd(t_envbase *env);
 void	error_msg(char *cmd, char *error, int status);
-
+// void	do_export(t_args *args, t_envbase *base);
 //utils_builtin.c
 void    del_env(t_envbase *base);
 void    del_env_first(t_envbase *base);
 //utils_env.c
-char	*search_in_env(t_envbase *base, char *s);
-void	rewrite_pwd(t_envbase base, char *pwd, char *s);
-
+t_envbase	*add_new(char *key, char *val);
+void		stack_add_back(t_envbase **stack, t_envbase *new);
+t_envbase	*orig_env(char **env);
+char		*search_in_env(t_envbase *base, char *s);
+void		rewrite_pwd(t_envbase *base, char *pwd, char *s);
+//utils_stack.c
+char	*get_key(char *env_str);
+char	*get_val(char *env_str);
+//signal.c
+void    exec_signal_catcher(void);
+void    input_signal_catcher(void);
 #endif
