@@ -1,11 +1,11 @@
 #include "parser.h"
 
-int	*args_count(char *str, char c, int *j)
+int	*args_count(char *str, char *c, int *j)
 {
 	int i;
 	int *count;
 	
-	count = malloc(sizeof(int) * 2);
+	count = malloc(sizeof(int) * 5);
 	count[*j] = 0;
 	i = -1;
 	while (str[++i])
@@ -16,12 +16,12 @@ int	*args_count(char *str, char c, int *j)
 			while (str[i] != '\'' && str[i] != '\"')
 				i++;
 		}
-		if (str[i] == c || str[i] == '\0')
+		if (ft_strchr(c, str[i]) || str[i] == '\0')
 		{
-			printf("count[%d] = %d == %c\n", (*j), i, str[i]);
 			count[++(*j)] = i;
 		}
 	}
+	count[++(*j)] = ft_strlen(str);
 	return (count);
 }
 
@@ -34,12 +34,12 @@ void	comand_clean(char **str, char *c)
 	tmp = *str;
 
 	i = 0;
-	while((tmp[i] == c || tmp[i] == '\t' || tmp[i] == ' '))
+	while((ft_strchr(c, tmp[i]) || tmp[i] == '\t' || tmp[i] == ' '))
 	{
-		// printf ("in clean %s\n", *str);
 		i++;
 		if ((tmp[i] == '\'' || tmp[i] == '\"') && ft_isalpha(tmp[i]))
 			break ;
+		printf ("in clean %s\n", *str);
 	}
 	*str = ft_strdup(tmp + i);
 }
@@ -55,7 +55,7 @@ char **args_split(char *str, char *c)
 	ac = args_count(str, c, &j);
 	av = (char **)malloc(sizeof(char *) * j);
 	i = 0;
-	while (i <= j)
+	while (i < j)
 	{
 		i++;
 		av[i - 1] = ft_substr(str, ac[i - 1], ac[i] - ac[i - 1]);
@@ -69,7 +69,7 @@ char **args_split(char *str, char *c)
 // int main (int argc, char **argv, char **envp)
 // {
 // 	char *str = ft_strdup("/bin/echo l$_\"o\"l | cat > \"osl|o|beck\"k | chebureck");
-// 	char **str1 = args_split(str, '|');
+// 	char **str1 = args_split(str, "|");
 // 	int i = 0;
 // 	main_parcer(str1, envp);
 // 	while(str1[i])
@@ -77,7 +77,7 @@ char **args_split(char *str, char *c)
 // 		printf("str%d == %s\n", i, str1[i]);
 // 		i++;
 // 	}
-// 	pipex(i, str1, envp);
+// 	// pipex(i, str1, envp);
 // 	return (0);
 // }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dery_ru <dery_ru@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 16:33:21 by dery_ru           #+#    #+#             */
-/*   Updated: 2021/12/29 20:04:38 by rhoke            ###   ########.fr       */
+/*   Updated: 2021/12/31 11:51:42 by dery_ru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*get_envp(char *perem, char **envp, int *j)
 	if (tmp == NULL)
 		tmp = "\0";
 	// *j += ft_strlen(str) - 1 - ft_strlen(tmp); 
-	printf("str in env == %s\n", tmp);
+	// printf("str in env == %s\n", tmp);
 	return (tmp);
 }
 
@@ -56,7 +56,7 @@ char	*ft_quote(char *str,int *i, char **env)
 			break ;
 	}
 	tmp = ft_substr(str, 0, j);
-	printf("tmp in \" == %s\n", tmp);
+	// printf("tmp in \" == %s\n", tmp);
 	tmp2 = ft_substr(str, j + 1, *i - j - 1);
 	tmp3 = ft_strdup(str + *i + 1);
 	tmp = ft_strjoin(tmp, tmp2);
@@ -101,23 +101,22 @@ char	*ft_perem(char *str, int *i, char **env)
 	while (str[++(*i)])
 		if (str[(*i)] != '_' || (!ft_isalpha(str[(*i)])))
 			break ;
-	printf("i_ out == %d\n", *i);
+	// printf("i_ out == %d\n", *i);
 	
 	tmp = ft_substr(str, 0, j);
 	if (!str[*i])
 		return(tmp);
-	printf("tmp == %s\n", tmp);
+	// printf("tmp == %s\n", tmp);
 	tmp2 = ft_substr(str, j + 1, *i - j - 1);
 	tmp2 = get_envp(tmp2, env, i); // убрать сдвиг по i когда переменная не найдена
 	tmp3 = ft_strdup(str + *i);
-	printf(" !!!tmp3 == %s\n", tmp3);
+	// printf(" !!!tmp3 == %s\n", tmp3);
 	if (tmp2[0] == '\0'){
 		(*i) = j;
-		write (1, "\nlol\n", 5);
 	}
 	tmp = ft_strjoin(tmp, tmp2);
 	tmp = ft_strjoin(tmp, tmp3);
-	printf("tmp_out == %s\n", tmp);
+	// printf("tmp_out == %s\n", tmp);
 	return (tmp);
 }
 
@@ -135,14 +134,14 @@ void	parser(char **src, char **env)
 		// 	str = ft_slesh(str, &i);
 		if (str[i] == '$'){
 			str = ft_perem(str, &i, env);
-			printf( " now i == %d == %c\n", i, str[i]);
+			// printf( " now i == %d == %c\n", i, str[i]);
 		}
 		if (str[i] == '\'' || str[i] == '\"')
 			str = ft_quote(str, &i, env);
 		i++;
 	}
 	*src = str;
-	printf("str == %s\n", str);
+	// printf("str == %s\n", str);
 }
 
 void	preparser(char *str, char **env)

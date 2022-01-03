@@ -15,7 +15,7 @@ typedef struct s_parcer
 }	t_parcer;
 
 void	main_parcer(char **argv, char **env);
-char	**args_split(char *str, char c);
+char	**args_split(char *str, char *c);
 char	*get_path(char **envp, char *cmd);
 
 #endif
