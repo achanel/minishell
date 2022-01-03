@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 16:33:21 by dery_ru           #+#    #+#             */
-/*   Updated: 2022/01/03 17:08:45 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/03 19:10:53 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,6 @@ void	parser(char **src, char **env)
 	i = 0;
 	while (str[i])
 	{
-		// if (str[i] == '\\')
-		// 	str = ft_slesh(str, &i);
 		if (str[i] == '$'){
 			str = ft_perem(str, &i, env);
 			// printf( " now i == %d == %c\n", i, str[i]);
@@ -130,6 +128,8 @@ void	preparser(char *str, char **env)
 
 	i = -1;
 	j = 0;
+	if (!str)
+		return;
 	while (str[++i])
 		if (str[i] == '\'')
 			j++;
@@ -148,12 +148,13 @@ void	main_parcer(char **argv, char **env)
 {
 	// '' "" $ | > >> <
 
-	int i = -1;
-	// char *src = ft_strdup("e\"c$USER\"o kek");
-	while(argv[++i])
+	int i = 0;
+	while(argv[i])
 	{
+		// printf("%s\n", argv[i]);
 		preparser(argv[i], env);
 		parser(&argv[i], env);
+		i++;
 	}
 	// i = 0;
 	// while(argv[i])
