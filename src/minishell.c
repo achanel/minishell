@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/03 17:12:50 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/03 17:16:49 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int ac, char **av, char **env)
 {
 	char		*str;
 	t_two_env	*env_lists;
-	// char		**cmd;
+	char		**cmd;
 
 	(void)ac;
 	(void)av;
@@ -41,8 +41,8 @@ int	main(int ac, char **av, char **env)
 		init_envbase(&env_lists, env);
 		// input_signal_catcher();
 		// if (str[0] != '\0')
-		// 	cmd = parser(str, env);
-		// get_builtin(cmd, env_list);
+		// 	cmd = str_parse(str, env);
+		// get_builtin(cmd, env_lists);
 		pre_builtin(str, env_lists);
 	}
 	return (0);

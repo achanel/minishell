@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:13 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/03 17:11:35 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/03 17:15:22 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ char	*get_val(char *env_str);
 void    exec_signal_catcher(void);
 void    input_signal_catcher(void);
 // paser
+char 	**str_parse(char *str1, char **envp);
 void	main_parcer(char **argv, char **env);
 char	**args_split(char *str, char *c);
 char	*get_path(char **envp, char *cmd);
