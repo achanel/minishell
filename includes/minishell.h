@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:13 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/03 14:07:04 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/03 16:51:29 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <errno.h>
 # include <signal.h>
 # include "../libft/libft.h"
+# include <fcntl.h> // хз надо не надо у меня была))
 
 int		g_status;
 
@@ -72,4 +73,10 @@ char	*get_val(char *env_str);
 //signal.c
 void    exec_signal_catcher(void);
 void    input_signal_catcher(void);
+// paser
+void	main_parcer(char **argv, char **env);
+char	**args_split(char *str, char *c);
+char	*get_path(char **envp, char *cmd);
+char	*ft_perem(char *str, int *i, char **env);
+
 #endif
