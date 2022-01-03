@@ -6,11 +6,11 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 15:51:25 by rhoke             #+#    #+#             */
-/*   Updated: 2021/12/29 20:04:31 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/03 16:59:23 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../../includes/minishell.h"
 
 void	exec(char *argv, char **envp)
 {

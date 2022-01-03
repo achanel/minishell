@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dery_ru <dery_ru@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 16:33:21 by dery_ru           #+#    #+#             */
-/*   Updated: 2021/12/31 11:51:42 by dery_ru          ###   ########.fr       */
+/*   Updated: 2022/01/03 16:59:17 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../../includes/minishell.h"
 
 char	*ft_perem(char *str, int *i, char **env);
 

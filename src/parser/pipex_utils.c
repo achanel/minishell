@@ -6,11 +6,11 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 15:51:30 by rhoke             #+#    #+#             */
-/*   Updated: 2021/12/29 20:04:23 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/03 16:59:30 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../../includes/minishell.h"
 
 void	ft_error(char *str)
 {

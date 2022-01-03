@@ -1,4 +1,4 @@
-#include "parser.h"
+#include "../../includes/minishell.h"
 
 int	*args_count(char *str, char *c, int *j)
 {

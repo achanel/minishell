@@ -1,4 +1,4 @@
-#include "parser.h"
+#include "../../includes/minishell.h"
 
 int main(int argc, char const *argv[], char **envp)
 {

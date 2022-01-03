@@ -1,8 +1,4 @@
-#include "libft/libft.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
+#include "../../includes/minishell.h"
 
 char *str2str(char *str)
 {
