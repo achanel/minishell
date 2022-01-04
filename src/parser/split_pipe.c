@@ -18,6 +18,8 @@ int	*args_count(char *str, char *c, int *j)
 		}
 		if (ft_strchr(c, str[i])) //|| str[i] == '\0')
 		{
+			while(ft_strchr(c, str[i]))
+				i++;
 			count[++(*j)] = i;
 		}
 	}
@@ -29,19 +31,25 @@ void	comand_clean(char **str, char *c)
 {
 	
 	int i;
+	int j;
 	char *tmp;
 
 	tmp = *str;
 
 	i = 0;
-	while((ft_strchr(c, tmp[i]) || tmp[i] == '\t' || tmp[i] == ' '))
-	{
-		i++;
-		if ((tmp[i] == '\'' || tmp[i] == '\"') && ft_isalpha(tmp[i]))
-			break ;
-		// printf ("in clean %s\n", *str);
+	j = ft_strlen(tmp);
+	while(ft_strchr(c, tmp[i]) || tmp[i] == '\t' || tmp[i] == ' ')
+		i++; 
+	while(ft_strchr(c, tmp[j]) || tmp[j] == '\t' || tmp[j] == ' '){
+		j--;
 	}
-	*str = ft_strdup(tmp + i);
+	j++;
+	
+	// while((tmp[i + j] == '\'' || tmp[i + j] == '\"') || ft_isalpha(tmp[i + j])){
+	// 	j++;
+	// }
+		// printf ("in clean %s\n", *str);
+	*str = ft_substr(tmp, i, j - i);
 }
 
 char **args_split(char *str, char *c)
@@ -52,6 +60,8 @@ char **args_split(char *str, char *c)
 	int		*ac;
 
 	j = 0;
+	while(ft_strchr(c, *str) || *str == '\t' || *str == ' ')
+		str++;
 	ac = args_count(str, c, &j);
 	av = (char **)malloc(sizeof(char *) * j);
 	i = 0;
@@ -60,7 +70,7 @@ char **args_split(char *str, char *c)
 		i++;
 		av[i - 1] = ft_substr(str, ac[i - 1], ac[i] - ac[i - 1]);
 		comand_clean(&av[i - 1], c);
-		// printf("av[%d] == %s\n",i - 1,  av[i - 1]);
+		printf("av[%d] == %s\n",i - 1,  av[i - 1]);
 
 	}
 	return (av);
