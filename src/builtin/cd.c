@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 10:49:35 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/03 14:04:18 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/04 19:31:51 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	path_error(char *path)
 	ft_putstr_fd(path, 2);
 	ft_putstr_fd(": ", 2);
 	ft_putstr_fd(strerror(errno), 2);
+	ft_putstr_fd("\n", 2);
 	g_status = 1;
 }
 
@@ -28,7 +29,7 @@ static void	dir_to_path(t_envbase *base, char *path)
 	
 	pwd = getcwd(NULL, 0);
 	rewrite_pwd(base, pwd, "OLDPWD");
-	if (chdir(path))
+	if (chdir(path) != 0 && ft_strchr(path, '>') == NULL)
 	{
 		path_error(path);
 		return ;
@@ -50,7 +51,7 @@ static void	dir_to_home(t_envbase *base)
 	path = ft_strdup(search_in_env(base, "HOME"));
 	if (!path)
 	{
-		error_msg("cd", "HOME not set", 1);
+		error_msg("cd", "HOME not set\n", 1);
 		free(path);
 		return ;
 	}
@@ -58,37 +59,33 @@ static void	dir_to_home(t_envbase *base)
 	free(path);
 }
 
-void	do_cd(t_envbase *base)
+void	do_cd(char **cmd, t_two_env *base)
 {
 	char		*cur_path;
 	t_envbase	*path;
 
-	path = base;
+	path = base->origin;
 	while(path)
 	{
-		if (ft_strncmp(base->key, "PATH", 4) == 0)
+		if (ft_strncmp(path->key, "PATH", 4) == 0)
 			break ;
 		path = path->next;
 	}
-	if ((!path->key) || ft_strncmp(path->val, "~", 1) == 0)
+	if (!(path) || ft_strncmp(cmd[1], "~", 1) == 0)
 	{
-		dir_to_home(base);
+		dir_to_home(base->origin);
 		return ;
 	}
-	else if (ft_strncmp(path->val, "-", 1) == 0)
+	else if (ft_strncmp(cmd[1], "-", 1) == 0)
 	{
-		cur_path = ft_strdup(search_in_env(base, "OLDPWD"));
+		cur_path = search_in_env(base->origin, "OLDPWD");
 		if (!cur_path)
 		{
-			error_msg("cd", "OLDPWD not set", 1);
+			error_msg("cd", "OLDPWD not set\n", 1);
 			return ;
 		}
-		dir_to_oldpwd(base, cur_path);
+		dir_to_oldpwd(base->origin, cur_path);
 	}
 	else
-	{
-		cur_path = ft_strdup(search_in_env(base, "PWD"));
-		dir_to_path(base, path->val);
-	}
-	free(cur_path);
+		dir_to_path(base->origin, cmd[1]);
 }

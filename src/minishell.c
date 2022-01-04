@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/04 18:17:10 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/04 19:37:05 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 void	init_envbase(t_two_env **env_lists, char **env)
 {
 	*env_lists = malloc(sizeof(t_two_env));
-	//malloc_error;
+	malloc_error(*env_lists);
 	(*env_lists)->origin = orig_env(env);
 }
 
-static void	pre_builtin(char *str, t_two_env *env_list)
-{
-	char	**cmd;
+// static void	pre_builtin(char *str, t_two_env *env_list)
+// {
+// 	char	**cmd;
 
-	cmd = ft_split(str, ' ');
-	get_builtin(cmd, env_list);
-}
+// 	cmd = ft_split(str, ' ');
+// 	get_builtin(cmd, env_list);
+// }
 
 int	main(int ac, char **av, char **env)
 {
@@ -50,7 +50,7 @@ int	main(int ac, char **av, char **env)
 		// 	printf("str to parse %d == %s\n", i, cmd[i]);
 		// 	i++;
 		// }
-		get_builtin(cmd, env_lists);
+		get_builtin(cmd, env_lists, env);
 		// free(cmd);
 		// pre_builtin(str, env_lists);
 	}

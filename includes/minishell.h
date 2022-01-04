@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:13 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/04 17:30:57 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/04 19:36:03 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,16 @@ typedef	struct s_two_env
 }	t_two_env;
 
 //builtin
-void	get_builtin(char **cmd, t_two_env *env_list);
+void	get_builtin(char **cmd, t_two_env *env_list, char **envp);
 void	do_pwd(void);
 void	do_echo(char **av);
 void	do_exit(char **cmd);
 void	do_env(t_two_env *env, char **cmd);
 void	do_unset(char **av, t_two_env **env);
 void	unset_list(t_two_env *base, char *str);
-void	do_cd(t_envbase *env);
+void	do_cd(char **cmd,t_two_env *base);
 void	error_msg(char *cmd, char *error, int status);
+void	malloc_error(void *p);
 // void	do_export(t_args *args, t_envbase *base);
 //utils_builtin.c
 int	is_valid(int n);

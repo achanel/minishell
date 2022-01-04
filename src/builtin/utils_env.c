@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 18:23:56 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/03 14:07:31 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/04 19:36:21 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_envbase	*add_new(char *key, char *val)
 	t_envbase	*stack;
 
 	stack = malloc(sizeof(t_envbase));
-	//malloc_error;
+	malloc_error(stack);
 	stack->key = key;
 	stack->val = val;
 	stack->next = NULL;
@@ -59,7 +59,7 @@ char	*search_in_env(t_envbase *base, char *s)
 	tmp = base;
 	while(tmp)
 	{
-		if (tmp->key == s)
+		if (ft_strncmp(tmp->key, s, ft_strlen(s)) == 0)
 			return(tmp->val);
 		tmp = tmp->next;
 	}
@@ -71,13 +71,26 @@ void	rewrite_pwd(t_envbase *base, char *pwd, char *s)
 	t_envbase	*path;
 
 	path = base;
-	pwd = 0; //////
 	while(path)
 	{
-		if (base->key == s)
+		if (ft_strncmp(path->key, s, ft_strlen(s)) == 0)
 			break ;
 		path = path->next;
 	}
-	free(path->val);
-	path->val = ft_strdup(s);
+	if (!path)
+	{
+		stack_add_back(&base, add_new(s, pwd));
+		path = base;
+		while(path)
+		{
+			if (ft_strncmp(path->key, s, ft_strlen(s)) == 0)
+				break ;
+			path = path->next;
+		}
+	}
+	else
+	{
+		free(path->val);
+		path->val = ft_strdup(pwd);
+	}
 }
