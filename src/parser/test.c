@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 13:46:30 by rhoke             #+#    #+#             */
-/*   Updated: 2022/01/04 17:13:22 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/04 19:18:32 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main(int argc, char const *argv[], char **envp)
 {
-	char *str = ft_strdup("echo kek");
+	char *str = ft_strdup("cat -e test.c");
 	char **str1 = args_split(str, " ");
 
 

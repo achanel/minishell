@@ -37,17 +37,17 @@ void	parcer(char *str, char **env)
 	int i = -1;
 	while (str[++i])
 	{
-		// if (str[i] == '<')
-		// 	str = redir_in();
 		if (str[i] == '<')
-			str = redir_out(str, &i, env);
+			str = redir_out();
+		if (str[i] == '<')
+			str = redir_in(str, &i, env);
 	}
 }
 
-// int main(int argc, char *argv[], char **env)
-// {
-// 	char *str = ft_strdup("<< 	kek <1 lol");
-// 	parcer(str,env);
-// 	return 0;
-// }
+int main(int argc, char *argv[], char **env)
+{
+	char *str = ft_strdup("cat < 1");
+	parcer(str,env);
+	return 0;
+}
 
