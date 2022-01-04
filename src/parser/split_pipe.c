@@ -5,7 +5,7 @@ int	*args_count(char *str, char *c, int *j)
 	int i;
 	int *count;
 	
-	count = malloc(sizeof(int) * 5);
+	count = malloc(sizeof(int) * 50);
 	count[*j] = 0;
 	i = -1;
 	while (str[++i])
@@ -70,7 +70,7 @@ char **args_split(char *str, char *c)
 		i++;
 		av[i - 1] = ft_substr(str, ac[i - 1], ac[i] - ac[i - 1]);
 		comand_clean(&av[i - 1], c);
-		printf("av[%d] == %s\n",i - 1,  av[i - 1]);
+		// printf("av[%d] == %s\n",i - 1,  av[i - 1]);
 
 	}
 	return (av);
@@ -79,7 +79,7 @@ char **args_split(char *str, char *c)
 char **str_parse(char *str1, char **envp)
 {
 	// char *str = ft_strdup("/bin/echo l$_\"o\"l | cat > \"osl|o|beck\"k | chebureck");
-	char **str2 = args_split(str1, "|");
+	char **str2 = args_split(str1, " ");
 	char **str3 = NULL;
 	char ***tmp = NULL;
 	int i = 0;
@@ -88,7 +88,7 @@ char **str_parse(char *str1, char **envp)
 	while(str2[i])
 	{
 		// write(1, "lol\n", 4);
-		// printf("str%d == %s\n", i, str2[i]);
+		printf("str%d == %s\n", i, str2[i]);
 		// tmp[i] = args_split(str2[i], " ");
 		// return (tmp[i]);
 		i++;
@@ -99,7 +99,7 @@ char **str_parse(char *str1, char **envp)
 
 // int main(int ac, char **av, char **env)
 // {
-// 	char *str = ft_strdup("echo 12345\0");
+// 	char *str = ft_strdup("e\"ch\"o 1\'23\'45 lol kek");
 // 	char **str3 = str_parse(str, env);
 // 	free(str);
 // 	int i = 0;
@@ -112,3 +112,30 @@ char **str_parse(char *str1, char **envp)
 // 	return (0);
 // }
 
+// int	main(int ac, char **av, char **env)
+// {
+// 	char		*str;
+// 	t_two_env	*env_lists;
+// 	char		**cmd;
+// 	int i=0;
+
+// 	(void)ac;
+// 	(void)av;
+// 	while(1)
+// 	{
+// 		str = readline("🔥🔥🔥🔥🔥🔥> ");
+// 		// init_envbase(&env_lists, env);
+// 		// input_signal_catcher();
+// 		if (str[0] != '\0')
+// 			cmd = str_parse(str, env);
+// 		while (cmd[i])
+// 		{
+// 			printf("str to parse %d == %s\n", i, cmd[i]);
+// 			i++;
+// 		}
+// 		free(cmd);
+// 		// get_builtin(cmd, env_lists);
+// 		// pre_builtin(str, env_lists);
+// 	}
+// 	return (0);
+// }

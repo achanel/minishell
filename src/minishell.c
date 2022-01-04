@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dery_ru <dery_ru@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/03 23:05:41 by dery_ru          ###   ########.fr       */
+/*   Updated: 2022/01/04 16:37:53 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,12 @@ int	main(int ac, char **av, char **env)
 			cmd = str_parse(str, env);
 		while (cmd[i])
 		{
-			printf("str to parse == %s\n", cmd[i]);
+			printf("str to parse %d == %s\n", i, cmd[i]);
 			i++;
 		}
 		
 		get_builtin(cmd, env_lists);
+		// free(cmd);
 		// pre_builtin(str, env_lists);
 	}
 	return (0);

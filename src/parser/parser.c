@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 16:33:21 by dery_ru           #+#    #+#             */
-/*   Updated: 2022/01/03 19:10:53 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/04 16:51:13 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ void	main_parcer(char **argv, char **env)
 	int i = 0;
 	while(argv[i])
 	{
+		// write(1, "lol\n", 4);
 		// printf("%s\n", argv[i]);
 		preparser(argv[i], env);
 		parser(&argv[i], env);
