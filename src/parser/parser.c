@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 16:33:21 by dery_ru           #+#    #+#             */
-/*   Updated: 2022/01/04 16:51:13 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/04 18:52:28 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	ft_error(char *str)
 	exit (1);
 }
 
-// char	*get_envp(char *perem, char **envp, int *j)
-char	*get_envp(char *perem, char **envp)
+char	*get_envp(char *perem, char **envp, int *j)
+// char	*get_envp(char *perem, char **envp)
 {
 	char *str;
 	char *tmp = NULL;
@@ -32,11 +32,13 @@ char	*get_envp(char *perem, char **envp)
 	{
 		if (ft_strnstr(envp[i], str, ft_strlen(str)))
 			tmp = envp[i] + ft_strlen(str);
+		printf("srch env == %s\n", envp[i]);
+		// getchar();
 			
 	}
 	if (tmp == NULL)
 		tmp = "\0";
-	// *j += ft_strlen(str) - 1 - ft_strlen(tmp); 
+	// *j += ft_strlen(str) - 1 - ft_strlen(tmp);
 	// printf("str in env == %s\n", tmp);
 	return (tmp);
 }
@@ -77,17 +79,16 @@ char	*ft_perem(char *str, int *i, char **env)
 	
 	j = *i;
 	while (str[++(*i)])
-		if (str[(*i)] != '_' || (!ft_isalpha(str[(*i)])))
+		if (str[(*i)] != '_' && (!ft_isalpha(str[(*i)])))
 			break ;
-	// printf("i_ out == %d\n", *i);
-	
 	tmp = ft_substr(str, 0, j);
-	if (!str[*i])
-		return(tmp);
-	// printf("tmp == %s\n", tmp);
+	// if (!str[*i])
+	// 	return(tmp);
+	printf("*i - j - 1 == %d\n", (*i));
 	tmp2 = ft_substr(str, j + 1, *i - j - 1);
+	printf("tmp2 $ == %s\n", tmp2);
 	// tmp2 = get_envp(tmp2, env, i); // убрать сдвиг по i когда переменная не найдена
-	tmp2 = get_envp(tmp2, env); // убрать сдвиг по i когда переменная не найдена
+	tmp2 = get_envp(tmp2, env, i);
 	tmp3 = ft_strdup(str + *i);
 	// printf(" !!!tmp3 == %s\n", tmp3);
 	if (tmp2[0] == '\0'){
@@ -149,14 +150,17 @@ void	main_parcer(char **argv, char **env)
 	// '' "" $ | > >> <
 
 	int i = 0;
-	while(argv[i])
+	while(1)
 	{
-		// write(1, "lol\n", 4);
-		// printf("%s\n", argv[i]);
+		if (argv[i] == NULL)
+			break ;
+		// write(1, "sss\n", 4);
 		preparser(argv[i], env);
 		parser(&argv[i], env);
+		printf("argv == %s ARG_LEN ==%zu %d\n", argv[i], ft_strlen(argv[i]), i);
 		i++;
 	}
+
 	// i = 0;
 	// while(argv[i])
 	// {

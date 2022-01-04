@@ -70,9 +70,8 @@ char **args_split(char *str, char *c)
 		i++;
 		av[i - 1] = ft_substr(str, ac[i - 1], ac[i] - ac[i - 1]);
 		comand_clean(&av[i - 1], c);
-		// printf("av[%d] == %s\n",i - 1,  av[i - 1]);
-
 	}
+	av[i] = 0;
 	return (av);
 }
 
@@ -87,8 +86,6 @@ char **str_parse(char *str1, char **envp)
 	main_parcer(str2, envp);
 	while(str2[i])
 	{
-		// write(1, "lol\n", 4);
-		printf("str%d == %s\n", i, str2[i]);
 		// tmp[i] = args_split(str2[i], " ");
 		// return (tmp[i]);
 		i++;
@@ -99,7 +96,7 @@ char **str_parse(char *str1, char **envp)
 
 // int main(int ac, char **av, char **env)
 // {
-// 	char *str = ft_strdup("e\"ch\"o 1\'23\'45 lol kek");
+// 	char *str = ft_strdup("echo $USERF");
 // 	char **str3 = str_parse(str, env);
 // 	free(str);
 // 	int i = 0;
