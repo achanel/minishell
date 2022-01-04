@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 16:33:21 by dery_ru           #+#    #+#             */
-/*   Updated: 2022/01/04 18:52:28 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/04 18:55:17 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*get_envp(char *perem, char **envp, int *j)
 	{
 		if (ft_strnstr(envp[i], str, ft_strlen(str)))
 			tmp = envp[i] + ft_strlen(str);
-		printf("srch env == %s\n", envp[i]);
+		// printf("srch env == %s\n", envp[i]);
 		// getchar();
 			
 	}
@@ -84,9 +84,9 @@ char	*ft_perem(char *str, int *i, char **env)
 	tmp = ft_substr(str, 0, j);
 	// if (!str[*i])
 	// 	return(tmp);
-	printf("*i - j - 1 == %d\n", (*i));
+	// printf("*i - j - 1 == %d\n", (*i));
 	tmp2 = ft_substr(str, j + 1, *i - j - 1);
-	printf("tmp2 $ == %s\n", tmp2);
+	// printf("tmp2 $ == %s\n", tmp2);
 	// tmp2 = get_envp(tmp2, env, i); // убрать сдвиг по i когда переменная не найдена
 	tmp2 = get_envp(tmp2, env, i);
 	tmp3 = ft_strdup(str + *i);
@@ -157,7 +157,7 @@ void	main_parcer(char **argv, char **env)
 		// write(1, "sss\n", 4);
 		preparser(argv[i], env);
 		parser(&argv[i], env);
-		printf("argv == %s ARG_LEN ==%zu %d\n", argv[i], ft_strlen(argv[i]), i);
+		// printf("argv == %s ARG_LEN ==%zu %d\n", argv[i], ft_strlen(argv[i]), i);
 		i++;
 	}
 
