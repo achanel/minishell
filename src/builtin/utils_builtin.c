@@ -6,39 +6,47 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 18:24:05 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/03 14:48:17 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/04 17:30:10 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void    del_env(t_envbase *base)
+static void	path_error(char *str)
 {
-    t_envbase   *tmp;
-
-    if (base->next->next)
-        tmp = base->next->next;
-    free(base->next->key);
-    free(base->next->val);
-    free(base->next);
-    if (base->next->next)
-        base->next = tmp;
-    else
-        base->next = NULL;
+	ft_putstr_fd(MSL, 2);
+	ft_putstr_fd(": unset: '", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd("': ", 2);
+	ft_putstr_fd("not a valid identifier\n", 2);
+	g_status = 1;
 }
 
-void    del_env_first(t_envbase *base)
-{
-    t_envbase   *first;
-    t_envbase   *tmp;
 
-    first = base;
-    tmp = base->next;
-	printf("!!!!FFF!!!%s    %s\n", first->key, first->val);
-	printf("!!!!TTT!!!%s    %s\n", tmp->key, tmp->val);
-    free(base->key);
-    free(base->val);
-    free(base);
-    base = tmp;
-	printf("!!!!FFF!!!%s    %s\n", base->key, base->val);
+int	is_valid(int n)
+{
+	if ((n >= 'A' && n <= 'Z') || (n >= 'a' && n <= 'z') || n == '_')
+		return (0);
+	return (1);
+}
+
+int	unset_arg_check(char *str)
+{
+	int	i;
+
+	i = -1;
+	while(str[++i])
+	{
+		if (i == 0 && is_valid(str[i]))
+		{
+			path_error(str);
+			return (0);
+		}
+		if (is_valid(str[i]) && ft_isdigit(str[i]))
+		{
+			path_error(str);
+			return (0);
+		}
+	}
+	return (1);
 }

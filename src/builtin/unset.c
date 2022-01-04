@@ -6,74 +6,56 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 14:18:55 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/03 16:50:29 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/04 17:30:06 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	unset_list(t_envbase *base, char *str)
+static void    del_env(t_envbase **base)
+{
+    t_envbase   *tmp;
+
+    if ((*base)->next->next)
+        tmp = (*base)->next->next;
+    free((*base)->next);
+    if ((*base)->next->next)
+        (*base)->next = tmp;
+    else
+        (*base)->next = NULL;
+}
+
+void	unset_list(t_two_env *base, char *str)
 {
 	t_envbase *first;
+	t_envbase   *top;
 
-	first = base;
-	while(base)
+	first = base->origin;
+	while(base->origin)
 	{
-		// printf("here\n");
-		if (ft_strncmp(base->key, str, ft_strlen(str)) == 0)
+
+		if (ft_strncmp(base->origin->key, str, ft_strlen(str)) == 0)
 		{
-			del_env_first(base);
+			
+			top = base->origin->next;
+			free(base->origin->key);
+			free(base->origin->val);
+    		free(base->origin);
+			base->origin = NULL;
+			base->origin = top;
 			return ;
 		}
-		if (base->next && ft_strncmp(base->next->key, str, ft_strlen(str)) == 0)
+		if (base->origin->next && ft_strncmp(base->origin->next->key, str, ft_strlen(str)) == 0)
 		{
-			del_env(base);
+			del_env(&base->origin);
 			break ;
 		}
-		base = base->next;
+		base->origin = base->origin->next;
 	}
-	base = first;
+	base->origin = first;
 }
 
-static void	path_error(char *str)
-{
-	ft_putstr_fd(MSL, 2);
-	ft_putstr_fd(": unset: '", 2);
-	ft_putstr_fd(str, 2);
-	ft_putstr_fd("': ", 2);
-	ft_putstr_fd("not a valid identifier\n", 2);
-	g_status = 1;
-}
-
-static int	is_valid(int n)
-{
-	if ((n >= 'A' && n <= 'Z') || (n >= 'a' && n <= 'z') || n == '_')
-		return (0);
-	return (1);
-}
-
-static int	unset_arg_check(char *str)
-{
-	int	i;
-
-	i = -1;
-	while(str[++i])
-	{
-		if (i == 0 && is_valid(str[i]))
-		{
-			path_error(str);
-			return (0);
-		}
-		if (is_valid(str[i]) && ft_isdigit(str[i]))
-		{
-			path_error(str);
-			return (0);
-		}
-	}
-	return (1);
-}
-
-void	do_unset(char **av, t_two_env *env)
+void	do_unset(char **av, t_two_env **env)
 {
 	int	i;
 
@@ -85,7 +67,7 @@ void	do_unset(char **av, t_two_env *env)
 	{
 		if (unset_arg_check(av[i]))
 		{
-			unset_list(env->origin, av[i]);
+			unset_list((*env), av[i]);
 			// unset_list(env->sorted, av[i]);
 		}
 		i++;

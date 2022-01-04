@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:13 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/03 17:15:22 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/04 17:30:57 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,14 @@ void	do_pwd(void);
 void	do_echo(char **av);
 void	do_exit(char **cmd);
 void	do_env(t_two_env *env, char **cmd);
-void	do_unset(char **av, t_two_env *env);
+void	do_unset(char **av, t_two_env **env);
+void	unset_list(t_two_env *base, char *str);
 void	do_cd(t_envbase *env);
 void	error_msg(char *cmd, char *error, int status);
 // void	do_export(t_args *args, t_envbase *base);
 //utils_builtin.c
-void    del_env(t_envbase *base);
-void    del_env_first(t_envbase *base);
+int	is_valid(int n);
+int	unset_arg_check(char *str);
 //utils_env.c
 t_envbase	*add_new(char *key, char *val);
 void		stack_add_back(t_envbase **stack, t_envbase *new);
