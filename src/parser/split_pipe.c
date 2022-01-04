@@ -77,8 +77,8 @@ char **str_parse(char *str1, char **envp)
 	main_parcer(str2, envp);
 	while(str2[i])
 	{
-		// write(1, "lol\n", 4);	
-		printf("str%d == %s\n", i, str2[i]);
+		// write(1, "lol\n", 4);
+		// printf("str%d == %s\n", i, str2[i]);
 		// tmp[i] = args_split(str2[i], " ");
 		// return (tmp[i]);
 		i++;
@@ -87,18 +87,18 @@ char **str_parse(char *str1, char **envp)
 	return (str2);
 }
 
-int main(int ac, char **av, char **env)
-{
-	char *str = ft_strdup("echo 12345\0");
-	char **str3 = str_parse(str, env);
-	free(str);
-	int i = 0;
-	while(str3[i])
-	{
-		printf(" str3[%d] = %s\n", i, str3[i]);
-		i++;
-	}
-	getchar();
-	return (0);
-}
+// int main(int ac, char **av, char **env)
+// {
+// 	char *str = ft_strdup("echo 12345\0");
+// 	char **str3 = str_parse(str, env);
+// 	free(str);
+// 	int i = 0;
+// 	while(str3[i])
+// 	{
+// 		printf(" str3[%d] = %s\n", i, str3[i]);
+// 		i++;
+// 	}
+// 	getchar();
+// 	return (0);
+// }
 

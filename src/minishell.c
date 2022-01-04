@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dery_ru <dery_ru@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/03 18:49:55 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/03 23:05:41 by dery_ru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	main(int ac, char **av, char **env)
 	char		*str;
 	t_two_env	*env_lists;
 	char		**cmd;
+	int i=0;
 
 	(void)ac;
 	(void)av;
@@ -42,6 +43,12 @@ int	main(int ac, char **av, char **env)
 		// input_signal_catcher();
 		if (str[0] != '\0')
 			cmd = str_parse(str, env);
+		while (cmd[i])
+		{
+			printf("str to parse == %s\n", cmd[i]);
+			i++;
+		}
+		
 		get_builtin(cmd, env_lists);
 		// pre_builtin(str, env_lists);
 	}
