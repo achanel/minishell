@@ -6,11 +6,18 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/04 19:37:05 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/05 15:33:37 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	ft_eof(void)
+{
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	printf("exit\n");
+}
 
 void	init_envbase(t_two_env **env_lists, char **env)
 {
@@ -18,14 +25,6 @@ void	init_envbase(t_two_env **env_lists, char **env)
 	malloc_error(*env_lists);
 	(*env_lists)->origin = orig_env(env);
 }
-
-// static void	pre_builtin(char *str, t_two_env *env_list)
-// {
-// 	char	**cmd;
-
-// 	cmd = ft_split(str, ' ');
-// 	get_builtin(cmd, env_list);
-// }
 
 int	main(int ac, char **av, char **env)
 {
@@ -37,22 +36,21 @@ int	main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 	init_envbase(&env_lists, env);
+	input_signal_catcher();
 	while(1)
 	{
+		str = NULL;
 		str = readline("🔥🔥🔥🔥🔥🔥> ");
-		// input_signal_catcher();
-		if (str[0] != '\0'){
-
-			cmd = str_parse(str, env);
+		if (str == NULL)
+		{
+			ft_eof();
+			break ;
 		}
-		// while (cmd[i])
-		// {
-		// 	printf("str to parse %d == %s\n", i, cmd[i]);
-		// 	i++;
-		// }
+		else
+			cmd = str_parse(str, env);
 		get_builtin(cmd, env_lists, env);
-		// free(cmd);
-		// pre_builtin(str, env_lists);
+		if (str)
+			free(str);
 	}
 	return (0);
 }
