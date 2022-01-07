@@ -12,6 +12,53 @@
 
 #include "../../includes/minishell.h"
 
+static void	swap_list(t_envbase *first, t_envbase *tmp)
+{
+	t_envbase	*a;
+	t_envbase	*b;
+	t_envbase	*c;
+
+	a = first;
+	b = tmp->next;
+	c = tmp->next->next;
+	if (ft_strncmp(first->key, tmp->key, ft_strlen(tmp->key)) != 0)
+	{
+		while(ft_strncmp(a->next->key, tmp->key, ft_strlen(tmp->key)) != 0)
+			a = a->next;
+		a->next = b;
+		tmp->next = c;
+		b->next = tmp;
+	}
+	else
+	{
+		tmp->next = c;
+		b->next = tmp;
+		first->next = b;
+	}
+}
+
+void	sort_env(t_envbase *sorted)
+{
+	t_envbase	*first;
+	t_envbase	*tmp;
+	int			i;
+
+	first = sorted;
+	while(sorted)
+	{
+		tmp = first;
+		while (tmp)
+		{
+			if (ft_strncmp(tmp->key, tmp->next->key, ft_strlen(tmp->next->key)) > 0)
+				swap_list(first, sorted);
+			tmp = tmp->next;
+		}
+		sorted = sorted->next;
+	}
+	sorted = first;
+
+}
+
 char	*get_key(char *env_str)
 {
 	char	*key;
