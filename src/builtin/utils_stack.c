@@ -6,76 +6,65 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 21:52:28 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/04 19:36:47 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/08 17:55:20 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	swap_list(t_envbase *first, t_envbase *tmp)
+char	**sort_env(t_two_env *env_list, char **env)
 {
-	t_envbase	*a;
-	t_envbase	*b;
-	t_envbase	*c;
+	int		i;
+	int		j;
+	int		count;
+	char	*tmp;
 
-	a = first;
-	b = tmp->next;
-	c = tmp->next->next;
-	if (ft_strncmp(first->key, tmp->key, ft_strlen(tmp->key)) != 0)
+	count = 0;
+	while (env[count])
+		count++;
+	i = -1;
+	while(++i < count - 1)
 	{
-		while(ft_strncmp(a->next->key, tmp->key, ft_strlen(tmp->key)) != 0)
-			a = a->next;
-		a->next = b;
-		tmp->next = c;
-		b->next = tmp;
-	}
-	else
-	{
-		tmp->next = c;
-		b->next = tmp;
-		first->next = b;
-	}
-}
-
-void	sort_env(t_envbase *sorted)
-{
-	t_envbase	*first;
-	t_envbase	*tmp;
-	int			i;
-
-	first = sorted;
-	while(sorted)
-	{
-		tmp = first;
-		while (tmp)
+		j = -1;
+		while(++j < count)
 		{
-			if (ft_strncmp(tmp->key, tmp->next->key, ft_strlen(tmp->next->key)) > 0)
-				swap_list(first, sorted);
-			tmp = tmp->next;
+			if (ft_strncmp(env[i], env[j], ft_strlen(env[j])) < 0)
+			{
+				tmp = env[i];
+				env[i] = env[j];
+				env[j] = tmp;
+			}
 		}
-		sorted = sorted->next;
 	}
-	sorted = first;
-
+	return(env);
 }
 
 char	*get_key(char *env_str)
 {
 	char	*key;
 	int		i;
+	int		j;
 
 	i = 0;
 	if (!env_str)
 		return (NULL);
-	while(env_str[i] != '=' && env_str[i])
-		i++;
-	key = malloc(sizeof(char) * i + 1);
-	malloc_error(key);
-	i = -1;
-	while (env_str[++i] != '=')
-		key[i] = env_str[i];
-	key[i] = '\0';
-	return(key);
+	while (env_str[++i])
+	{
+		if (env_str[i] == '=')
+		{
+			j = 0;
+			while(env_str[j] != '=' && env_str[j])
+				j++;
+			key = malloc(sizeof(char) * j + 1);
+			malloc_error(key);
+			j = -1;
+			while (env_str[++j] != '=')
+				key[j] = env_str[j];
+			key[j] = '\0';
+			return(key);
+		}
+	}
+	return (env_str);
 }
 
 char	*get_val(char *env_str)

@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:13 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/04 19:36:03 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/08 15:40:59 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	unset_list(t_two_env *base, char *str);
 void	do_cd(char **cmd,t_two_env *base);
 void	error_msg(char *cmd, char *error, int status);
 void	malloc_error(void *p);
-// void	do_export(t_args *args, t_envbase *base);
+void	do_export(char **cmd, t_two_env *env_list);
 //utils_builtin.c
 int	is_valid(int n);
 int	unset_arg_check(char *str);
@@ -70,6 +70,7 @@ t_envbase	*orig_env(char **env);
 char		*search_in_env(t_envbase *base, char *s);
 void		rewrite_pwd(t_envbase *base, char *pwd, char *s);
 //utils_stack.c
+char	**sort_env(t_two_env *env_list, char **env);
 char	*get_key(char *env_str);
 char	*get_val(char *env_str);
 //signal.c

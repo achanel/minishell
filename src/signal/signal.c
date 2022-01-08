@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 14:53:23 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/05 15:09:57 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/05 15:54:40 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,6 @@ static void ft_handler(int signum)
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
-	// else if (signum == SIGQUIT)
-	// {
-	// 	printf("here");
-	// 	// ft_putstr_fd("\b\b \b\b", 2);
-	// }
 }
 
 void    exec_signal_catcher(void)
@@ -49,14 +44,9 @@ void    exec_signal_catcher(void)
 	signal(SIGINT, input_process); 
 }
 
-static void	test(int signum)
-{
-	printf("asdasdas");
-}
-
 void    input_signal_catcher(void)
 {
-    signal(SIGQUIT, test);
 	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, ft_handler);
 }

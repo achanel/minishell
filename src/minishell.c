@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/05 15:33:37 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/08 15:39:37 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,13 @@ static void	ft_eof(void)
 
 void	init_envbase(t_two_env **env_lists, char **env)
 {
+	char **sorted_env;
+
 	*env_lists = malloc(sizeof(t_two_env));
 	malloc_error(*env_lists);
 	(*env_lists)->origin = orig_env(env);
+	sorted_env = sort_env((*env_lists), env);
+	(*env_lists)->sorted = orig_env(sorted_env);
 }
 
 int	main(int ac, char **av, char **env)
