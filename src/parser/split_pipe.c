@@ -18,8 +18,8 @@ int	*args_count(char *str, char *c, int *j)
 		}
 		if (ft_strchr(c, str[i])) //|| str[i] == '\0')
 		{
-			while(ft_strchr(c, str[i]))
-				i++;
+			// while(ft_strchr(c, str[i]))
+			// 	i++;
 			count[++(*j)] = i;
 		}
 	}
