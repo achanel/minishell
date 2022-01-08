@@ -12,18 +12,29 @@
 
 #include "../../includes/minishell.h"
 
-// static void	print_export(t_envbase *base)
-// {
-// 	t_envbase	*tmp;
 
-// 	tmp = base;
-// 	while(tmp)
-// 	{
-// 		printf("declare -x%s=\"%s", tmp->key, tmp->val);
-// 		tmp = tmp->next;
-// 	}
-// }
 
-// void	do_export(t_args *args, t_envbase *base)
-// {
-// }
+static void	print_export(t_envbase *base)
+{
+	t_envbase	*tmp;
+
+	tmp = base;
+	while(tmp)
+	{
+		printf("declare -x%s=\"%s", tmp->key, tmp->val);
+		tmp = tmp->next;
+	}
+}
+
+void	do_export(char **cmd, t_two_env *env_list)
+{
+    g_status = 0;
+    if (!cmd[1])
+    {
+        print_export(env_list->sorted);
+        return ;
+    }
+
+
+
+}
