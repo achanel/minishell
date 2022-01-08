@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dery_ru <dery_ru@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 13:46:30 by rhoke             #+#    #+#             */
-/*   Updated: 2022/01/07 17:26:51 by dery_ru          ###   ########.fr       */
+/*   Updated: 2022/01/08 15:00:00 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,18 @@ void	tmp_file(char *break_name)
 
 int main(int argc, char const *argv[], char **envp)
 {
-	char *str = ft_strdup("cat -e");
+	char *str = ft_strdup("<1 <2 cat");
 	int fd;
 	char **str1 = args_split(str, " ");
 
-	// fd = open("test.c", O_RDONLY, 0644);
-	tmp_file("lol");
+	// fd = open("", O_RDONLY, 0644);
+	// tmp_file("lol");
 	// dup2(fd, 0);
 	// close(fd);
 	// write(0, str, ft_strlen(str));
+	// for (int i = 0; str1[i], i++)
+	// 	str2str(stri[i]);
+	
 	
 	execve(get_path(envp, str1[0]), str1, envp);
 	return 0;

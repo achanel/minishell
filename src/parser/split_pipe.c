@@ -38,11 +38,11 @@ void	comand_clean(char **str, char *c)
 
 	i = 0;
 	j = ft_strlen(tmp);
-	while(ft_strchr(c, tmp[i]) || tmp[i] == '\t' || tmp[i] == ' ')
+	while(ft_strchr(c, tmp[i]))// || tmp[i] == '\t' || tmp[i] == ' ')
 		i++; 
-	while(ft_strchr(c, tmp[j]) || tmp[j] == '\t' || tmp[j] == ' '){
+	while(ft_strchr(c, tmp[j]))// || tmp[j] == '\t' || tmp[j] == ' '){
 		j--;
-	}
+	// }
 	j++;
 	
 	// while((tmp[i + j] == '\'' || tmp[i + j] == '\"') || ft_isalpha(tmp[i + j])){
@@ -60,8 +60,8 @@ char **args_split(char *str, char *c)
 	int		*ac;
 
 	j = 0;
-	while(ft_strchr(c, *str) || *str == '\t' || *str == ' ')
-		str++;
+	// while(ft_strchr(c, *str) || *str == '\t' || *str == ' ')
+	// 	str++;
 	ac = args_count(str, c, &j);
 	av = (char **)malloc(sizeof(char *) * j);
 	i = 0;
@@ -69,6 +69,7 @@ char **args_split(char *str, char *c)
 	{
 		i++;
 		av[i - 1] = ft_substr(str, ac[i - 1], ac[i] - ac[i - 1]);
+		printf("av[%d] == %s\n", i - 1, av[i - 1]);
 		comand_clean(&av[i - 1], c);
 	}
 	av[i] = 0;
