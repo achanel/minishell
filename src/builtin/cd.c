@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 10:49:35 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/09 15:32:43 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/09 18:30:48 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,7 @@ void	do_cd(char **cmd, t_two_env *base)
 
 	g_status = 0;
 	path = find_path(base->origin);
-	if (!(path) || ft_strncmp(cmd[1], "~", 1) == 0)
-	{
-		dir_to_home(base->origin);
-		return ;
-	}
-	else if (ft_strncmp(cmd[1], "-", 1) == 0)
+	if (!cmd[1] || ft_strncmp(cmd[1], "-", 1) == 0)
 	{
 		cur_path = search_in_env(base->origin, "OLDPWD");
 		if (!cur_path)
@@ -83,6 +78,11 @@ void	do_cd(char **cmd, t_two_env *base)
 			return ;
 		}
 		dir_to_oldpwd(base->origin, cur_path);
+	}
+	else if (!(path) || ft_strncmp(cmd[1], "~", 1) == 0)
+	{
+		dir_to_home(base->origin);
+		return ;
 	}
 	else
 		dir_to_path(base->origin, cmd[1]);
