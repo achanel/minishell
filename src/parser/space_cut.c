@@ -1,6 +1,5 @@
 #include "../../includes/minishell.h"
-
-char *space_cut(char *str)
+const char *space_cut(char *str)
 {
 	int i = 0;
 	int j = 0;
@@ -35,17 +34,12 @@ char *space_cut(char *str)
 		else
 			i++;
 	}
+	tmp[j] = '\0';
 	return (tmp);
 }
 
-int main(int argc, char const *argv[])
+void	main_space(char **str)
 {
-	char *str = ft_strdup("lo_l       \"		 ke		ek\"	chebureck");
-	char **tmp;
-	str = space_cut(str);
-	tmp = args_split(str, " ");
-	for(int i = 0; tmp[i]; i++)
-		printf("%s\n", tmp[i]);
-	
-	return 0;
+	*str = space_cut(*str);
+
 }

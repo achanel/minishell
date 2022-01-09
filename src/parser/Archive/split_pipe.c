@@ -24,8 +24,6 @@ int	*args_count(char *str, char *c, int *j)
 		}
 	}
 	count[++(*j)] = ft_strlen(str);
-	for(i = 0; i <= *j; i++)
-		printf("count[%d] == %d\n",i ,count[i]);
 	return (count);
 }
 
@@ -71,23 +69,19 @@ char **args_split(char *str, char *c)
 	{
 		i++;
 		av[i - 1] = ft_substr(str, ac[i - 1], ac[i] - ac[i - 1]);
-		
 		// printf("av[%d] == %s\n", i - 1, av[i - 1]);
 		comand_clean(&av[i - 1], c);
 	}
-	av[i - 1] = NULL;
+	av[i] = 0;
 	return (av);
 }
 
 char **str_parse(char *str1, char **envp)
 {
 	// char *str = ft_strdup("/bin/echo l$_\"o\"l | cat > \"osl|o|beck\"k | chebureck");
-	char **str2 = NULL;
+	char **str2 = args_split(str1, " ");
 	char **str3 = NULL;
 	char ***tmp = NULL;
-
-	// main_spase(&str1);
-	str2 = args_split(str1, " ");
 	int i = 0;
 	// printf("av[%d] == %s\n",0, str2[0]);
 	main_parcer(str2, envp);
