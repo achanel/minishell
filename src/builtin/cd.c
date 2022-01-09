@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 10:49:35 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/04 19:31:51 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/09 15:07:33 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	path_error(char *path)
 static void	dir_to_path(t_envbase *base, char *path)
 {
 	char	*pwd;
-	
+
 	pwd = getcwd(NULL, 0);
 	rewrite_pwd(base, pwd, "OLDPWD");
 	if (chdir(path) != 0 && ft_strchr(path, '>') == NULL)
@@ -64,8 +64,9 @@ void	do_cd(char **cmd, t_two_env *base)
 	char		*cur_path;
 	t_envbase	*path;
 
+	g_status = 0;
 	path = base->origin;
-	while(path)
+	while (path)
 	{
 		if (ft_strncmp(path->key, "PATH", 4) == 0)
 			break ;

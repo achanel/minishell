@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 12:46:34 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/04 18:29:54 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/09 15:10:03 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	check_env(t_two_env *env, t_envbase *first)
 {
-	while(env->origin)
+	while (env->origin)
 	{
 		if (ft_strncmp(env->origin->key, "PATH", 4) == 0)
 		{
@@ -41,7 +41,7 @@ void	do_env(t_two_env *env, char **cmd)
 		free(str);
 		return ;
 	}
-	while(env->origin)
+	while (env->origin)
 	{
 		printf("%s", env->origin->key);
 		printf("=");

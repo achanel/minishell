@@ -6,11 +6,25 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 21:52:28 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/08 17:55:20 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/09 14:13:32 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+int		is_in_stack(t_envbase *stack, char *key)
+{
+	t_envbase	*tmp;
+
+	tmp = stack;
+	while(tmp)
+	{
+		if (ft_strncmp(tmp->key, key, ft_strlen(key)) == 0)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
 
 char	**sort_env(t_two_env *env_list, char **env)
 {

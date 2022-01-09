@@ -6,14 +6,14 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:13 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/08 15:40:59 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/09 14:13:48 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# define MSL "minishell"
+# define MSL "🔥🔥🔥🔥🔥🔥"
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -55,7 +55,6 @@ void	do_echo(char **av);
 void	do_exit(char **cmd);
 void	do_env(t_two_env *env, char **cmd);
 void	do_unset(char **av, t_two_env **env);
-void	unset_list(t_two_env *base, char *str);
 void	do_cd(char **cmd,t_two_env *base);
 void	error_msg(char *cmd, char *error, int status);
 void	malloc_error(void *p);
@@ -70,6 +69,7 @@ t_envbase	*orig_env(char **env);
 char		*search_in_env(t_envbase *base, char *s);
 void		rewrite_pwd(t_envbase *base, char *pwd, char *s);
 //utils_stack.c
+int		is_in_stack(t_envbase *stack, char *key);
 char	**sort_env(t_two_env *env_list, char **env);
 char	*get_key(char *env_str);
 char	*get_val(char *env_str);

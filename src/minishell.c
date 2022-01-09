@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/08 15:39:37 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/09 14:42:55 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ int	main(int ac, char **av, char **env)
 		if (str)
 			free(str);
 	}
+	write(1, "lol\n", 4);
 	return (0);
 }

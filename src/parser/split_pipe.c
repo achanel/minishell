@@ -69,7 +69,7 @@ char **args_split(char *str, char *c)
 	{
 		i++;
 		av[i - 1] = ft_substr(str, ac[i - 1], ac[i] - ac[i - 1]);
-		printf("av[%d] == %s\n", i - 1, av[i - 1]);
+		// printf("av[%d] == %s\n", i - 1, av[i - 1]);
 		comand_clean(&av[i - 1], c);
 	}
 	av[i] = 0;
