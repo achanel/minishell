@@ -6,29 +6,41 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 14:17:53 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/08 17:59:19 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/09 13:16:26 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	add_new_sorted(t_envbase *sorted, char *arg)
+static void	add_new_sorted(t_two_env *env_list, char *arg)
 {
 	t_envbase	*new_elem;
 	t_envbase	*first;
+	int			flag;
 
-	first = sorted;
+	first = env_list->sorted;
+	flag = 0;
 	new_elem = add_new(arg, NULL);
-	while(sorted)
+	if (ft_strncmp(env_list->sorted->key, new_elem->key, ft_strlen(new_elem->key)) > 0)
 	{
-		if (ft_strncmp(sorted->key, new_elem->key, ft_strlen(new_elem->key)) < 0)
-		{
-			new_elem->next = sorted->next->next;
-			sorted->next = new_elem;
-		}
-		sorted = sorted->next;
+		new_elem->next = first;
+		env_list->sorted = new_elem;
+		return ;
 	}
-	sorted = first;
+	while(env_list->sorted->next)
+	{
+		if (ft_strncmp(env_list->sorted->key, new_elem->key, ft_strlen(new_elem->key)) < 0 &&
+			ft_strncmp(env_list->sorted->next->key, new_elem->key, ft_strlen(new_elem->key)) > 0)
+		{
+			flag = 1;
+			new_elem->next = env_list->sorted->next;
+			env_list->sorted->next = new_elem;
+		}
+		env_list->sorted = env_list->sorted->next;
+	}
+	if (flag == 0)
+		env_list->sorted->next = new_elem;
+	env_list->sorted = first;
 }
 
 static void	change_arg(t_two_env *env_list, char *arg)
@@ -63,7 +75,10 @@ static void	print_export(t_envbase *base)
 	tmp = base;
 	while(tmp)
 	{
-		printf("declare -x %s=\"%s\n", tmp->key, tmp->val);
+		if (tmp->val)
+			printf("declare -x %s=\"%s\"\n", tmp->key, tmp->val);
+		else
+			printf("declare -x %s\n", tmp->key);
 		tmp = tmp->next;
 	}
 }
@@ -80,11 +95,10 @@ void	do_export(char **cmd, t_two_env *env_list)
     }
 	i = 0;
 	while (cmd[++i])
+	{
 		if (get_key(cmd[i]) == cmd[i])
-			add_new_sorted(env_list->sorted, cmd[i]);
-	i = 0;
-	while (cmd[++i])
-		change_arg(env_list, cmd[i]);
+			add_new_sorted(env_list, cmd[i]);
+		else
+			change_arg(env_list, cmd[i]);
+	}
 }
-
-//если нет аргумента неправильно печатается export
