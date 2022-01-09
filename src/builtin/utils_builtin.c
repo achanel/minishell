@@ -6,13 +6,13 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 18:24:05 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/09 15:16:42 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/09 15:37:08 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	path_error(char *str)
+static void	unset_error(char *str)
 {
 	ft_putstr_fd(MSL, 2);
 	ft_putstr_fd(": unset: '", 2);

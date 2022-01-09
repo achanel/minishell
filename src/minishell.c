@@ -6,11 +6,39 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/09 14:42:55 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/09 17:19:08 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int	test_exec(char **cmd, char **env, int status)
+{
+	status = execve(cmd[0], cmd, env);
+	exit(status);
+}
+
+static void	hide_ctrl(char **env)
+{
+	char	**cmd;
+	pid_t	pid;
+	int		status;
+	
+	cmd = ft_calloc(3, sizeof(*cmd));
+	malloc_error(cmd);
+	cmd[0] = ft_strdup("/bin/stty");
+	cmd[1] = ft_strdup("-echoctl");
+	exec_signal_catcher();
+	pid = fork();
+	if (pid < 0)
+		return ;
+	if (pid == 0)
+		test_exec(cmd, env, status);
+	waitpid(pid, &status, 0);
+	g_status = WEXITSTATUS(status);
+	input_signal_catcher();
+	free(cmd);
+}
 
 static void	ft_eof(void)
 {
@@ -41,10 +69,12 @@ int	main(int ac, char **av, char **env)
 	(void)av;
 	init_envbase(&env_lists, env);
 	input_signal_catcher();
+	hide_ctrl(env);
 	while(1)
 	{
 		str = NULL;
 		str = readline("🔥🔥🔥🔥🔥🔥> ");
+		add_history(str);
 		if (str == NULL)
 		{
 			ft_eof();
@@ -56,6 +86,6 @@ int	main(int ac, char **av, char **env)
 		if (str)
 			free(str);
 	}
-	write(1, "lol\n", 4);
+	// write(1, "lol\n", 4);
 	return (0);
 }

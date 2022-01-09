@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 14:53:23 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/05 15:54:40 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/09 16:08:47 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void    exec_signal_catcher(void)
 
 void    input_signal_catcher(void)
 {
-	signal(SIGINT, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, SIG_IGN);
 	signal(SIGINT, ft_handler);
 }
