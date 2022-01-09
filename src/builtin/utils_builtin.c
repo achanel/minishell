@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 18:24:05 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/04 17:30:10 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/09 15:16:42 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static void	path_error(char *str)
 	g_status = 1;
 }
 
-
 int	is_valid(int n)
 {
 	if ((n >= 'A' && n <= 'Z') || (n >= 'a' && n <= 'z') || n == '_')
@@ -35,7 +34,7 @@ int	unset_arg_check(char *str)
 	int	i;
 
 	i = -1;
-	while(str[++i])
+	while (str[++i])
 	{
 		if (i == 0 && is_valid(str[i]))
 		{

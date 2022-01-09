@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:13 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/09 14:13:48 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/09 15:32:10 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,11 @@ void	do_exit(char **cmd);
 void	do_env(t_two_env *env, char **cmd);
 void	do_unset(char **av, t_two_env **env);
 void	do_cd(char **cmd,t_two_env *base);
+void	do_export(char **cmd, t_two_env *env_list);
+//error_msg
 void	error_msg(char *cmd, char *error, int status);
 void	malloc_error(void *p);
-void	do_export(char **cmd, t_two_env *env_list);
+void	path_error(char *path)
 //utils_builtin.c
 int	is_valid(int n);
 int	unset_arg_check(char *str);

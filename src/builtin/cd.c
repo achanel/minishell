@@ -6,22 +6,11 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 10:49:35 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/09 15:07:33 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/09 15:32:43 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-static void	path_error(char *path)
-{
-	ft_putstr_fd(MSL, 2);
-	ft_putstr_fd(": cd: ", 2);
-	ft_putstr_fd(path, 2);
-	ft_putstr_fd(": ", 2);
-	ft_putstr_fd(strerror(errno), 2);
-	ft_putstr_fd("\n", 2);
-	g_status = 1;
-}
 
 static void	dir_to_path(t_envbase *base, char *path)
 {
@@ -59,19 +48,27 @@ static void	dir_to_home(t_envbase *base)
 	free(path);
 }
 
-void	do_cd(char **cmd, t_two_env *base)
+static t_envbase	*find_path(t_envbase *origin)
 {
-	char		*cur_path;
 	t_envbase	*path;
 
-	g_status = 0;
-	path = base->origin;
+	path = origin;
 	while (path)
 	{
 		if (ft_strncmp(path->key, "PATH", 4) == 0)
 			break ;
 		path = path->next;
 	}
+	return (path);
+}
+
+void	do_cd(char **cmd, t_two_env *base)
+{
+	char		*cur_path;
+	t_envbase	*path;
+
+	g_status = 0;
+	path = find_path(base->origin);
 	if (!(path) || ft_strncmp(cmd[1], "~", 1) == 0)
 	{
 		dir_to_home(base->origin);

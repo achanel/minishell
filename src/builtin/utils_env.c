@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 18:23:56 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/04 19:36:21 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/09 15:16:16 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ t_envbase	*orig_env(char **env)
 
 	new_envbase = NULL;
 	i = -1;
-	while(env[++i])
+	while (env[++i])
 		stack_add_back(&new_envbase, add_new(get_key(env[i]), get_val(env[i])));
-	return(new_envbase);
+	return (new_envbase);
 }
 
 char	*search_in_env(t_envbase *base, char *s)
@@ -57,13 +57,13 @@ char	*search_in_env(t_envbase *base, char *s)
 	t_envbase	*tmp;
 
 	tmp = base;
-	while(tmp)
+	while (tmp)
 	{
 		if (ft_strncmp(tmp->key, s, ft_strlen(s)) == 0)
-			return(tmp->val);
+			return (tmp->val);
 		tmp = tmp->next;
 	}
-	return(NULL);
+	return (NULL);
 }
 
 void	rewrite_pwd(t_envbase *base, char *pwd, char *s)
@@ -71,7 +71,7 @@ void	rewrite_pwd(t_envbase *base, char *pwd, char *s)
 	t_envbase	*path;
 
 	path = base;
-	while(path)
+	while (path)
 	{
 		if (ft_strncmp(path->key, s, ft_strlen(s)) == 0)
 			break ;
@@ -81,7 +81,7 @@ void	rewrite_pwd(t_envbase *base, char *pwd, char *s)
 	{
 		stack_add_back(&base, add_new(s, pwd));
 		path = base;
-		while(path)
+		while (path)
 		{
 			if (ft_strncmp(path->key, s, ft_strlen(s)) == 0)
 				break ;
