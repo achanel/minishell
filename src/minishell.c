@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dery_ru <dery_ru@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/09 17:19:08 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/10 16:38:11 by dery_ru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ int	main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 	init_envbase(&env_lists, env);
-	input_signal_catcher();
-	hide_ctrl(env);
+	// input_signal_catcher();
+	// hide_ctrl(env);
 	while(1)
 	{
 		str = NULL;
@@ -83,8 +83,8 @@ int	main(int ac, char **av, char **env)
 		else
 			cmd = str_parse(str, env);
 		get_builtin(cmd, env_lists, env);
-		if (str)
-			free(str);
+		// if (str)
+		// 	free(str);
 	}
 	// write(1, "lol\n", 4);
 	return (0);

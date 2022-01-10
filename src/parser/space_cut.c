@@ -40,6 +40,6 @@ const char *space_cut(char *str)
 
 void	main_space(char **str)
 {
-	*str = space_cut(*str);
+	*str = ft_strdup(space_cut(*str));
 
 }

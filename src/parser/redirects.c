@@ -145,10 +145,10 @@ static void	parcer(char **src)
 	// printf("str == %slol\n", str);
 }
 
-int	main_redir(char **str)
+void	main_redir(char **str)
 {
 	// char *str = ft_strdup("<1 cat -e >4");
-	parcer(&str);
+	parcer(str);
 	// for (int i = 0; str[i]; i++)
 	// 	printf("str == %c %d$\n", str[i], str[i]);
 	// char **tmp = args_split(str, " ");
@@ -158,5 +158,4 @@ int	main_redir(char **str)
 	// if (execve(get_path(env, tmp[0]), tmp, env) == -1)
 	// 	write(1, "lol_kek_chebureck\n", 18);
 	// write(1, "lol\n", 4);
-	return 0;
 }

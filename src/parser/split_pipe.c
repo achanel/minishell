@@ -24,8 +24,6 @@ int	*args_count(char *str, char *c, int *j)
 		}
 	}
 	count[++(*j)] = ft_strlen(str);
-	for(i = 0; i <= *j; i++)
-		printf("count[%d] == %d\n",i ,count[i]);
 	return (count);
 }
 
@@ -75,14 +73,15 @@ char **args_split(char *str, char *c)
 	while (i < j)
 	{
 		i++;
+		// write(1, "lol\n", 4);
 		if (ac[i] - ac[i - 1] > 1){
 
 			av[k] = ft_substr(str, ac[i - 1], ac[i] - ac[i - 1]);
 			comand_clean(&av[k], c);
+			// printf("av[%d] == %s\n", k, av[k]);
 			k++;
 		}
 	}
-	printf("av[%d] == %s\n", k, av[k]);
 	av[k] = NULL;
 	return (av);
 }
@@ -94,7 +93,8 @@ char **str_parse(char *str1, char **envp)
 	char **str3 = NULL;
 	char ***tmp = NULL;
 
-	// main_spase(&str1);
+	main_space(&str1);
+	main_redir(&str1);
 	str2 = args_split(str1, " ");
 	int i = 0;
 	// printf("av[%d] == %s\n",0, str2[0]);

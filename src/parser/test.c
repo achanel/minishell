@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dery_ru <dery_ru@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 13:46:30 by rhoke             #+#    #+#             */
-/*   Updated: 2022/01/08 15:00:00 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/10 16:51:16 by dery_ru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	tmp_file(char *break_name)
+/*void	tmp_file(char *break_name)
 {
 	int		tmp;
 	int		ret;
@@ -33,11 +33,11 @@ void	tmp_file(char *break_name)
 	}
 	dup2(tmp, 0);
 	close(tmp);
-}
+}*/
 
 int main(int argc, char const *argv[], char **envp)
 {
-	char *str = ft_strdup("<1 <2 cat");
+	char *str = ft_strdup("echo kek");
 	int fd;
 	char **str1 = args_split(str, " ");
 
@@ -46,7 +46,8 @@ int main(int argc, char const *argv[], char **envp)
 	// dup2(fd, 0);
 	// close(fd);
 	// write(0, str, ft_strlen(str));
-	// for (int i = 0; str1[i], i++)
+	for (int i = 0; str1[i]; i++)
+		printf("str1 in test == %s\n",str1[i]);
 	// 	str2str(stri[i]);
 	
 	
