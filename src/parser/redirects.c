@@ -104,14 +104,14 @@ char	*redir_out(char *str, int *i, int flag)
 			fd = open(file_name , O_CREAT | O_TRUNC | O_WRONLY, 0644);
 
 	if (fd){
-		dup2(1, 1);
+		dup2(fd, 1);
 		close(fd);
 	}
 	// printf("str redir_out== %s\n", str);
 	return (str);
 }
 
-static void	parcer(char **src, char **env)
+static void	parcer(char **src)
 {
 	char *str;
 	str = *src;
@@ -145,18 +145,18 @@ static void	parcer(char **src, char **env)
 	// printf("str == %slol\n", str);
 }
 
-int	main(int argc, char **args, char **env)
+int	main_redir(char **str)
 {
-	char *str = ft_strdup("<1 cat >4");
-	parcer(&str,env);
+	// char *str = ft_strdup("<1 cat -e >4");
+	parcer(&str);
 	// for (int i = 0; str[i]; i++)
 	// 	printf("str == %c %d$\n", str[i], str[i]);
-	char **tmp = args_split(str, " ");
-	for (int i = 0;tmp[i]; i++)
-		printf("tmplen[%d] == %s\n", i, tmp[i]);
+	// char **tmp = args_split(str, " ");
+	// for (int i = 0;tmp[i]; i++)
+	// 	printf("tmplen[%d] == %s\n", i, tmp[i]);
 
-
-	if (execve(get_path(env, tmp[0]), tmp, env) == -1)
-		write(1, "lol_kek_chebureck\n", 18);
+	// if (execve(get_path(env, tmp[0]), tmp, env) == -1)
+	// 	write(1, "lol_kek_chebureck\n", 18);
+	// write(1, "lol\n", 4);
 	return 0;
 }

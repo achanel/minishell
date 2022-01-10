@@ -64,18 +64,26 @@ char **args_split(char *str, char *c)
 	j = 0;
 	// while(ft_strchr(c, *str) || *str == '\t' || *str == ' ')
 	// 	str++;
+	// printf("prev clean %s$\n", str);
+	// comand_clean(&str, c);
+	// printf("past clean %s$\n", str);
+
 	ac = args_count(str, c, &j);
 	av = (char **)malloc(sizeof(char *) * j);
 	i = 0;
+	int k = 0;
 	while (i < j)
 	{
 		i++;
-		av[i - 1] = ft_substr(str, ac[i - 1], ac[i] - ac[i - 1]);
-		
-		// printf("av[%d] == %s\n", i - 1, av[i - 1]);
-		comand_clean(&av[i - 1], c);
+		if (ac[i] - ac[i - 1] > 1){
+
+			av[k] = ft_substr(str, ac[i - 1], ac[i] - ac[i - 1]);
+			comand_clean(&av[k], c);
+			k++;
+		}
 	}
-	av[i - 1] = NULL;
+	printf("av[%d] == %s\n", k, av[k]);
+	av[k] = NULL;
 	return (av);
 }
 
