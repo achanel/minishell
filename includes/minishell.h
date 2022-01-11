@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:13 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/11 17:01:28 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/11 17:09:28 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,7 @@ char	*ft_perem(char *str, int *i, char **env);
 void	ft_error(char *str);
 void	main_redir(char **str);
 void	main_space(char **str);
+//pipex
+int	main_pipe(char *str, char **env);
 
 #endif

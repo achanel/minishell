@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/11 17:00:35 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/11 17:11:03 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,11 @@ int	main(int ac, char **av, char **env)
 			break ;
 		}
 		else
-			cmd = str_parse(str, env);
+		{
+			if(main_pipe(str, env))
+				cmd = str_parse(str, env);
+			
+		}
 		get_builtin(cmd, env);
 		if (str)
 			free(str);
