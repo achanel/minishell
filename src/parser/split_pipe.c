@@ -78,7 +78,7 @@ char **args_split(char *str, char *c)
 
 			av[k] = ft_substr(str, ac[i - 1], ac[i] - ac[i - 1]);
 			comand_clean(&av[k], c);
-			// printf("av[%d] == %s\n", k, av[k]);
+			printf("av_split[%d] == %s$\n", k, av[k]);
 			k++;
 		}
 	}
@@ -94,15 +94,18 @@ char **str_parse(char *str1, char **envp)
 	char ***tmp = NULL;
 
 	main_space(&str1);
+	// write(1, "lol\n", 4);
 	main_redir(&str1);
+
+	// printf("av[%d] == %s$\n",0, str1);
 	str2 = args_split(str1, " ");
 	int i = 0;
-	// printf("av[%d] == %s\n",0, str2[0]);
 	main_parcer(str2, envp);
 	while(str2[i])
 	{
 		// tmp[i] = args_split(str2[i], " ");
 		// return (tmp[i]);
+		printf("str2[%d] == %s\n", i, str2[i]);
 		i++;
 	}
 	// pipex(i, str1, envp);

@@ -3,28 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 15:51:25 by rhoke             #+#    #+#             */
-/*   Updated: 2022/01/03 17:11:54 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/11 16:33:25 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	exec(char *argv, char **envp)
+void	exec(char *argv, char **env)
 {
 	char	**cmd;
 
 	cmd = ft_split(argv, ' ');
-	if (execve(get_path(envp, cmd[0]), cmd, envp) == -1)
-	{
-		ft_error(strerror(errno));
-		exit(1);
-	}
+	get_builtin(cmd, env);
 }
 
-void	redir(char *cmd, char **envp, int filein)
+void	redir(char *cmd, char **envp)
 {
 	pid_t	pid1;
 	int		pipefd[2];
@@ -41,28 +37,24 @@ void	redir(char *cmd, char **envp, int filein)
 	{
 		close(pipefd[0]);
 		dup2(pipefd[1], 1);
-		if (filein == 0)
-			exit(1);
-		else
-		{
-			exec(cmd, envp);
-		}
+		exec(cmd, envp);
 	}
 }
 
-// int	main(int argc, char **argv, char **envp)
-// {
-// 	int	filein;
-// 	int	fileout;
-// 	int	i;
+int	main_pipe(char *str, char **env)
+{
+	char **argv;
+	int	i;
 
-// 	filein = open(argv[1], O_RDONLY);
-// 	fileout = open(argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 420);
-// 	dup2(filein, 0);
-// 	dup2(fileout, 1);
-// 	redir(argv[2], envp, filein);
-// 	while (i < argc - 2)
-// 		redir(argv[i++], envp, 1);
-// 	exec(argv[i], envp);
-// 	return (0);
-// }
+	main_space(&str);
+	// write(1, "lol\n", 4);
+	main_redir(&str);
+	argv = args_split(str, "|");
+	if (argv[1] == NULL)
+		return(1);
+	main_parcer(argv, envp);
+	while (argv[i])
+		redir(argv[i++], env);
+	exec(argv[i], env);
+	return (0);
+}

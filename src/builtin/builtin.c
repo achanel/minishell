@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 15:38:12 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/09 16:19:34 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/11 15:18:51 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void pidexecve(char **cmd, char **envp)
+{
+	pid_t pid0;
+
+	pid0 = fork();
+	if (pid0)
+	{
+		waitpid(pid0, NULL, 0);
+	}
+	else
+	{
+		if ((execve(get_path(envp, cmd[0]), cmd, envp)) == -1)
+				error_msg(cmd[0], "command not found\n", 127);
+	}
+}
 
 void	get_builtin(char **cmd, t_two_env *env_list, char **envp)
 {
@@ -29,6 +45,7 @@ void	get_builtin(char **cmd, t_two_env *env_list, char **envp)
 	else if (ft_strncmp(cmd[0], "export", 6) == 0)
 		do_export(cmd, env_list);
 	else
-		if ((execve(get_path(envp, cmd[0]), cmd, envp)) == -1)
-			error_msg(cmd[0], "command not found\n", 127);
+		pidexecve(cmd, envp);
+		// if ((execve(get_path(envp, cmd[0]), cmd, envp)) == -1)
+		// 	error_msg(cmd[0], "command not found\n", 127);
 }

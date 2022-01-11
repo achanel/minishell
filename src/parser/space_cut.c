@@ -7,9 +7,10 @@ const char *space_cut(char *str)
 	char *tmp;
 
 
-	tmp = malloc(sizeof(char) * ft_strlen(str));
+	tmp = malloc(sizeof(char) * ft_strlen(str) + 1);
 	while (str[i])
 	{
+		
 		if (ft_strchr(" \t\'\"", str[i])){
 			if (ft_strchr("\'\"", str[i])){
 				tmp[j++] = str[i++];
@@ -28,13 +29,14 @@ const char *space_cut(char *str)
 				tmp[j++] = ' ';
 			}
 		}
-		if (!ft_strchr(" \t\'\"\0", str[i])){
+		if (!ft_strchr(" \t\'\"", str[i])){
 			tmp[j++] = str[i++];
+			printf("tmp[%d] == %c\n", j - 1, tmp[j - 1]);
 		}
 		else
 			i++;
 	}
-	tmp[j] = '\0';
+	tmp[j] = 0;
 	return (tmp);
 }
 
