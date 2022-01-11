@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 15:38:12 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/11 15:18:51 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/11 17:01:57 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,36 @@ void pidexecve(char **cmd, char **envp)
 	}
 }
 
-void	get_builtin(char **cmd, t_two_env *env_list, char **envp)
+static void	init_envbase(t_two_env **env_lists, char **env)
 {
+	char **sorted_env;
+
+	*env_lists = malloc(sizeof(t_two_env));
+	malloc_error(*env_lists);
+	(*env_lists)->origin = orig_env(env);
+	sorted_env = sort_env((*env_lists), env);
+	(*env_lists)->sorted = orig_env(sorted_env);
+}
+
+void	get_builtin(char **cmd, char **envp)
+{
+	t_two_env	*env_lists;
+	
+	init_envbase(&env_lists, envp);
 	if (ft_strncmp(cmd[0], "pwd", 3) == 0)
 		do_pwd();
-	else if (ft_strncmp(cmd[0], "echo", 4) == 0)
+	else if (ft_strncmp(cmd[0], "echo", 4) == 0)	
 		do_echo(cmd);
 	else if (ft_strncmp(cmd[0], "exit", 4) == 0)
 		do_exit(cmd);
 	else if (ft_strncmp(cmd[0], "env", 3) == 0)
-		do_env(env_list, cmd);
+		do_env(env_lists, cmd);
 	else if (ft_strncmp(cmd[0], "unset", 5) == 0)
-		do_unset(cmd, &env_list);
+		do_unset(cmd, &env_lists);
 	else if (ft_strncmp(cmd[0], "cd", 2) == 0)
-		do_cd(cmd, env_list);
+		do_cd(cmd, env_lists);
 	else if (ft_strncmp(cmd[0], "export", 6) == 0)
-		do_export(cmd, env_list);
+		do_export(cmd, env_lists);
 	else
 		pidexecve(cmd, envp);
 		// if ((execve(get_path(envp, cmd[0]), cmd, envp)) == -1)

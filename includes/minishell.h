@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dery_ru <dery_ru@student.42.fr>            +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:13 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/10 16:30:45 by dery_ru          ###   ########.fr       */
+/*   Updated: 2022/01/11 17:01:28 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef	struct s_two_env
 }	t_two_env;
 
 //builtin
-void	get_builtin(char **cmd, t_two_env *env_list, char **envp);
+void	get_builtin(char **cmd, char **envp);
 void	do_pwd(void);
 void	do_echo(char **av);
 void	do_exit(char **cmd);
