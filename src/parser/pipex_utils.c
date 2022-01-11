@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 15:51:30 by rhoke             #+#    #+#             */
-/*   Updated: 2022/01/03 17:12:31 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/11 20:07:37 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ char	*get_path(char **envp, char *cmd)
 			{
 				if (access(ft_strjoin(ft_strjoin(path[j], "/"), cmd), 0) == 0)
 					return (ft_strjoin(ft_strjoin(path[j], "/"), cmd));
+				if (access(cmd, 0) == 0)
+					return(cmd);
 				j++;
 			}
 		}

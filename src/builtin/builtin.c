@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 15:38:12 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/11 17:01:57 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/11 19:17:39 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,16 @@ void pidexecve(char **cmd, char **envp)
 	pid_t pid0;
 
 	pid0 = fork();
-	if (pid0)
+	if (pid0 == 0)
 	{
-		waitpid(pid0, NULL, 0);
+		if ((execve(get_path(envp, cmd[0]), cmd, envp)) == -1)
+			error_msg(cmd[0], "command not found\n", 127);
+		exit(0);
 	}
 	else
 	{
-		if ((execve(get_path(envp, cmd[0]), cmd, envp)) == -1)
-				error_msg(cmd[0], "command not found\n", 127);
+		// printf("lol");
+		waitpid(-1, 0, 0);
 	}
 }
 

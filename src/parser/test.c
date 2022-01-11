@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dery_ru <dery_ru@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 13:46:30 by rhoke             #+#    #+#             */
-/*   Updated: 2022/01/10 16:51:16 by dery_ru          ###   ########.fr       */
+/*   Updated: 2022/01/11 20:07:58 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 
 int main(int argc, char const *argv[], char **envp)
 {
-	char *str = ft_strdup("echo kek");
+	char *str = ft_strdup("/bin/bash");
 	int fd;
 	char **str1 = args_split(str, " ");
 
@@ -51,7 +51,8 @@ int main(int argc, char const *argv[], char **envp)
 	// 	str2str(stri[i]);
 	
 	
-	execve(get_path(envp, str1[0]), str1, envp);
+	if (execve(get_path(envp, str1[0]), str1, envp) == -1)
+		write(1, "lol_kek_chebureck\n", 18);
 	return 0;
 }
 

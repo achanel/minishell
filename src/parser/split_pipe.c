@@ -24,6 +24,8 @@ int	*args_count(char *str, char *c, int *j)
 		}
 	}
 	count[++(*j)] = ft_strlen(str);
+	for(int k = 0;k < *j;k++)
+		printf("count[%d] == %d\n", k, count[k]);
 	return (count);
 }
 
@@ -65,7 +67,7 @@ char **args_split(char *str, char *c)
 	// while(ft_strchr(c, *str) || *str == '\t' || *str == ' ')
 	// 	str++;
 	// printf("prev clean %s$\n", str);
-	// comand_clean(&str, c);
+	comand_clean(&str, c);
 	// printf("past clean %s$\n", str);
 
 	ac = args_count(str, c, &j);
@@ -76,11 +78,11 @@ char **args_split(char *str, char *c)
 	{
 		i++;
 		// write(1, "lol\n", 4);
-		if (ac[i] - ac[i - 1] > 1){
+		if (ac[i] - ac[i - 1] > 0){
 
 			av[k] = ft_substr(str, ac[i - 1], ac[i] - ac[i - 1]);
 			comand_clean(&av[k], c);
-			// printf("av_split[%d] == %s$\n", k, av[k]);
+			printf("av_split[%d] == %s$\n", k, av[k]);
 			k++;
 		}
 	}
@@ -110,7 +112,7 @@ char **str_parse(char *str1, char **envp)
 	{
 		// tmp[i] = args_split(str2[i], " ");
 		// return (tmp[i]);
-		// printf("str2[%d] == %s\n", i, str2[i]);
+		printf("str2[%d] == %s\n", i, str2[i]);
 		i++;
 	}
 	// pipex(i, str1, envp);
