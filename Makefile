@@ -26,6 +26,7 @@ SRCS_LIST	=	minishell.c\
 				builtin/utils_builtin.c\
 				builtin/utils_env.c\
 				builtin/utils_stack.c\
+				signal/signal.c\
 				parser/parser.c\
 				parser/pipex_bonus.c\
 				parser/pipex_utils.c\

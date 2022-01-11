@@ -23,6 +23,8 @@ const char *space_cut(char *str)
 			}
 			if (ft_strchr(" \t", str[i])){
 				while (ft_strchr(" \t", str[i])){
+					if(str[i] == '\0')
+						break ;
 					i++;
 				}
 				i--;
@@ -36,7 +38,8 @@ const char *space_cut(char *str)
 		else
 			i++;
 	}
-	tmp[j] = 0;
+
+	tmp[j] = '\0';
 	return (tmp);
 }
 
