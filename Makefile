@@ -42,7 +42,7 @@ OBJS_DIRECTORY = src/
 OBJS_LIST = $(patsubst %.c, %.o, $(SRCS_LIST))
 OBJS = $(addprefix $(OBJS_DIRECTORY), $(OBJS_LIST))
 
-CC			= gcc 
+CC			= gcc -g
 
 # CFLAGS		= -Wall -Wextra -Werror
 CFLAGS		=

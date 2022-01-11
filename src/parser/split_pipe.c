@@ -60,6 +60,8 @@ char **args_split(char *str, char *c)
 	int		*ac;
 
 	j = 0;
+	if(str[0] == '\0')
+		return(NULL);
 	// while(ft_strchr(c, *str) || *str == '\t' || *str == ' ')
 	// 	str++;
 	// printf("prev clean %s$\n", str);
@@ -78,7 +80,7 @@ char **args_split(char *str, char *c)
 
 			av[k] = ft_substr(str, ac[i - 1], ac[i] - ac[i - 1]);
 			comand_clean(&av[k], c);
-			printf("av_split[%d] == %s$\n", k, av[k]);
+			// printf("av_split[%d] == %s$\n", k, av[k]);
 			k++;
 		}
 	}
@@ -93,8 +95,11 @@ char **str_parse(char *str1, char **envp)
 	char **str3 = NULL;
 	char ***tmp = NULL;
 
-	main_space(&str1);
+	if(str1[0] == '\0')
+		return(NULL);
 	// write(1, "lol\n", 4);
+	
+	main_space(&str1);
 	main_redir(&str1);
 
 	// printf("av[%d] == %s$\n",0, str1);
@@ -105,7 +110,7 @@ char **str_parse(char *str1, char **envp)
 	{
 		// tmp[i] = args_split(str2[i], " ");
 		// return (tmp[i]);
-		printf("str2[%d] == %s\n", i, str2[i]);
+		// printf("str2[%d] == %s\n", i, str2[i]);
 		i++;
 	}
 	// pipex(i, str1, envp);

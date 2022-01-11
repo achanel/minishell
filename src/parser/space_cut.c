@@ -33,7 +33,7 @@ const char *space_cut(char *str)
 		}
 		if (!ft_strchr(" \t\'\"", str[i])){
 			tmp[j++] = str[i++];
-			printf("tmp[%d] == %c\n", j - 1, tmp[j - 1]);
+			// printf("tmp[%d] == %c\n", j - 1, tmp[j - 1]);
 		}
 		else
 			i++;

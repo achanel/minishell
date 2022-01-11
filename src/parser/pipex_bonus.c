@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 15:51:25 by rhoke             #+#    #+#             */
-/*   Updated: 2022/01/11 17:11:32 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/11 18:30:05 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,11 @@ int	main_pipe(char *str, char **env)
 	int	i;
 
 	main_space(&str);
-	// write(1, "lol\n", 4);
 	main_redir(&str);
 	argv = args_split(str, "|");
+	if (!argv)
+		return (1);
+	// write(1, "lol\n", 4);
 	if (argv[1] == NULL)
 		return(1);
 	main_parcer(argv, env);
