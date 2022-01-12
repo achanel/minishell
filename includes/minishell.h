@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:13 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/11 17:09:28 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/11 19:21:10 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,8 @@ void	main_redir(char **str);
 void	main_space(char **str);
 //pipex
 int	main_pipe(char *str, char **env);
+//utils_minishell
+void	free_str(char **str);
+void	*free_split(char **str);
 
 #endif

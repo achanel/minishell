@@ -14,6 +14,7 @@ HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SRCS_DIRECTORY = ./src/
 SRCS_LIST	=	minishell.c\
+				utils_minishell.c\
 				builtin/builtin.c\
 				builtin/cd.c\
 				builtin/echo.c\

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dery_ru <dery_ru@student.42.fr>            +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/12 08:49:51 by dery_ru          ###   ########.fr       */
+/*   Updated: 2022/01/12 14:38:03 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	hide_ctrl(char **env)
 	waitpid(pid, &status, 0);
 	g_status = WEXITSTATUS(status);
 	input_signal_catcher();
-	free(cmd);
+	free_split(cmd);
 }
 
 static void	ft_eof(void)
@@ -77,8 +77,8 @@ int	main(int ac, char **av, char **env)
 			
 		if (cmd)
 			get_builtin(cmd, env);
-		if (str)
-			free(str);
+		free(str);
+		free_split(cmd);
 	}
 	// write(1, "lol\n", 4);
 	return (0);
