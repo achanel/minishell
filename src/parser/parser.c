@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dery_ru <dery_ru@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 16:33:21 by dery_ru           #+#    #+#             */
-/*   Updated: 2022/01/11 20:15:10 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/11 22:07:35 by dery_ru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ void	main_parcer(char **argv, char **env)
 		// write(1, "sss\n", 4);
 		preparser(argv[i], env);
 		parser(&argv[i], env);
-		printf("argv == %s ARG_LEN ==%zu %d\n", argv[i], ft_strlen(argv[i]), i);
+		// printf("argv == %s ARG_LEN ==%zu %d\n", argv[i], ft_strlen(argv[i]), i);
 		i++;
 	}
 

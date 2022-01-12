@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dery_ru <dery_ru@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/11 18:37:33 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/12 08:49:51 by dery_ru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	main(int ac, char **av, char **env)
 	while(1)
 	{
 		str = NULL;
-		str = readline("🔥🔥🔥🔥🔥🔥> ");
+		str = readline("🗿🗿> ");
 		add_history(str);
 		if (str == NULL)
 		{

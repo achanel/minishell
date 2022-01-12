@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: dery_ru <dery_ru@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 15:38:12 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/11 19:17:39 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/11 22:02:00 by dery_ru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	get_builtin(char **cmd, char **envp)
 {
 	t_two_env	*env_lists;
 	
-	init_envbase(&env_lists, envp);
+	// init_envbase(&env_lists, envp);
 	if (ft_strncmp(cmd[0], "pwd", 3) == 0)
 		do_pwd();
 	else if (ft_strncmp(cmd[0], "echo", 4) == 0)	
