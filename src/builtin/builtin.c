@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dery_ru <dery_ru@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 15:38:12 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/13 10:50:52 by dery_ru          ###   ########.fr       */
+/*   Updated: 2022/01/13 13:34:55 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,23 @@
 
 void pidexecve(char **cmd, char **envp)
 {
-	// pid_t pid0;
+	pid_t pid0;
 
-	// pid0 = fork();
-	// if (pid0 == 0)
-	// {
+	pid0 = fork();
+	if (pid0 == 0)
+	{
+		
 		if ((execve(get_path(envp, cmd[0]), cmd, envp)) == -1)
 			error_msg(cmd[0], "command not found\n", 127);
-		
-	// }
-	// else
-	// {
+		exit (0);
+	}
+	else
+	{
 	// 	// printf("lol");
-	// 	waitpid(-1, 0, 0);
-	// }
-	// close(1);
+		waitpid(pid0, 0, 0);
+		exit(0);
+	}
+	waitpid(pid0, 0, 0);
 }
 
 static void	init_envbase(t_two_env **env_lists, char **env)
@@ -45,8 +47,13 @@ static void	init_envbase(t_two_env **env_lists, char **env)
 void	get_builtin(char **cmd, char **envp)
 {
 	t_two_env	*env_lists;
+	static int i;
+	i = 0;
 	
-	// init_envbase(&env_lists, envp);
+	if (i == 0){
+		init_envbase(&env_lists, envp);
+		i++;
+	}
 	if (ft_strncmp(cmd[0], "pwd", 3) == 0)
 		do_pwd();
 	else if (ft_strncmp(cmd[0], "echo", 4) == 0)	

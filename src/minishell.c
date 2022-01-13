@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dery_ru <dery_ru@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/12 23:29:21 by dery_ru          ###   ########.fr       */
+/*   Updated: 2022/01/13 13:28:25 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	main(int ac, char **av, char **env)
 	{	
 		// dup2(0,1);
 		// write(0, 0, 1);
-		// waitpid(pid0, 0, 0);
+		waitpid(pid0, 0, 0);
 		str = readline("🗿🗿> ");
 		add_history(str);
 		
@@ -76,19 +76,20 @@ int	main(int ac, char **av, char **env)
 		else
 		{
 			
-			// pid0 = fork();
-			// if (pid0 == 0){
-				if(main_pipe(str, env))
-					cmd = str_parse(str, env);
+			pid0 = fork();
+			if (pid0 == 0){
+				// if(main_pipe(str, env))
+				cmd = str_parse(str, env);
 				if (cmd){
 					
 					get_builtin(cmd, env);
 					free_split(cmd);	
 				}
-			// }
+				exit(0);
+			}
 			// sleep(1);
 		}
-		if (str)
+		// if (str)
 			free(str);
 		// for(i = 0; cmd[i]; i++)
 	}
