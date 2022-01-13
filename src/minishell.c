@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/13 14:51:13 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/13 19:03:24 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,13 @@ static void	ft_eof(void)
 	printf("exit\n");
 }
 
+void fds_init(t_fd **fd)
+{
+	*fd = malloc(sizeof(t_fd));
+	(*fd)->fd_in = 0;
+	(*fd)->fd_out = 1;
+}
+
 int	main(int ac, char **av, char **env)
 {
 	char		*str;
@@ -65,19 +72,18 @@ int	main(int ac, char **av, char **env)
 	int i=0;
 	pid_t pid0;
 	t_two_env	*env_lists;
+	t_fd	*fd;
 	
 	(void)ac;
 	(void)av;
 	cmd = NULL;
 	init_envbase(&env_lists, env);
+	fds_init(&fd);
 	input_signal_catcher();
 	hide_ctrl(env);
 	str = NULL;
 	while(1)
 	{	
-		// dup2(0,1);
-		// write(0, 0, 1);
-		// waitpid(pid0, 0, 0);
 		str = readline("🗿🗿> ");
 		add_history(str);
 		
@@ -91,17 +97,27 @@ int	main(int ac, char **av, char **env)
 			
 			// pid0 = fork();
 			// if (pid0 == 0){
-				if(main_pipe(str, env, env_lists))
-				cmd = str_parse(str, env);
+				if(main_pipe(str, env, env_lists, fd))
+				cmd = str_parse(str, env, fd);
 				if (cmd){
 					
-					get_builtin(cmd, env, env_lists);
+					get_builtin(cmd, env, env_lists, fd);
 					free_split(cmd);	
 				}
 				// exit(0);
 			// }
+			// waitpid(pid0, 0, 0);
 			// sleep(1);
 		}
+		// while (env_lists->origin)
+		// {
+		// 	printf("%s == ", env_lists->origin->key);
+		// 	// env_lists->origin = env_lists->origin->next;
+		// 	printf("%s", env_lists->origin->val);
+        // 	printf("\n");
+        // 	env_lists->origin = env_lists->origin->next;
+		// }
+		// env_lists->origin = aaa;
 		// if (str)
 			free(str);
 		// for(i = 0; cmd[i]; i++)

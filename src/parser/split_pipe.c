@@ -88,66 +88,18 @@ char **args_split(char *str, char *c)
 	return (av);
 }
 
-char **str_parse(char *str1, char **envp)
+char **str_parse(char *str1, char **envp, t_fd *fd)
 {
 	char **str2 = NULL;
 
-	if(str1[0] == '\0')
-		return(NULL);
+	// write(1, "lol4\n", 5);
 	main_space(&str1);
-	main_redir(&str1);
+	main_redir(&str1, fd);
+	if(ft_strchr(" \t\0", str1[0]) || ft_strlen(str1) < 1)
+		return(NULL);
 	str2 = args_split(str1, " ");
 	int i = 0;
 	main_parcer(str2, envp);
-	while(str2[i])
-	{
-		// tmp[i] = args_split(str2[i], " ");
-		// return (tmp[i]);
-		// printf("str2[%d] == %s\n", i, str2[i]);
-		i++;
-	}
+	
 	return (str2);
 }
-
-// int main(int ac, char **av, char **env)
-// {
-// 	char *str = ft_strdup("echo $USERF");
-// 	char **str3 = str_parse(str, env);
-// 	free(str);
-// 	int i = 0;
-// 	while(str3[i])
-// 	{
-// 		printf(" str3[%d] = %s\n", i, str3[i]);
-// 		i++;
-// 	}
-// 	getchar();
-// 	return (0);
-// }
-
-// int	main(int ac, char **av, char **env)
-// {
-// 	char		*str;
-// 	t_two_env	*env_lists;
-// 	char		**cmd;
-// 	int i=0;
-
-// 	(void)ac;
-// 	(void)av;
-// 	while(1)
-// 	{
-// 		str = readline("🔥🔥🔥🔥🔥🔥> ");
-// 		// init_envbase(&env_lists, env);
-// 		// input_signal_catcher();
-// 		if (str[0] != '\0')
-// 			cmd = str_parse(str, env);
-// 		while (cmd[i])
-// 		{
-// 			printf("str to parse %d == %s\n", i, cmd[i]);
-// 			i++;
-// 		}
-// 		free(cmd);
-// 		// get_builtin(cmd, env_lists);
-// 		// pre_builtin(str, env_lists);
-// 	}
-// 	return (0);
-// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:13 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/13 13:53:18 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/13 18:53:45 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ typedef	struct s_args
 	char	*command;
 }	t_args;
 
+typedef struct s_fd
+{
+	int fd_in;
+	int fd_out;
+}	t_fd;
+
 typedef	struct s_envbase
 {
 	char				*key;
@@ -50,7 +56,7 @@ typedef	struct s_two_env
 }	t_two_env;
 
 //builtin
-void	get_builtin(char **cmd, char **envp, t_two_env *env_lists);
+void	get_builtin(char **cmd, char **envp, t_two_env *env_lists, t_fd *fd);
 void	do_pwd(void);
 void	do_echo(char **av);
 void	do_exit(char **cmd);
@@ -81,16 +87,16 @@ char	*get_val(char *env_str);
 void    exec_signal_catcher(void);
 void    input_signal_catcher(void);
 // paser
-char 	**str_parse(char *str1, char **envp);
+char 	**str_parse(char *str1, char **envp, t_fd *fd);
 void	main_parcer(char **argv, char **env);
 char	**args_split(char *str, char *c);
 char	*get_path(char **envp, char *cmd);
 char	*ft_perem(char *str, int *i, char **env);
 void	ft_error(char *str);
-void	main_redir(char **str);
+void	main_redir(char **str, t_fd *fd);
 void	main_space(char **str);
 //pipex
-int		main_pipe(char *str, char **env, t_two_env *env_lists);
+int		main_pipe(char *str, char **env, t_two_env *env_lists, t_fd *fd);
 //utils_minishell
 void	free_str(char **str);
 void	*free_split(char **str);

@@ -46,9 +46,8 @@ char *str2str(char *str, int *i, char c)
 	return(tmp);
 }
 
-char	*redir_in(char *str, int *i, int flag)
+char	*redir_in(char *str, int *i, int flag, t_fd *fd)
 {
-	int fd = 0;
 	int j;
 	char *file_name;
 	char *tmp;
@@ -66,15 +65,15 @@ char	*redir_in(char *str, int *i, int flag)
 	if (flag){
 
 		tmp_file(file_name);
-		fd = open("temp_del", O_RDONLY, 0644);
+		fd->fd_in = open("temp_del", O_RDONLY, 0644);
 	}
 	else
-		fd = open(file_name , O_RDONLY, 0644);
+		fd->fd_in = open(file_name , O_RDONLY, 0644);
 	// close(0);
 	// if (fd){
 
-		// dup2(fd, 0);
-		// close(fd);
+		dup2(fd->fd_in, 1);
+		close(fd->fd_out);
 	// }
 	unlink("temp_del");
 		// error_msg(strerror(errno));
@@ -82,12 +81,12 @@ char	*redir_in(char *str, int *i, int flag)
 	return(str);
 }
 
-char	*redir_out(char *str, int *i, int flag)
+char	*redir_out(char *str, int *i, int flag, t_fd *fd)
 {
-	int fd;
 	int j;
 	char *file_name;
 	char *tmp;
+	// int buff_fd;
 
 	j = *i;
 	tmp = ft_substr(str, 0, j);
@@ -98,22 +97,23 @@ char	*redir_out(char *str, int *i, int flag)
 	free(tmp);
 
 	// printf("%s\n", file_name);
-	fd = 1;
 		if (flag)
-			fd = open(file_name , O_CREAT | O_APPEND | O_WRONLY, 0644);
+			fd->fd_out = open(file_name , O_CREAT | O_APPEND | O_WRONLY, 0644);
 		else
-			fd = open(file_name , O_CREAT | O_TRUNC | O_WRONLY, 0644);
+			fd->fd_out = open(file_name , O_CREAT | O_TRUNC | O_WRONLY, 0644);
 
-	if (fd){
-		close(1);
-		dup2(fd, 1);
-		close(fd);
-	}
+	// if (fd){
+		// close(1);
+		// buff_fd = dup(STDIN_FILENO);
+		dup2(fd->fd_out, 1);
+		close(fd->fd_out);
+		// STDIN_FILENO = dup(buff_fd);
+	// }
 	// printf("str redir_out== %s\n", str);
 	return (str);
 }
 
-static void	parcer(char **src)
+static void	parcer(char **src, t_fd *fd)
 {
 	char *str;
 	str = *src;
@@ -123,11 +123,11 @@ static void	parcer(char **src)
 		if (str[i] == '<'){
 			if (str[i + 1] == '<' && str[i + 2] != '<')
 			{
-				str = redir_in(str, &i, 1);
+				str = redir_in(str, &i, 1, fd);
 			}
 			if (str[i + 1] != '<'){
 
-				str = redir_in(str, &i, 0);
+				str = redir_in(str, &i, 0, fd);
 				// printf("i == %d\n", i);
 			}
 		}
@@ -135,10 +135,10 @@ static void	parcer(char **src)
 
 			if (str[i + 1] == '>'  && str[i + 2] != '>')
 			{
-				str = redir_out(str, &i, 1);
+				str = redir_out(str, &i, 1, fd);
 			}
 			if (str[i + 1] != '>')
-				str = redir_out(str, &i, 0);
+				str = redir_out(str, &i, 0, fd);
 		}
 		i++;
 	}
@@ -147,10 +147,10 @@ static void	parcer(char **src)
 	// printf("str == %slol\n", str);
 }
 
-void	main_redir(char **str)
+void	main_redir(char **str, t_fd *fd)
 {
 	// char *str = ft_strdup("<1 cat -e >4");
-	parcer(str);
+	parcer(str, fd);
 	// for (int i = 0; str[i]; i++)
 	// 	printf("str == %c %d$\n", str[i], str[i]);
 	// char **tmp = args_split(str, " ");
