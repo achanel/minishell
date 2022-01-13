@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 15:38:12 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/13 13:52:35 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/13 14:51:42 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void pidexecve(char **cmd, char **envp, t_two_env *env_lists)
 	{
 	// 	// printf("lol");
 		waitpid(pid0, 0, 0);
-		exit(0);
+		// exit(0);
 	}
 	waitpid(pid0, 0, 0);
 }

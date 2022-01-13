@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/13 13:52:47 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/13 14:51:13 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	main(int ac, char **av, char **env)
 	{	
 		// dup2(0,1);
 		// write(0, 0, 1);
-		waitpid(pid0, 0, 0);
+		// waitpid(pid0, 0, 0);
 		str = readline("🗿🗿> ");
 		add_history(str);
 		
@@ -89,17 +89,17 @@ int	main(int ac, char **av, char **env)
 		else
 		{
 			
-			pid0 = fork();
-			if (pid0 == 0){
-				// if(main_pipe(str, env))
+			// pid0 = fork();
+			// if (pid0 == 0){
+				if(main_pipe(str, env, env_lists))
 				cmd = str_parse(str, env);
 				if (cmd){
 					
 					get_builtin(cmd, env, env_lists);
 					free_split(cmd);	
 				}
-				exit(0);
-			}
+				// exit(0);
+			// }
 			// sleep(1);
 		}
 		// if (str)

@@ -40,11 +40,10 @@ void	comand_clean(char **str, char *c)
 
 	i = 0;
 	j = ft_strlen(tmp);
-	while(ft_strchr(c, tmp[i]))// || tmp[i] == '\t' || tmp[i] == ' ')
+	while(ft_strchr(c, tmp[i]) || tmp[i] == '\t' || tmp[i] == ' ')
 		i++; 
-	while(ft_strchr(c, tmp[j]))// || tmp[j] == '\t' || tmp[j] == ' '){
+	while(ft_strchr(c, tmp[j]) || tmp[j] == '\t' || tmp[j] == ' ')
 		j--;
-	// }
 	j++;
 	
 	// while((tmp[i + j] == '\'' || tmp[i + j] == '\"') || ft_isalpha(tmp[i + j])){

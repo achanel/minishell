@@ -48,7 +48,7 @@ char *str2str(char *str, int *i, char c)
 
 char	*redir_in(char *str, int *i, int flag)
 {
-	int fd;
+	int fd = 0;
 	int j;
 	char *file_name;
 	char *tmp;
@@ -70,12 +70,12 @@ char	*redir_in(char *str, int *i, int flag)
 	}
 	else
 		fd = open(file_name , O_RDONLY, 0644);
-	close(0);
-	if (fd){
+	// close(0);
+	// if (fd){
 
-		dup2(fd, 0);
-		close(fd);
-	}
+		// dup2(fd, 0);
+		// close(fd);
+	// }
 	unlink("temp_del");
 		// error_msg(strerror(errno));
 	// printf("str redir_in == %s\n", *str);
