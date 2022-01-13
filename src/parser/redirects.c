@@ -70,6 +70,7 @@ char	*redir_in(char *str, int *i, int flag)
 	}
 	else
 		fd = open(file_name , O_RDONLY, 0644);
+	close(0);
 	if (fd){
 
 		dup2(fd, 0);
@@ -104,6 +105,7 @@ char	*redir_out(char *str, int *i, int flag)
 			fd = open(file_name , O_CREAT | O_TRUNC | O_WRONLY, 0644);
 
 	if (fd){
+		close(1);
 		dup2(fd, 1);
 		close(fd);
 	}

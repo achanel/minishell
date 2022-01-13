@@ -6,7 +6,7 @@
 /*   By: dery_ru <dery_ru@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 15:38:12 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/11 22:02:00 by dery_ru          ###   ########.fr       */
+/*   Updated: 2022/01/13 10:50:52 by dery_ru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,21 @@
 
 void pidexecve(char **cmd, char **envp)
 {
-	pid_t pid0;
+	// pid_t pid0;
 
-	pid0 = fork();
-	if (pid0 == 0)
-	{
+	// pid0 = fork();
+	// if (pid0 == 0)
+	// {
 		if ((execve(get_path(envp, cmd[0]), cmd, envp)) == -1)
 			error_msg(cmd[0], "command not found\n", 127);
-		exit(0);
-	}
-	else
-	{
-		// printf("lol");
-		waitpid(-1, 0, 0);
-	}
+		
+	// }
+	// else
+	// {
+	// 	// printf("lol");
+	// 	waitpid(-1, 0, 0);
+	// }
+	// close(1);
 }
 
 static void	init_envbase(t_two_env **env_lists, char **env)

@@ -79,7 +79,6 @@ char **args_split(char *str, char *c)
 		i++;
 		// write(1, "lol\n", 4);
 		if (ac[i] - ac[i - 1] > 0){
-
 			av[k] = ft_substr(str, ac[i - 1], ac[i] - ac[i - 1]);
 			comand_clean(&av[k], c);
 			// printf("av_split[%d] == %s$\n", k, av[k]);
@@ -92,19 +91,12 @@ char **args_split(char *str, char *c)
 
 char **str_parse(char *str1, char **envp)
 {
-	// char *str = ft_strdup("/bin/echo l$_\"o\"l | cat > \"osl|o|beck\"k | chebureck");
 	char **str2 = NULL;
-	char **str3 = NULL;
-	char ***tmp = NULL;
 
 	if(str1[0] == '\0')
 		return(NULL);
-	// write(1, "lol\n", 4);
-	
 	main_space(&str1);
 	main_redir(&str1);
-
-	// printf("av[%d] == %s$\n",0, str1);
 	str2 = args_split(str1, " ");
 	int i = 0;
 	main_parcer(str2, envp);
@@ -115,7 +107,6 @@ char **str_parse(char *str1, char **envp)
 		// printf("str2[%d] == %s\n", i, str2[i]);
 		i++;
 	}
-	// pipex(i, str1, envp);
 	return (str2);
 }
 

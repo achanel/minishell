@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dery_ru <dery_ru@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/12 14:38:03 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/12 23:29:21 by dery_ru          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,22 @@ int	main(int ac, char **av, char **env)
 	char		*str;
 	char		**cmd;
 	int i=0;
-
+	pid_t pid0;
+	
 	(void)ac;
 	(void)av;
 	cmd = NULL;
 	input_signal_catcher();
 	hide_ctrl(env);
+	str = NULL;
 	while(1)
-	{
-		str = NULL;
+	{	
+		// dup2(0,1);
+		// write(0, 0, 1);
+		// waitpid(pid0, 0, 0);
 		str = readline("🗿🗿> ");
 		add_history(str);
+		
 		if (str == NULL)
 		{
 			ft_eof();
@@ -70,15 +75,22 @@ int	main(int ac, char **av, char **env)
 		}
 		else
 		{
-			if(main_pipe(str, env))
-				cmd = str_parse(str, env);	
-		}
-		// for(i = 0; cmd[i]; i++)
 			
-		if (cmd)
-			get_builtin(cmd, env);
-		free(str);
-		free_split(cmd);
+			// pid0 = fork();
+			// if (pid0 == 0){
+				if(main_pipe(str, env))
+					cmd = str_parse(str, env);
+				if (cmd){
+					
+					get_builtin(cmd, env);
+					free_split(cmd);	
+				}
+			// }
+			// sleep(1);
+		}
+		if (str)
+			free(str);
+		// for(i = 0; cmd[i]; i++)
 	}
 	// write(1, "lol\n", 4);
 	return (0);
