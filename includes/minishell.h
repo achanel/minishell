@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:13 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/11 19:21:10 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/13 13:53:18 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <signal.h>
 # include "../libft/libft.h"
 # include <fcntl.h> // хз надо не надо у меня была))
+
 
 int		g_status;
 
@@ -49,7 +50,7 @@ typedef	struct s_two_env
 }	t_two_env;
 
 //builtin
-void	get_builtin(char **cmd, char **envp);
+void	get_builtin(char **cmd, char **envp, t_two_env *env_lists);
 void	do_pwd(void);
 void	do_echo(char **av);
 void	do_exit(char **cmd);
@@ -57,6 +58,7 @@ void	do_env(t_two_env *env, char **cmd);
 void	do_unset(char **av, t_two_env **env);
 void	do_cd(char **cmd,t_two_env *base);
 void	do_export(char **cmd, t_two_env *env_list);
+void	change_shlvl(t_two_env **env_lists);
 //error_msg
 void	error_msg(char *cmd, char *error, int status);
 void	malloc_error(void *p);
@@ -88,7 +90,7 @@ void	ft_error(char *str);
 void	main_redir(char **str);
 void	main_space(char **str);
 //pipex
-int	main_pipe(char *str, char **env);
+int		main_pipe(char *str, char **env, t_two_env *env_lists);
 //utils_minishell
 void	free_str(char **str);
 void	*free_split(char **str);

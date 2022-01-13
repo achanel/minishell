@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 14:53:23 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/09 16:08:47 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/12 19:29:48 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static void input_process(int signum)
     (void)signum;
     g_status = 130;
     printf("\n");
+	rl_on_new_line();
+	rl_replace_line("", 0);
 }
 
 static void kill_process(int signum)
@@ -24,18 +26,18 @@ static void kill_process(int signum)
     (void)signum;
     g_status = 131;
     printf("Quit (core dumped)\n");
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
 }
 
 static void ft_handler(int signum)
 {
-    if (signum == SIGINT)
-	{
-		g_status = 1;
+		g_status = 130;
 		printf("\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
-	}
 }
 
 void    exec_signal_catcher(void)

@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 15:51:25 by rhoke             #+#    #+#             */
-/*   Updated: 2022/01/11 18:30:05 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/13 13:54:43 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	exec(char *argv, char **env)
+void	exec(char *argv, char **env, t_two_env *env_lists)
 {
 	char	**cmd;
 
 	cmd = ft_split(argv, ' ');
-	get_builtin(cmd, env);
+	get_builtin(cmd, env, env_lists);
 }
 
-void	redir(char *cmd, char **envp)
+void	redir(char *cmd, char **envp, t_two_env *env_lists)
 {
 	pid_t	pid1;
 	int		pipefd[2];
@@ -37,11 +37,11 @@ void	redir(char *cmd, char **envp)
 	{
 		close(pipefd[0]);
 		dup2(pipefd[1], 1);
-		exec(cmd, envp);
+		exec(cmd, envp, env_lists);
 	}
 }
 
-int	main_pipe(char *str, char **env)
+int	main_pipe(char *str, char **env, t_two_env *env_lists)
 {
 	char **argv;
 	int	i;
@@ -56,7 +56,7 @@ int	main_pipe(char *str, char **env)
 		return(1);
 	main_parcer(argv, env);
 	while (argv[i])
-		redir(argv[i++], env);
-	exec(argv[i], env);
+		redir(argv[i++], env, env_lists);
+	exec(argv[i], env, env_lists);
 	return (0);
 }

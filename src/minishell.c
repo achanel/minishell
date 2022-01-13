@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/13 13:28:25 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/13 13:52:47 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	init_envbase(t_two_env **env_lists, char **env)
+{
+	char **sorted_env;
+
+	*env_lists = malloc(sizeof(t_two_env));
+	malloc_error(*env_lists);
+	(*env_lists)->origin = orig_env(env);
+	sorted_env = sort_env((*env_lists), env);
+	(*env_lists)->sorted = orig_env(sorted_env);
+}
 
 static int	test_exec(char **cmd, char **env, int status)
 {
@@ -53,10 +64,12 @@ int	main(int ac, char **av, char **env)
 	char		**cmd;
 	int i=0;
 	pid_t pid0;
+	t_two_env	*env_lists;
 	
 	(void)ac;
 	(void)av;
 	cmd = NULL;
+	init_envbase(&env_lists, env);
 	input_signal_catcher();
 	hide_ctrl(env);
 	str = NULL;
@@ -82,7 +95,7 @@ int	main(int ac, char **av, char **env)
 				cmd = str_parse(str, env);
 				if (cmd){
 					
-					get_builtin(cmd, env);
+					get_builtin(cmd, env, env_lists);
 					free_split(cmd);	
 				}
 				exit(0);
