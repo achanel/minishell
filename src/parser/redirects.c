@@ -58,7 +58,8 @@ char	*redir_in(char *str, int *i, int flag, t_fd *fd)
 	file_name = str2str(str, i, '<');
 	tmp = ft_strjoin(tmp, ft_strdup(str + *i));
 	str = ft_strdup(tmp);
-	*i = j;
+	*i = j - 1;
+	printf("str[%d] == %c", (*i), str[(*i)]);
 	free(tmp);
 	// file_name = str2str(str, i, '>');
 	// printf("%s\n", file_name);
@@ -66,6 +67,7 @@ char	*redir_in(char *str, int *i, int flag, t_fd *fd)
 
 		tmp_file(file_name);
 		fd->fd_in = open("temp_del", O_RDONLY, 0644);
+		printf("fd_in == %d\n", fd->fd_in);
 	}
 	else
 		fd->fd_in = open(file_name , O_RDONLY, 0644);
@@ -94,13 +96,19 @@ char	*redir_out(char *str, int *i, int flag, t_fd *fd)
 	tmp = ft_strjoin(tmp, ft_strdup(str + *i));
 	str = ft_strdup(tmp);
 	*i = j - 1; // *i = 0;
+	printf("str[%d] == %c", (*i), str[(*i)]);
 	free(tmp);
 
-	// printf("%s\n", file_name);
-		if (flag)
+	// printf("lol kek chebureck %s\n", file_name);
+		if (flag){
 			fd->fd_out = open(file_name , O_CREAT | O_APPEND | O_WRONLY, 0644);
-		else
+			printf("fd_out_append == %d\n", fd->fd_out);
+		}
+		else{
+
 			fd->fd_out = open(file_name , O_CREAT | O_TRUNC | O_WRONLY, 0644);
+			printf("fd_out == %d\n", fd->fd_out);
+		}
 
 	// if (fd){
 		// close(1);
@@ -150,6 +158,9 @@ static void	parcer(char **src, t_fd *fd)
 void	main_redir(char **str, t_fd *fd)
 {
 	// char *str = ft_strdup("<1 cat -e >4");
+	fd->fd_in = 0;
+	fd->fd_out = 1;
+	// write(1, "LOL\n", 4)
 	parcer(str, fd);
 	// for (int i = 0; str[i]; i++)
 	// 	printf("str == %c %d$\n", str[i], str[i]);
