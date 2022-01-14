@@ -78,15 +78,6 @@ static void	shlvl_list(t_envbase *env, int flag)
 
 void	change_shlvl(t_two_env **env_lists)
 {
-	pid_t	shlvl_pid;
-
-	shlvl_pid = fork();
-	if (shlvl_pid == 0)
-	{
-		shlvl_list((*env_lists)->origin, 1);
-		shlvl_list((*env_lists)->sorted, 0);
-	}
-	else
-		waitpid(-1, 0, 0);
-	// exit(127);
+	shlvl_list((*env_lists)->origin, 1);
+	shlvl_list((*env_lists)->sorted, 0);
 }
