@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/14 13:11:15 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/14 13:40:21 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	main(int ac, char **av, char **env)
 		
 		if (str == NULL)
 		{
-			ft_eof();
+			// ft_eof();
 			break ;
 		}
 		// else
