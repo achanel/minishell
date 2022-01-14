@@ -13,7 +13,7 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# define MSL "🔥🔥🔥🔥🔥🔥"
+# define MSL "🗿🗿"
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -63,7 +63,7 @@ void	do_exit(char **cmd);
 void	do_env(t_two_env *env, char **cmd);
 void	do_unset(char **av, t_two_env **env);
 void	do_cd(char **cmd,t_two_env *base);
-void	do_export(char **cmd, t_two_env *env_list);
+void	do_export(char **cmd, t_two_env **env_list);
 void	change_shlvl(t_two_env **env_lists);
 //error_msg
 void	error_msg(char *cmd, char *error, int status);
