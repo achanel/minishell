@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 15:38:12 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/14 16:59:58 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/15 00:15:41 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,8 @@ void pidexecve(char **cmd, char **envp, t_two_env *env_lists, t_fd *fd)
 
 void	get_builtin(char **cmd, char **envp, t_two_env *env_lists, t_fd *fd)
 {
-	// printf("lol4");
-	int _stdout;
-	int _stdin;
+	printf("\nlol4\n");
+
 	
 	int buff_fd_in;
 	int buff_fd_out;
@@ -56,7 +55,8 @@ void	get_builtin(char **cmd, char **envp, t_two_env *env_lists, t_fd *fd)
 	// _stdin = dup(0);
 	// _stdin = dup(1);
 	// dup2(fd->fd_out, 1);
-	printf("infd %d\n, outfd %d\n", fd->fd_in, fd->fd_out);
+	write(2, "lol4\n", 5);
+	printf("\tinfd %d\n\toutfd %d\n", fd->fd_in, fd->fd_out);
 	buff_fd_in = dup(0);
 	buff_fd_out = dup(1);
 	// close(1);
@@ -66,18 +66,26 @@ void	get_builtin(char **cmd, char **envp, t_two_env *env_lists, t_fd *fd)
 	// // STDIN_FILENO = dup(buff_fd_in);
 	dup2(fd->fd_in, 0);
 	dup2(fd->fd_out, 1);
+	// dup2(fd->fd_in, fd->fd_pipe_in);
+	// dup2(fd->fd_out, fd->fd_pipe_out);
 	// _stdout = dup(fd->fd_in);
 	// close(fd->fd_out);
 	// dup2(1, fd->fd_out);
-	if (fd->fd_in > 2)
-		close(fd->fd_in);
-	if (fd->fd_out > 2)
-		close(fd->fd_out);
+	// if (fd->fd_in > 2)
+	// 	close(fd->fd_in);
+	// if (fd->fd_out > 2)
+	// 	close(fd->fd_out);
+	// if (fd->fd_pipe_in > 2)
+	// 	close(fd->fd_pipe_in);
+	// if (fd->fd_pipe_out > 2)
+	// 	close(fd->fd_pipe_out);
 	// STDOUT_FILENO = dup(buff_fd_out);
 	
 	// dup2(fd->fd_in, 0);
 	
-	if (ft_strncmp(cmd[0], "pwd", 3) == 0)
+	if (!cmd)
+		return ;
+	else if (ft_strncmp(cmd[0], "pwd", 3) == 0)
 		do_pwd();
 	else if (ft_strncmp(cmd[0], "echo", 4) == 0)	
 		do_echo(cmd);
@@ -91,10 +99,15 @@ void	get_builtin(char **cmd, char **envp, t_two_env *env_lists, t_fd *fd)
 		do_cd(cmd, env_lists);
 	else if (ft_strncmp(cmd[0], "export", 6) == 0)
 		do_export(cmd, &env_lists);
-	else
+	else{
+		
 		pidexecve(cmd, envp, env_lists, fd);
+	}
 		// if ((execve(get_path(envp, cmd[0]), cmd, envp)) == -1)
 		// 	error_msg(cmd[0], "command not found\n", 127);
+	// dup2(1, fd->fd_in);
 	dup2(buff_fd_in, 0);
 	dup2(buff_fd_out, 1);
+	// buff_fd_in = dup(0);
+	// buff_fd_out = dup(1);
 }

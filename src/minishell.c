@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/14 18:52:52 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/14 22:25:51 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void fds_init(t_fd **fd)
 	*fd = malloc(sizeof(t_fd));
 	(*fd)->fd_in = 0;
 	(*fd)->fd_out = 1;
+	(*fd)->fd_pipe_in = 0;
+	(*fd)->fd_pipe_out = 1;
 }
 
 int	main(int ac, char **av, char **env)
@@ -85,6 +87,7 @@ int	main(int ac, char **av, char **env)
 	printf("pid == %d\n", getpid());
 	while(1)
 	{	
+		
 		str = readline("🗿🗿> ");
 		add_history(str);
 		
@@ -98,13 +101,13 @@ int	main(int ac, char **av, char **env)
 			
 			// pid0 = fork();
 			// if (pid0 == 0){
-				// if(main_pipe(str, env, env_lists, fd))
-					cmd = str_parse(str, env, fd);
-				if (cmd){
+				main_pipe(str, env, env_lists, fd);
+				// 	cmd = str_parse(str, env, fd);
+				// if (cmd){
 					
-					get_builtin(cmd, env, env_lists, fd);
-					free_split(cmd);	
-				}
+				// 	get_builtin(cmd, env, env_lists, fd);
+				// 	free_split(cmd);	
+				// }
 				// exit(0);
 			// }
 			// waitpid(pid0, 0, 0);

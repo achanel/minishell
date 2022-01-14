@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:13 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/13 18:53:45 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/14 20:17:06 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct s_fd
 {
 	int fd_in;
 	int fd_out;
+	int fd_pipe_in;
+	int fd_pipe_out;
 }	t_fd;
 
 typedef	struct s_envbase

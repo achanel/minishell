@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dery_ru <dery_ru@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 16:33:21 by dery_ru           #+#    #+#             */
-/*   Updated: 2022/01/11 22:07:35 by dery_ru          ###   ########.fr       */
+/*   Updated: 2022/01/14 20:38:51 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,9 +152,9 @@ void	main_parcer(char **argv, char **env)
 	int i = 0;
 	while(1)
 	{
-		if (argv[i] == NULL)
-			break ;
 		// write(1, "sss\n", 4);
+		if (!argv || !argv[i])
+			break ;
 		preparser(argv[i], env);
 		parser(&argv[i], env);
 		// printf("argv == %s ARG_LEN ==%zu %d\n", argv[i], ft_strlen(argv[i]), i);

@@ -61,7 +61,7 @@ char **args_split(char *str, char *c)
 	int		*ac;
 
 	j = 0;
-	if(str[0] == '\0')
+	if(str[0] == '\0' || !str)
 		return(NULL);
 	// while(ft_strchr(c, *str) || *str == '\t' || *str == ' ')
 	// 	str++;
