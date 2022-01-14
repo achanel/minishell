@@ -92,10 +92,10 @@ char **str_parse(char *str1, char **envp, t_fd *fd)
 {
 	char **str2 = NULL;
 
-	// write(1, "lol4\n", 5);
+	write(1, "lol4\n", 5);
 	main_space(&str1);
 	main_redir(&str1, fd);
-	if(ft_strchr(" \t\0", str1[0]) || ft_strlen(str1) < 1)
+	if(ft_strchr(" \t\0", str1[0]) && ft_strlen(str1) <= 1)
 		return(NULL);
 	str2 = args_split(str1, " ");
 	int i = 0;

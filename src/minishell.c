@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/14 13:40:21 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/14 16:43:10 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int	main(int ac, char **av, char **env)
 	input_signal_catcher();
 	hide_ctrl(env);
 	str = NULL;
+	printf("pid == %d\n", getpid());
 	while(1)
 	{	
 		str = readline("🗿🗿> ");
@@ -97,7 +98,7 @@ int	main(int ac, char **av, char **env)
 			
 			// pid0 = fork();
 			// if (pid0 == 0){
-				if(main_pipe(str, env, env_lists, fd))
+				// if(main_pipe(str, env, env_lists, fd))
 				cmd = str_parse(str, env, fd);
 				if (cmd){
 					

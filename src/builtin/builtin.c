@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 15:38:12 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/14 13:45:55 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/14 16:27:12 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,22 @@ void pidexecve(char **cmd, char **envp, t_two_env *env_lists, t_fd *fd)
 			change_shlvl(&env_lists);
 		if ((execve(get_path(envp, cmd[0]), cmd, envp)) == -1)
 			error_msg(cmd[0], "command not found\n", 127);
-		if (fd->fd_in != 0)
-			close(fd->fd_in);
-		if (fd->fd_out != 1)
-			close(fd->fd_out);
+		// if (fd->fd_in < 2)
+		// 	close(fd->fd_in);
+		// if (fd->fd_out < 2)
+		// 	close(fd->fd_out);
 		exit (0);
 	}
-	else
-	{
-		waitpid(pid0, 0, 0);
-		// exit(0);
-	}
+	// else
+	// {
+	// 	waitpid(pid0, 0, 0);
+	// 	// exit(0);
+	// }
 	waitpid(pid0, 0, 0);
+	// if (fd->fd_in < 2)
+	// 	close(fd->fd_in);
+	// if (fd->fd_out < 2)
+	// 	close(fd->fd_out);
 }
 
 void	get_builtin(char **cmd, char **envp, t_two_env *env_lists, t_fd *fd)
@@ -52,22 +56,23 @@ void	get_builtin(char **cmd, char **envp, t_two_env *env_lists, t_fd *fd)
 	// _stdin = dup(0);
 	// _stdin = dup(1);
 	// dup2(fd->fd_out, 1);
+	printf("infd %d\n, outfd %d\n", fd->fd_in, fd->fd_out);
 	buff_fd_in = dup(0);
 	buff_fd_out = dup(1);
 	// close(1);
 	// close(0);
 	// _stdin = dup(fd->fd_out);
-	dup2(fd->fd_out, 1);
 	// close(fd->fd_out);
 	// // STDIN_FILENO = dup(buff_fd_in);
 	dup2(fd->fd_in, 0);
-	if (fd->fd_in != 0)
-		close(fd->fd_in);
-	if (fd->fd_out != 1)
-		close(fd->fd_out);
+	dup2(fd->fd_out, 1);
 	// _stdout = dup(fd->fd_in);
 	// close(fd->fd_out);
 	// dup2(1, fd->fd_out);
+	if (fd->fd_in > 2)
+		close(fd->fd_in);
+	if (fd->fd_out > 2)
+		close(fd->fd_out);
 	// STDOUT_FILENO = dup(buff_fd_out);
 	
 	// dup2(fd->fd_in, 0);
