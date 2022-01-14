@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/14 16:43:10 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/14 18:52:52 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	main(int ac, char **av, char **env)
 		
 		if (str == NULL)
 		{
-			// ft_eof();
+			ft_eof();
 			break ;
 		}
 		// else
@@ -99,7 +99,7 @@ int	main(int ac, char **av, char **env)
 			// pid0 = fork();
 			// if (pid0 == 0){
 				// if(main_pipe(str, env, env_lists, fd))
-				cmd = str_parse(str, env, fd);
+					cmd = str_parse(str, env, fd);
 				if (cmd){
 					
 					get_builtin(cmd, env, env_lists, fd);

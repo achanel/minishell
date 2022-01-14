@@ -58,8 +58,7 @@ char	*redir_in(char *str, int *i, int flag, t_fd *fd)
 	file_name = str2str(str, i, '<');
 	tmp = ft_strjoin(tmp, ft_strdup(str + *i));
 	str = ft_strdup(tmp);
-	*i = j - 1;
-	printf("str[%d] == %c", (*i), str[(*i)]);
+	*i = j + 1;
 	free(tmp);
 	// file_name = str2str(str, i, '>');
 	// printf("%s\n", file_name);
@@ -95,8 +94,7 @@ char	*redir_out(char *str, int *i, int flag, t_fd *fd)
 	file_name = str2str(str, i, '>');
 	tmp = ft_strjoin(tmp, ft_strdup(str + *i));
 	str = ft_strdup(tmp);
-	*i = j - 1; // *i = 0;
-	printf("str[%d] == %c", (*i), str[(*i)]);
+	*i = j; // *i = 0;
 	free(tmp);
 
 	// printf("lol kek chebureck %s\n", file_name);
@@ -105,7 +103,6 @@ char	*redir_out(char *str, int *i, int flag, t_fd *fd)
 			printf("fd_out_append == %d\n", fd->fd_out);
 		}
 		else{
-
 			fd->fd_out = open(file_name , O_CREAT | O_TRUNC | O_WRONLY, 0644);
 			printf("fd_out == %d\n", fd->fd_out);
 		}
@@ -125,15 +122,15 @@ static void	parcer(char **src, t_fd *fd)
 {
 	char *str;
 	str = *src;
-	int i = 0;
-	while (str[i])
+	int i = -1;
+	while (str[++i])
 	{ 
 		if (str[i] == '<'){
 			if (str[i + 1] == '<' && str[i + 2] != '<')
 			{
 				str = redir_in(str, &i, 1, fd);
 			}
-			if (str[i + 1] != '<'){
+			else if (str[i + 1] != '<' && str[i] == '<'){
 
 				str = redir_in(str, &i, 0, fd);
 				// printf("i == %d\n", i);
@@ -145,10 +142,10 @@ static void	parcer(char **src, t_fd *fd)
 			{
 				str = redir_out(str, &i, 1, fd);
 			}
-			if (str[i + 1] != '>')
+			else if (str[i + 1] != '>' && str[i] == '>')
 				str = redir_out(str, &i, 0, fd);
 		}
-		i++;
+		// i++;
 	}
 	*src = ft_strdup(str);
 	free(str);

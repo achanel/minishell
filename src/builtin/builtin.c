@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 15:38:12 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/14 16:27:12 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/14 16:59:58 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	get_builtin(char **cmd, char **envp, t_two_env *env_lists, t_fd *fd)
 	else if (ft_strncmp(cmd[0], "cd", 2) == 0)
 		do_cd(cmd, env_lists);
 	else if (ft_strncmp(cmd[0], "export", 6) == 0)
-		do_export(cmd, env_lists);
+		do_export(cmd, &env_lists);
 	else
 		pidexecve(cmd, envp, env_lists, fd);
 		// if ((execve(get_path(envp, cmd[0]), cmd, envp)) == -1)
