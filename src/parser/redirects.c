@@ -72,8 +72,8 @@ char	*redir_in(char *str, int *i, int flag, t_fd *fd)
 	// close(0);
 	// if (fd){
 
-		dup2(fd->fd_in, 1);
-		close(fd->fd_out);
+		// dup2(fd->fd_in, 1);
+		// close(fd->fd_out);
 	// }
 	unlink("temp_del");
 		// error_msg(strerror(errno));
@@ -105,8 +105,8 @@ char	*redir_out(char *str, int *i, int flag, t_fd *fd)
 	// if (fd){
 		// close(1);
 		// buff_fd = dup(STDIN_FILENO);
-		dup2(fd->fd_out, 1);
-		close(fd->fd_out);
+		// dup2(fd->fd_out, 1);
+		// close(fd->fd_out);
 		// STDIN_FILENO = dup(buff_fd);
 	// }
 	// printf("str redir_out== %s\n", str);

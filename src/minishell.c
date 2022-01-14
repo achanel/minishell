@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/13 19:03:24 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/14 13:11:15 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ int	main(int ac, char **av, char **env)
 			ft_eof();
 			break ;
 		}
-		else
-		{
+		// else
+		// {
 			
 			// pid0 = fork();
 			// if (pid0 == 0){
@@ -108,7 +108,7 @@ int	main(int ac, char **av, char **env)
 			// }
 			// waitpid(pid0, 0, 0);
 			// sleep(1);
-		}
+		// }
 		// while (env_lists->origin)
 		// {
 		// 	printf("%s == ", env_lists->origin->key);
