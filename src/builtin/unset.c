@@ -12,40 +12,47 @@
 
 #include "../../includes/minishell.h"
 
-static void	del_env(t_envbase **base)
+static void	del_first_env(t_envbase *base)
 {
 	t_envbase	*tmp;
 
-	if ((*base)->next->next)
-		tmp = (*base)->next->next;
-	free((*base)->next);
-	if ((*base)->next->next)
-		(*base)->next = tmp;
+	tmp = base->next;
+	free(base->key);
+	free(base->val);
+	free(base);
+	base = tmp;
+}
+
+static void	del_env(t_envbase *base)
+{
+	t_envbase	*tmp;
+
+	if (base->next->next)
+		tmp = base->next->next;
+	free(base->next->key);
+	free(base->next->val);
+	free(base->next);
+	if (base->next->next)
+		base->next = tmp;
 	else
-		(*base)->next = NULL;
+		base->next = NULL;
 }
 
 static void	unset_list(t_envbase *base, char *str)
 {
 	t_envbase	*first;
-	t_envbase	*top;
 
 	first = base;
 	while (base)
 	{
 		if (ft_strncmp(base->key, str, ft_strlen(str)) == 0)
 		{
-			top = base->next;
-			free(base->key);
-			free(base->val);
-			free(base);
-			base = NULL;
-			base = top;
+			del_first_env(base);
 			return ;
 		}
 		if (base->next && ft_strncmp(base->next->key, str, ft_strlen(str)) == 0)
 		{
-			del_env(&base);
+			del_env(base);
 			break ;
 		}
 		base = base->next;
