@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 21:52:28 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/09 15:15:28 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 13:57:44 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	is_in_stack(t_envbase *stack, char *key)
 	return (0);
 }
 
-char	**sort_env(t_two_env *env_list, char **env)
+char	**sort_env(char **env)
 {
 	int		i;
 	int		j;

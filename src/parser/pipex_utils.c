@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 15:51:30 by rhoke             #+#    #+#             */
-/*   Updated: 2022/01/11 20:07:37 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/15 14:52:22 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-// void	ft_error(char *str)
-// {
-// 	write(2, str, ft_strlen(str));
-// 	exit(EXIT_FAILURE);
-// }
 
 char	*get_path(char **envp, char *cmd)
 {
@@ -37,7 +31,7 @@ char	*get_path(char **envp, char *cmd)
 				if (access(ft_strjoin(ft_strjoin(path[j], "/"), cmd), 0) == 0)
 					return (ft_strjoin(ft_strjoin(path[j], "/"), cmd));
 				if (access(cmd, 0) == 0)
-					return(cmd);
+					return (cmd);
 				j++;
 			}
 		}

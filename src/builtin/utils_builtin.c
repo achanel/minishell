@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 18:24:05 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/09 15:37:08 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 13:56:53 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ int	unset_arg_check(char *str)
 	{
 		if (i == 0 && is_valid(str[i]))
 		{
-			path_error(str);
+			unset_error(str);
 			return (0);
 		}
 		if (is_valid(str[i]) && ft_isdigit(str[i]))
 		{
-			path_error(str);
+			unset_error(str);
 			return (0);
 		}
 	}

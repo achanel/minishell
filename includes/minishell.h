@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:13 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/14 20:17:06 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/15 14:28:54 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@
 # include "../libft/libft.h"
 # include <fcntl.h> // хз надо не надо у меня была))
 
-
 int		g_status;
 
-typedef	struct s_args
+typedef struct s_args
 {
 	int		ac;
 	char	**av;
@@ -38,42 +37,43 @@ typedef	struct s_args
 
 typedef struct s_fd
 {
-	int fd_in;
-	int fd_out;
-	int fd_pipe_in;
-	int fd_pipe_out;
+	int	fd_in;
+	int	fd_out;
+	int	fd_pipe_in;
+	int	fd_pipe_out;
 }	t_fd;
 
-typedef	struct s_envbase
+typedef struct s_envbase
 {
 	char				*key;
 	char				*val;
 	struct s_envbase	*next;
 }	t_envbase;
 
-typedef	struct s_two_env
+typedef struct s_two_env
 {
 	t_envbase	*origin;
 	t_envbase	*sorted;
 }	t_two_env;
 
 //builtin
-void	get_builtin(char **cmd, char **envp, t_two_env *env_lists, t_fd *fd);
-void	do_pwd(void);
-void	do_echo(char **av);
-void	do_exit(char **cmd);
-void	do_env(t_two_env *env, char **cmd);
-void	do_unset(char **av, t_two_env **env);
-void	do_cd(char **cmd,t_two_env *base);
-void	do_export(char **cmd, t_two_env **env_list);
-void	change_shlvl(t_two_env **env_lists);
+void		get_builtin(char **cmd, char **envp,
+				t_two_env *env_lists, t_fd *fd);
+void		do_pwd(void);
+void		do_echo(char **av);
+void		do_exit(char **cmd);
+void		do_env(t_two_env *env, char **cmd);
+void		do_unset(char **av, t_two_env **env);
+void		do_cd(char **cmd, t_two_env *base);
+void		do_export(char **cmd, t_two_env **env_list);
+void		change_shlvl(t_two_env **env_lists);
 //error_msg
-void	error_msg(char *cmd, char *error, int status);
-void	malloc_error(void *p);
-void	path_error(char *path);
+void		error_msg(char *cmd, char *error, int status);
+void		malloc_error(void *p);
+void		path_error(char *path);
 //utils_builtin.c
-int	is_valid(int n);
-int	unset_arg_check(char *str);
+int			is_valid(int n);
+int			unset_arg_check(char *str);
 //utils_env.c
 t_envbase	*add_new(char *key, char *val);
 void		stack_add_back(t_envbase **stack, t_envbase *new);
@@ -81,26 +81,26 @@ t_envbase	*orig_env(char **env);
 char		*search_in_env(t_envbase *base, char *s);
 void		rewrite_pwd(t_envbase *base, char *pwd, char *s);
 //utils_stack.c
-int		is_in_stack(t_envbase *stack, char *key);
-char	**sort_env(t_two_env *env_list, char **env);
-char	*get_key(char *env_str);
-char	*get_val(char *env_str);
+int			is_in_stack(t_envbase *stack, char *key);
+char		**sort_env(char **env);
+char		*get_key(char *env_str);
+char		*get_val(char *env_str);
 //signal.c
-void    exec_signal_catcher(void);
-void    input_signal_catcher(void);
+void		exec_signal_catcher(void);
+void		input_signal_catcher(void);
 // paser
-char 	**str_parse(char *str1, char **envp, t_fd *fd);
-void	main_parcer(char **argv, char **env);
-char	**args_split(char *str, char *c);
-char	*get_path(char **envp, char *cmd);
-char	*ft_perem(char *str, int *i, char **env);
-void	ft_error(char *str);
-void	main_redir(char **str, t_fd *fd);
-void	main_space(char **str);
+char		**str_parse(char *str1, char **envp, t_fd *fd);
+void		main_parcer(char **argv, char **env);
+char		**args_split(char *str, char *c);
+char		*get_path(char **envp, char *cmd);
+char		*ft_perem(char *str, int *i, char **env);
+void		ft_error(char *str);
+void		main_redir(char **str, t_fd *fd);
+void		main_space(char **str);
 //pipex
-int		main_pipe(char *str, char **env, t_two_env *env_lists, t_fd *fd);
+int			main_pipe(char *str, char **env, t_two_env *env_lists, t_fd *fd);
 //utils_minishell
-void	free_str(char **str);
-void	*free_split(char **str);
-
+void		free_str(char **str);
+void		*free_split(char **str);
+void		print_export(t_envbase *base);
 #endif
