@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:47:08 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/16 01:16:10 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/16 01:23:11 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*redir_in(char *str, int *i, int flag, t_fd *fd)
 	str = ft_strjoin(tmp, ft_strdup(str + *i));
 	free(tmp);
 	tmp = str;
-	// free(str);
+	// free(str);§
 	*i = j + 1;
 	if (flag)
 	{

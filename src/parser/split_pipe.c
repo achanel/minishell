@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:35:53 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/16 00:04:46 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/16 00:51:59 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ char	**args_split(char *str, char *c, t_fd *fd)
 			temp = ft_substr(str, ac[fd->i - 1],
 					ac[fd->i] - ac[fd->i - 1]);
 			av[fd->k] = temp;
-			free(temp);
 			av[fd->k] = comand_clean(av[fd->k], c);
 			fd->k++;
+			free(temp);
 		}
 	}
 	av[fd->k] = NULL;
