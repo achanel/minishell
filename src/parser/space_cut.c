@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   space_cut.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:42:08 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/15 19:09:01 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 21:54:54 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-const char	*space_cut(char *str)
+static char	*space_cut(char *str)
 {
 	int		i;
 	int		j;
