@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 16:33:21 by dery_ru           #+#    #+#             */
-/*   Updated: 2022/01/15 19:37:29 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 21:50:46 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,11 +110,13 @@ void	parser(char **src, char **env)
 	*src = str;
 }
 
-void	preparser(char *str)
+void	preparser(char **src)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	char	*str;
 
+	str = *src;
 	i = -1;
 	j = 0;
 	if (!str)
@@ -123,14 +125,23 @@ void	preparser(char *str)
 		if (str[i] == '\'')
 			j++;
 	if ((j % 2))
-		ft_error("Error: not closed \'\n");
+	{
+		error_msg(str, "command no found\n", 127);
+		str = NULL;
+	}
+		// ft_error("Error: not closed \'\n");
 	i = -1;
 	j = 0;
 	while (str[++i])
 		if (str[i] == '\"')
 			j++;
 	if ((j % 2))
-		ft_error("Error: not closed \"\n");
+	{
+		// ft_error("Error: not closed \'\n");
+		error_msg(str, "command no found\n", 127);
+		str = NULL;
+	}
+	*src = str;
 }	
 
 void	main_parcer(char **argv, char **env)
@@ -142,7 +153,6 @@ void	main_parcer(char **argv, char **env)
 	{
 		if (!argv || !argv[i])
 			break ;
-		preparser(argv[i]);
 		parser(&argv[i], env);
 		i++;
 	}

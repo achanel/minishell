@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:13 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/15 17:57:51 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 21:51:37 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,14 @@ typedef struct s_args
 
 typedef struct s_fd
 {
-	int	fd_in;
-	int	fd_out;
-	int	fd_pipe_in;
-	int	fd_pipe_out;
+	int		fd_in;
+	int		fd_out;
+	int		fd_pipe_in;
+	int		fd_pipe_out;
+	char	**str;
+	int		i;
+	int		j;
+	int		k;
 }	t_fd;
 
 typedef struct s_envbase
@@ -90,9 +94,10 @@ char		*get_val(char *env_str);
 void		exec_signal_catcher(void);
 void		input_signal_catcher(void);
 // paser
+void		preparser(char **src);
 char		**str_parse(char *str1, char **envp, t_fd *fd);
 void		main_parcer(char **argv, char **env);
-char		**args_split(char *str, char *c);
+char		**args_split(char *str, char *c, t_fd *fd);
 char		*get_path(char **envp, char *cmd);
 char		*ft_perem(char *str, int *i, char **env);
 void		ft_error(char *str);

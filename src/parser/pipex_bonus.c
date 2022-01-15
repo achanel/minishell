@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 15:51:25 by rhoke             #+#    #+#             */
-/*   Updated: 2022/01/15 16:33:31 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 21:10:48 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	redir(char *cmd, char **envp, t_two_env *env_lists, t_fd *fd)
 	pid_t	pid1;
 	int		pipefd[2];
 
-	// printf("cmd == %s\n", cmd);
 	pipe(pipefd);
 	pid1 = fork();
 	if (!pid1)
@@ -40,7 +39,6 @@ void	redir(char *cmd, char **envp, t_two_env *env_lists, t_fd *fd)
 	}
 	close(pipefd[0]);
 	dup2(pipefd[1], 1);
-	// write(1, "SUKA\n", 5);
 	exec(cmd, envp, env_lists, fd);
 	waitpid(pid1, NULL, 0);
 	return ;
@@ -60,7 +58,7 @@ int	main_pipe(char *str, char **env, t_two_env *env_lists, t_fd *fd)
 	if (ft_strchr(" \t\0", str[0]) && ft_strlen(str) <= 1 && str[0] == 0)
 		return (0);
 	else
-		argv = args_split(str, "|");
+		argv = args_split(str, "|", fd);
 	main_parcer(argv, env);
 	dup2(fd->fd_pipe_in, 0);
 	dup2(fd->fd_pipe_out, 1);
