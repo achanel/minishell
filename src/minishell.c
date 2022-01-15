@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/15 21:26:03 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 23:14:23 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	fds_init(t_fd **fd)
 {
 	*fd = malloc(sizeof(t_fd));
 	malloc_error(*fd);
-	(*fd)->str = malloc(sizeof(char **) * 50);
+	(*fd)->str = malloc(sizeof(char *) * 50);
 	(*fd)->fd_in = 0;
 	(*fd)->fd_out = 1;
 	(*fd)->fd_pipe_in = 0;
@@ -98,12 +98,12 @@ int	main(int ac, char **av, char **env)
 		// main_pipe(str, env, env_lists, fd);
 		cmd = str_parse(str, env, fd);
 		get_builtin(cmd, env, env_lists, fd);
-		// free(str);
-		// free_split(cmd);
+		free(str);
+		free_split(cmd);
 	}
 	free(fd->str);
 	free(fd);
 	free_structs(env_lists);
-	// getchar();
+	getchar();
 	return (0);
 }

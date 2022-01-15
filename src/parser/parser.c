@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 16:33:21 by dery_ru           #+#    #+#             */
-/*   Updated: 2022/01/15 23:02:39 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 23:28:44 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ char	*ft_quote(char *str, int *i, char **env)
 	tmp = ft_strjoin(tmp, tmp3);
 	free(str);
 	free(tmp2);
+	tmp2 = tmp;
+	free(tmp);
 	free(tmp3);
-	return (tmp);
+	return (tmp2);
 }
 
 char	*ft_perem(char *str, int *i, char **env)
@@ -58,8 +60,10 @@ char	*ft_perem(char *str, int *i, char **env)
 	tmp = ft_strjoin(tmp, tmp2);
 	tmp = ft_strjoin(tmp, tmp3);
 	free(tmp2);
+	tmp2 = tmp;
+	free(tmp);
 	free(tmp3);
-	return (tmp);
+	return (tmp2);
 }
 
 void	parser(char **src, char **env)

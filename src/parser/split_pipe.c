@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_pipe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:35:53 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/15 23:03:08 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 23:23:43 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	comand_clean(char **str, char *c)
 char	**args_split(char *str, char *c, t_fd *fd)
 {
 	char	**av;
+	char	*temp;
 	int		*ac;
 
 	if (str[0] == '\0' || !str)
@@ -71,8 +72,10 @@ char	**args_split(char *str, char *c, t_fd *fd)
 		fd->i++;
 		if (ac[fd->i] - ac[fd->i - 1] > 0)
 		{
-			av[fd->k] = ft_substr(str, ac[fd->i - 1],
+			temp = ft_substr(str, ac[fd->i - 1],
 					ac[fd->i] - ac[fd->i - 1]);
+			av[fd->k] = temp;
+			free(temp);
 			comand_clean(&av[fd->k], c);
 			fd->k++;
 		}
