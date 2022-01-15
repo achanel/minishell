@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 18:23:56 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/15 19:05:20 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/16 01:54:58 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,6 @@ void	rewrite_pwd(t_envbase *base, char *pwd, char *s)
 	else
 	{
 		free(path->val);
-		path->val = ft_strdup(pwd);
+		path->val = pwd;
 	}
 }
