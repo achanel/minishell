@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_minishell.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 19:11:54 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/16 02:03:25 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/16 02:46:57 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	*free_split(char **str)
 	int	i;
 
 	i = -1;
+	if (str[0] == NULL)
+		return (NULL);
 	while (str && str[++i])
 		free_str(&str[i]);
 	free(str);

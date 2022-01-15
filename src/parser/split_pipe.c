@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_pipe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:35:53 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/16 02:00:10 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/16 02:43:46 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,9 @@ char	**args_split(char *str, char *c, t_fd *fd)
 	char	*temp;
 	int		*ac;
 
-	if (str[0] == '\0' || !str)
-		return (NULL);
-	str = comand_clean(str, c);
 	ac = args_count(str, c, &(fd->j));
 	av = (char **)malloc(sizeof(char *) * fd->j + 1);
 	malloc_error(av);
-	fd->i = 0;
-	fd->k = 0;
 	while (fd->i < fd->j)
 	{
 		fd->i++;
@@ -100,6 +95,9 @@ char	**str_parse(char *str1, char **envp, t_fd *fd)
 		return (NULL);
 	if (ft_strchr(" \t\0", str1[0]) && ft_strlen(str1) <= 1)
 		return (NULL);
+	fd->i = 0;
+	fd->k = 0;
+	str1 = comand_clean(str1, " ");
 	str2 = args_split(str1, " ", fd);
 	main_parcer(str2, envp);
 	return (str2);
