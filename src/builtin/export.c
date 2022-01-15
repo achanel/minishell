@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 14:17:53 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/15 16:03:19 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 17:13:59 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ void	print_export(t_envbase *base)
 	tmp = base;
 	while (base)
 	{
+		if (base->flag == 0)
+			base = base->next;
 		if (base->val)
 			printf("declare -x %s=\"%s\"\n", base->key, base->val);
-		else
+		if (!base->val)
 			printf("declare -x %s\n", base->key);
 		base = base->next;
 	}

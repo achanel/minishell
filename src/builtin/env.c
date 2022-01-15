@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 12:46:34 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/09 15:10:03 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 17:12:00 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,9 @@ void	do_env(t_two_env *env, char **cmd)
 	}
 	while (env->origin)
 	{
-		printf("%s", env->origin->key);
-		printf("=");
-		printf("%s", env->origin->val);
-		printf("\n");
+		if (env->origin->flag == 0)
+			env->origin = env->origin->next;
+		printf("%s=%s\n", env->origin->key, env->origin->val);
 		env->origin = env->origin->next;
 	}
 	env->origin = first;

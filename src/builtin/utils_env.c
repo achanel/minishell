@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 18:23:56 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/09 15:16:16 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 17:09:42 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_envbase	*add_new(char *key, char *val)
 	malloc_error(stack);
 	stack->key = key;
 	stack->val = val;
+	stack->flag = 1;
 	stack->next = NULL;
 	return (stack);
 }

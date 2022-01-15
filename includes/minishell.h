@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:13 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/15 14:28:54 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 17:16:24 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_envbase
 {
 	char				*key;
 	char				*val;
+	int					flag;
 	struct s_envbase	*next;
 }	t_envbase;
 
