@@ -6,11 +6,17 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 19:11:54 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/15 19:23:28 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/16 02:03:25 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	void_arg(int ac, char **av)
+{
+	(void)ac;
+	(void)av;
+}
 
 static void	free_stack(t_envbase **stack)
 {
@@ -29,8 +35,10 @@ static void	free_stack(t_envbase **stack)
 	free (*stack);
 }
 
-void	free_structs(t_two_env *base)
+void	free_structs(t_two_env *base, t_fd *fd)
 {
+	free(fd->str);
+	free(fd);
 	free_stack(&base->origin);
 	free_stack(&base->sorted);
 	free(base);
