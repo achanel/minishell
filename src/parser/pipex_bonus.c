@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 15:51:25 by rhoke             #+#    #+#             */
-/*   Updated: 2022/01/15 21:10:48 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 21:58:43 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main_pipe(char *str, char **env, t_two_env *env_lists, t_fd *fd)
 	int		buff_fd_out;
 
 	i = 0;
-	main_space(&str);
+	main_space(&str, fd);
 	buff_fd_in = dup(0);
 	buff_fd_out = dup(1);
 	if (ft_strchr(" \t\0", str[0]) && ft_strlen(str) <= 1 && str[0] == 0)

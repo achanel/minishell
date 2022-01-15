@@ -35,6 +35,7 @@ SRCS_LIST	=	minishell.c\
 				parser/redirects.c\
 				parser/split_pipe.c\
 				parser/space_cut.c\
+				parser/utils_parser.c\
 
 SRCS = $(addprefix $(SRCS_DIRECTORY), $(SRCS_LIST))
 

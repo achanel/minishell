@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:13 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/15 21:51:37 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 23:05:43 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <errno.h>
 # include <signal.h>
 # include "../libft/libft.h"
-# include <fcntl.h> // хз надо не надо у меня была))
+# include <fcntl.h>
 
 int		g_status;
 
@@ -94,7 +94,7 @@ char		*get_val(char *env_str);
 void		exec_signal_catcher(void);
 void		input_signal_catcher(void);
 // paser
-void		preparser(char **src);
+void		preparser(char **src, t_fd *fd);
 char		**str_parse(char *str1, char **envp, t_fd *fd);
 void		main_parcer(char **argv, char **env);
 char		**args_split(char *str, char *c, t_fd *fd);
@@ -102,11 +102,15 @@ char		*get_path(char **envp, char *cmd);
 char		*ft_perem(char *str, int *i, char **env);
 void		ft_error(char *str);
 void		main_redir(char **str, t_fd *fd);
-void		main_space(char **str);
+void		main_space(char **str, t_fd *fd);
 //pipex
 int			main_pipe(char *str, char **env, t_two_env *env_lists, t_fd *fd);
 //utils_minishell
 void		free_structs(t_two_env *base);
 void		free_str(char **str);
 void		*free_split(char **str);
+//utils_parser.c
+char		*str_null(char *str);
+void		tmp_file(char *break_name);
+char		*get_envp(char *perem, char **envp);
 #endif

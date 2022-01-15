@@ -3,42 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 16:33:21 by dery_ru           #+#    #+#             */
-/*   Updated: 2022/01/15 22:16:54 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/15 23:02:39 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-void	ft_error(char *str)
-{
-	write(2, str, ft_strlen(str));
-	return ;
-}
-
-char	*get_envp(char *perem, char **envp)
-{
-	char	*str;
-	char	*tmp;
-	int		i;
-
-	i = -1;
-	tmp = NULL;
-	if (ft_strncmp(perem, "?", 1) == 0)
-		return (ft_itoa(g_status));
-	str = ft_strjoin(perem, "=");
-	while (envp[++i])
-	{
-		if (ft_strnstr(envp[i], str, ft_strlen(str)))
-			tmp = envp[i] + ft_strlen(str);
-	}
-	if (tmp == NULL)
-		tmp = "\0";
-	free(str);
-	return (tmp);
-}
 
 char	*ft_quote(char *str, int *i, char **env)
 {
@@ -110,37 +82,30 @@ void	parser(char **src, char **env)
 	*src = str;
 }
 
-void	preparser(char **src)
+void	preparser(char **src, t_fd *fd)
 {
-	int		i;
-	int		j;
 	char	*str;
 
 	str = *src;
-	i = -1;
-	j = 0;
-	while (str[++i])
-		if (str[i] == '\'')
-			j++;
-	if ((j % 2))
-	{
-		// error_msg(str, "command no found\n", 127);
-		ft_error("Error: not closed \'\n");
-		str = NULL;
-	}
+	fd->i = -1;
+	fd->j = 0;
+	while (str[++(fd->i)])
+		if (str[fd->i] == '\'')
+			fd->j++;
+	if ((fd->j % 2))
+		str = str_null("Error: not closed \'\n");
 	if (!str)
-		return ;
-	i = -1;
-	j = 0;
-	while (str[++i])
-		if (str[i] == '\"')
-			j++;
-	if ((j % 2))
 	{
-		ft_error("Error: not closed \'\n");
-		// error_msg(str, "command no found\n", 127);
-		str = NULL;
+		*src = str;
+		return ;
 	}
+	fd->i = -1;
+	fd->j = 0;
+	while (str[++(fd->i)])
+		if (str[fd->i] == '\"')
+			fd->j++;
+	if ((fd->j % 2))
+		str = str_null("Error: not closed \"\n");
 	*src = str;
 }	
 

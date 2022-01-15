@@ -3,60 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   space_cut.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:42:08 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/15 21:54:54 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/15 22:12:28 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static char	*space_cut(char *str)
+static void	space_cut_helper(char *str, t_fd *fd, char *tmp)
 {
-	int		i;
-	int		j;
-	char	*tmp;
+	if (ft_strchr("\'\"", str[fd->i]))
+	{
+		tmp[fd->j++] = str[fd->i++];
+		while (!ft_strchr("\'\"", str[fd->i]))
+			tmp[fd->j++] = str[fd->i++];
+		tmp[fd->j++] = str[fd->i++];
+	}
+	if (ft_strchr(" \t", str[fd->i]))
+	{
+		while (ft_strchr(" \t", str[++(fd->i)]))
+			if (str[fd->i] == '\0')
+				break ;
+		fd->i--;
+		tmp[fd->j++] = ' ';
+	}
+}
 
-	i = 0;
-	j = 0;
+static char	*space_cut(char *str, t_fd *fd, char *tmp)
+{
+	fd->i = 0;
+	fd->j = 0;
 	tmp = malloc(sizeof(char) * ft_strlen(str) + 1);
 	malloc_error(tmp);
-	while (str[i])
+	while (str[fd->i])
 	{
-		if (ft_strchr(" \t\'\"", str[i]))
-		{
-			if (ft_strchr("\'\"", str[i]))
-			{
-				tmp[j++] = str[i++];
-				while (1)
-				{
-					tmp[j++] = str[i++];
-					if (ft_strchr("\'\"", str[i]))
-						break ;
-				}
-				tmp[j++] = str[i++];
-			}
-			if (ft_strchr(" \t", str[i]))
-			{
-				while (ft_strchr(" \t", str[++i]))
-					if (str[i] == '\0')
-						break ;
-				i--;
-				tmp[j++] = ' ';
-			}
-		}
-		if (!ft_strchr(" \t\'\"\0", str[i]))
-			tmp[j++] = str[i++];
+		if (ft_strchr(" \t\'\"", str[fd->i]))
+			space_cut_helper(str, fd, tmp);
+		if (!ft_strchr(" \t\'\"\0", str[fd->i]))
+			tmp[fd->j++] = str[fd->i++];
 		else
-			i++;
+			fd->i++;
 	}
-
-	tmp[j] = '\0';
+	tmp[fd->j] = '\0';
 	return (tmp);
 }
 
-void	main_space(char **str)
+void	main_space(char **str, t_fd *fd)
 {
-	*str = ft_strdup(space_cut(*str));
+	char	*tmp;
+
+	tmp = NULL;
+	*str = ft_strdup(space_cut(*str, fd, tmp));
 }

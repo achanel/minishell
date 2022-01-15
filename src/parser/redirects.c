@@ -6,32 +6,11 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:47:08 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/15 19:41:09 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 22:23:11 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-void	tmp_file(char *break_name)
-{
-	int		tmp;
-	int		ret;
-	char	buf[255];
-
-	tmp = open("temp_del", O_RDWR | O_CREAT, 0644);
-	if (tmp == -1)
-		exit(EXIT_FAILURE);
-	ret = 1;
-	while (ret)
-	{
-		write(1, "> ", 2);
-		ret = read(0, buf, 254);
-		buf[ret] = '\0';
-		if (strncmp(ft_strjoin(break_name, "\n"), buf, ft_strlen(buf)) == 0)
-			break ;
-		write(tmp, buf, ft_strlen(buf));
-	}
-}
 
 char	*str2str(char *str, int *i, char c)
 {
