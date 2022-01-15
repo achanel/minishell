@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 14:17:53 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/13 16:49:04 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/15 16:03:19 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,13 @@ void	print_export(t_envbase *base)
 {
 	t_envbase	*tmp;
 
-	// printf("%s\n", (*base)->sorted->key);
 	tmp = base;
 	while (base)
 	{
 		if (base->val)
 			printf("declare -x %s=\"%s\"\n", base->key, base->val);
 		else
-		{
-			// printf("%s\n", tmp->key);
 			printf("declare -x %s\n", base->key);
-		}
 		base = base->next;
 	}
 	base = tmp;
@@ -63,9 +59,7 @@ static void	add_new_sorted(t_two_env **env_list, char *key, char *val)
 
 	first = (*env_list)->sorted;
 	flag = 0;
-	// printf("%s = %s\n", key, val);
 	new_elem = add_new(key, val);
-	// printf("1 %s = %s\n", new_elem->key, new_elem->val);
 	if (ft_strncmp((*env_list)->sorted->key, new_elem->key,
 			ft_strlen(new_elem->key)) > 0)
 	{
@@ -105,7 +99,6 @@ static void	change_arg(t_two_env *env_list, char *arg)
 	env_list->origin = tmp_ori;
 }
 
-
 void	do_export(char **cmd, t_two_env **env_list)
 {
 	int	i;
@@ -116,7 +109,6 @@ void	do_export(char **cmd, t_two_env **env_list)
 		print_export((*env_list)->sorted);
 		return ;
 	}
-	// printf("cmd[1]=%s\n", cmd[1]);
 	i = 0;
 	while (cmd[++i])
 	{
@@ -125,5 +117,4 @@ void	do_export(char **cmd, t_two_env **env_list)
 		else
 			add_new_sorted(env_list, get_key(cmd[i]), get_val(cmd[i]));
 	}
-	// print_export((*env_list)->sorted);
 }

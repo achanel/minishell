@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 14:18:55 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/15 12:41:58 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 16:10:33 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,5 @@ void	do_unset(char **av, t_two_env **env)
 		}
 		i++;
 	}
-	print_export((*env)->sorted);
+	// print_export((*env)->sorted);
 }

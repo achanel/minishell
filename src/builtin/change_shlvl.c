@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 17:36:48 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/13 13:41:41 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 16:03:42 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ static void	shlvl_list_healper(char **val, int flag)
 	int		level;
 	char	*str;
 
-	// printf("val2=%s\n", *val);
 	level = ft_atoi(*val) + 1;
-	// printf("level=%d\n", level);
 	if (level == 1000)
 		strdup_level(val, "\0");
 	else if (level > 1000)
@@ -44,7 +42,6 @@ static void	shlvl_list_healper(char **val, int flag)
 	else
 	{
 		str = ft_itoa(level);
-		// printf("str=%s\n", str);
 		strdup_level(val, str);
 		free(str);
 	}
@@ -65,10 +62,7 @@ static void	shlvl_list(t_envbase *env, int flag)
 				break ;
 			}
 			else
-			{
-				// printf("here\n");
 				shlvl_list_healper(&env->val, flag);
-			}
 			break ;
 		}
 		env = env->next;
