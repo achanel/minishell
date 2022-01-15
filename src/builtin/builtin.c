@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 15:38:12 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/15 16:19:04 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 22:18:25 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	pidexecve(char **cmd, char **envp, t_two_env *env_lists, t_fd *fd)
 
 static void	my_builtin(char **cmd, char **envp, t_two_env *env_lists, t_fd *fd)
 {
-	// if (!cmd)
-	// 	return ;
+	if (!cmd)
+		return ;
 	if (ft_strncmp(cmd[0], "pwd", 3) == 0)
 		do_pwd();
 	else if (ft_strncmp(cmd[0], "echo", 4) == 0)
@@ -68,6 +68,6 @@ void	get_builtin(char **cmd, char **envp, t_two_env *env_lists, t_fd *fd)
 	if (fd->fd_out > 2)
 		close(fd->fd_out);
 	my_builtin(cmd, envp, env_lists, fd);
-	fd->fd_pipe_in = dup(1);
+	dup2(buff_fd_out, 1);
 	dup2(buff_fd_in, 0);
 }

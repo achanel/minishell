@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_pipe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:35:53 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/15 21:53:09 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 22:19:15 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,11 @@ char	**str_parse(char *str1, char **envp, t_fd *fd)
 	char	**str2;
 
 	str2 = NULL;
-	preparser(&str1);
 	main_space(&str1);
 	main_redir(&str1, fd);
+	preparser(&str1);
+	if (!str1)
+		return (NULL);
 	if (ft_strchr(" \t\0", str1[0]) && ft_strlen(str1) <= 1)
 		return (NULL);
 	str2 = args_split(str1, " ", fd);

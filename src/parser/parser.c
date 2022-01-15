@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 16:33:21 by dery_ru           #+#    #+#             */
-/*   Updated: 2022/01/15 21:50:46 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 22:16:54 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_error(char *str)
 {
 	write(2, str, ft_strlen(str));
-	exit (1);
+	return ;
 }
 
 char	*get_envp(char *perem, char **envp)
@@ -119,17 +119,17 @@ void	preparser(char **src)
 	str = *src;
 	i = -1;
 	j = 0;
-	if (!str)
-		return ;
 	while (str[++i])
 		if (str[i] == '\'')
 			j++;
 	if ((j % 2))
 	{
-		error_msg(str, "command no found\n", 127);
+		// error_msg(str, "command no found\n", 127);
+		ft_error("Error: not closed \'\n");
 		str = NULL;
 	}
-		// ft_error("Error: not closed \'\n");
+	if (!str)
+		return ;
 	i = -1;
 	j = 0;
 	while (str[++i])
@@ -137,8 +137,8 @@ void	preparser(char **src)
 			j++;
 	if ((j % 2))
 	{
-		// ft_error("Error: not closed \'\n");
-		error_msg(str, "command no found\n", 127);
+		ft_error("Error: not closed \'\n");
+		// error_msg(str, "command no found\n", 127);
 		str = NULL;
 	}
 	*src = str;
