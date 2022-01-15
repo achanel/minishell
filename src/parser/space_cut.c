@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   space_cut.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:42:08 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/15 22:12:28 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 23:41:50 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static void	space_cut_helper(char *str, t_fd *fd, char *tmp)
 
 static char	*space_cut(char *str, t_fd *fd, char *tmp)
 {
+	char	*temp;
+
 	fd->i = 0;
 	fd->j = 0;
 	tmp = malloc(sizeof(char) * ft_strlen(str) + 1);
@@ -47,7 +49,9 @@ static char	*space_cut(char *str, t_fd *fd, char *tmp)
 			fd->i++;
 	}
 	tmp[fd->j] = '\0';
-	return (tmp);
+	temp = tmp;
+	free(tmp);
+	return (temp);
 }
 
 void	main_space(char **str, t_fd *fd)
