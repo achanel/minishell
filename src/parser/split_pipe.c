@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:35:53 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/15 23:23:43 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/16 00:04:46 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,14 @@ int	*args_count(char *str, char *c, int *j)
 	return (count);
 }
 
-void	comand_clean(char **str, char *c)
+char	*comand_clean(char *str, char *c)
 {
 	int		i;
 	int		j;
 	char	*tmp;
+	char	*temp;
 
-	tmp = *str;
+	tmp = str;
 	i = 0;
 	j = ft_strlen(tmp);
 	while (ft_strchr(c, tmp[i]) || tmp[i] == '\t' || tmp[i] == ' ')
@@ -50,7 +51,10 @@ void	comand_clean(char **str, char *c)
 	while (ft_strchr(c, tmp[j]) || tmp[j] == '\t' || tmp[j] == ' ')
 		j--;
 	j++;
-	*str = ft_substr(tmp, i, j - i);
+	str = ft_substr(tmp, i, j - i);
+	// str = temp;
+	// free(temp);
+	return (str);
 }
 
 char	**args_split(char *str, char *c, t_fd *fd)
@@ -61,7 +65,7 @@ char	**args_split(char *str, char *c, t_fd *fd)
 
 	if (str[0] == '\0' || !str)
 		return (NULL);
-	comand_clean(&str, c);
+	str = comand_clean(str, c);
 	ac = args_count(str, c, &(fd->j));
 	av = (char **)malloc(sizeof(char *) * fd->j + 1);
 	malloc_error(av);
@@ -76,12 +80,13 @@ char	**args_split(char *str, char *c, t_fd *fd)
 					ac[fd->i] - ac[fd->i - 1]);
 			av[fd->k] = temp;
 			free(temp);
-			comand_clean(&av[fd->k], c);
+			av[fd->k] = comand_clean(av[fd->k], c);
 			fd->k++;
 		}
 	}
 	av[fd->k] = NULL;
 	free(ac);
+	free (str);
 	return (av);
 }
 
