@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 15:38:12 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/15 00:15:41 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/15 13:30:02 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void pidexecve(char **cmd, char **envp, t_two_env *env_lists, t_fd *fd)
 	pid_t pid0;
 
 	pid0 = fork();
+	exec_signal_catcher();
 	if (pid0 == 0)
 	{
 		dup2(fd->fd_out, 1);
@@ -45,7 +46,7 @@ void pidexecve(char **cmd, char **envp, t_two_env *env_lists, t_fd *fd)
 
 void	get_builtin(char **cmd, char **envp, t_two_env *env_lists, t_fd *fd)
 {
-	printf("\nlol4\n");
+	// printf("cmd\n");
 
 	
 	int buff_fd_in;
@@ -56,7 +57,7 @@ void	get_builtin(char **cmd, char **envp, t_two_env *env_lists, t_fd *fd)
 	// _stdin = dup(1);
 	// dup2(fd->fd_out, 1);
 	write(2, "lol4\n", 5);
-	printf("\tinfd %d\n\toutfd %d\n", fd->fd_in, fd->fd_out);
+	// printf("\tinfd %d\n\toutfd %d\n", fd->fd_in, fd->fd_out);
 	buff_fd_in = dup(0);
 	buff_fd_out = dup(1);
 	// close(1);
@@ -71,10 +72,10 @@ void	get_builtin(char **cmd, char **envp, t_two_env *env_lists, t_fd *fd)
 	// _stdout = dup(fd->fd_in);
 	// close(fd->fd_out);
 	// dup2(1, fd->fd_out);
-	// if (fd->fd_in > 2)
-	// 	close(fd->fd_in);
-	// if (fd->fd_out > 2)
-	// 	close(fd->fd_out);
+	if (fd->fd_in > 2)
+		close(fd->fd_in);
+	if (fd->fd_out > 2)
+		close(fd->fd_out);
 	// if (fd->fd_pipe_in > 2)
 	// 	close(fd->fd_pipe_in);
 	// if (fd->fd_pipe_out > 2)
@@ -106,8 +107,9 @@ void	get_builtin(char **cmd, char **envp, t_two_env *env_lists, t_fd *fd)
 		// if ((execve(get_path(envp, cmd[0]), cmd, envp)) == -1)
 		// 	error_msg(cmd[0], "command not found\n", 127);
 	// dup2(1, fd->fd_in);
+	fd->fd_pipe_in = dup(1);
 	dup2(buff_fd_in, 0);
-	dup2(buff_fd_out, 1);
+	// dup2(buff_fd_out, 1);
 	// buff_fd_in = dup(0);
 	// buff_fd_out = dup(1);
 }
