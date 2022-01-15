@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:35:53 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/15 16:15:06 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 19:54:30 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	*args_count(char *str, char *c, int *j)
 	int		*count;
 
 	count = malloc(sizeof(int) * 50);
+	malloc_error(count);
 	count[*j] = 0;
 	i = -1;
 	while (str[++i])
@@ -55,8 +56,8 @@ void	comand_clean(char **str, char *c)
 char	**args_split(char *str, char *c)
 {
 	char	**av;
-	int		i;
 	int		j;
+	int		i;
 	int		*ac;
 	int		k;
 
@@ -65,7 +66,8 @@ char	**args_split(char *str, char *c)
 		return (NULL);
 	comand_clean(&str, c);
 	ac = args_count(str, c, &j);
-	av = (char **)malloc(sizeof(char *) * j);
+	av = (char **)malloc(sizeof(char *) * j + 1);
+	malloc_error(av);
 	i = 0;
 	k = 0;
 	while (i < j)
@@ -79,6 +81,7 @@ char	**args_split(char *str, char *c)
 		}
 	}
 	av[k] = NULL;
+	free(ac);
 	return (av);
 }
 
@@ -92,6 +95,6 @@ char	**str_parse(char *str1, char **envp, t_fd *fd)
 	if (ft_strchr(" \t\0", str1[0]) && ft_strlen(str1) <= 1)
 		return (NULL);
 	str2 = args_split(str1, " ");
-	main_parcer(str2, envp);
+	// main_parcer(str2, envp);
 	return (str2);
 }

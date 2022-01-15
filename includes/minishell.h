@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:13 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/15 17:16:24 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 17:57:51 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void		main_space(char **str);
 //pipex
 int			main_pipe(char *str, char **env, t_two_env *env_lists, t_fd *fd);
 //utils_minishell
+void		free_structs(t_two_env *base);
 void		free_str(char **str);
 void		*free_split(char **str);
-void		print_export(t_envbase *base);
 #endif

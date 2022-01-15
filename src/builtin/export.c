@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 14:17:53 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/15 17:13:59 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 18:33:28 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,7 @@ static void	change_arg(t_two_env *env_list, char *arg)
 	{
 		if (ft_strncmp(env_list->sorted->key, get_key(arg),
 				ft_strlen(get_key(arg))) == 0)
-		{
 			env_list->sorted->val = get_val(arg);
-		}
 		env_list->sorted = env_list->sorted->next;
 	}
 	env_list->sorted = tmp_sor;

@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 16:33:21 by dery_ru           #+#    #+#             */
-/*   Updated: 2022/01/15 14:33:53 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 19:37:29 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ char	*get_envp(char *perem, char **envp)
 	}
 	if (tmp == NULL)
 		tmp = "\0";
+	free(str);
 	return (tmp);
 }
 
@@ -84,6 +85,8 @@ char	*ft_perem(char *str, int *i, char **env)
 		(*i) = j;
 	tmp = ft_strjoin(tmp, tmp2);
 	tmp = ft_strjoin(tmp, tmp3);
+	free(tmp2);
+	free(tmp3);
 	return (tmp);
 }
 

@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:47:08 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/15 14:51:38 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 19:41:09 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ char	*str2str(char *str, int *i, char c)
 
 	j = 0;
 	tmp = malloc(ft_strlen(str) + 1);
+	malloc_error(tmp);
 	while (str[*i] == ' ' || str[*i] == '\t'
 		|| str[*i] == '\'' || str[*i] == '\"')
 		(*i)++;
@@ -76,6 +77,7 @@ char	*redir_in(char *str, int *i, int flag, t_fd *fd)
 	else
 		fd->fd_in = open(file_name, O_RDONLY, 0644);
 	unlink("temp_del");
+	free(tmp);
 	return (str);
 }
 

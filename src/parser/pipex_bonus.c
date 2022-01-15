@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 15:51:25 by rhoke             #+#    #+#             */
-/*   Updated: 2022/01/15 16:22:39 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 16:33:31 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	redir(char *cmd, char **envp, t_two_env *env_lists, t_fd *fd)
 	pid_t	pid1;
 	int		pipefd[2];
 
-	printf("cmd == %s\n", cmd);
+	// printf("cmd == %s\n", cmd);
 	pipe(pipefd);
 	pid1 = fork();
 	if (!pid1)
@@ -40,7 +40,7 @@ void	redir(char *cmd, char **envp, t_two_env *env_lists, t_fd *fd)
 	}
 	close(pipefd[0]);
 	dup2(pipefd[1], 1);
-	write(1, "SUKA\n", 5);
+	// write(1, "SUKA\n", 5);
 	exec(cmd, envp, env_lists, fd);
 	waitpid(pid1, NULL, 0);
 	return ;

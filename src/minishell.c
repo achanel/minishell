@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/15 16:24:47 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 20:04:22 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,14 @@ static void	hide_ctrl(char **env)
 void	fds_init(t_fd **fd)
 {
 	*fd = malloc(sizeof(t_fd));
+	malloc_error(*fd);
 	(*fd)->fd_in = 0;
 	(*fd)->fd_out = 1;
 	(*fd)->fd_pipe_in = 0;
 	(*fd)->fd_pipe_out = 1;
 }
+
+
 
 int	main(int ac, char **av, char **env)
 {
@@ -90,8 +93,14 @@ int	main(int ac, char **av, char **env)
 		add_history(str);
 		if (str == NULL)
 			break ;
-		main_pipe(str, env, env_lists, fd);
-		free(str);
+		// main_pipe(str, env, env_lists, fd);
+		cmd = str_parse(str, env, fd);
+		get_builtin(cmd, env, env_lists, fd);
+		// free(str);
+		free_split(cmd);
 	}
+	free(fd);
+	free_structs(env_lists);
+	getchar();
 	return (0);
 }

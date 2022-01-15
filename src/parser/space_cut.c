@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:42:08 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/15 14:44:21 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/15 19:09:01 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ const char	*space_cut(char *str)
 	i = 0;
 	j = 0;
 	tmp = malloc(sizeof(char) * ft_strlen(str) + 1);
+	malloc_error(tmp);
 	while (str[i])
 	{
 		if (ft_strchr(" \t\'\"", str[i]))

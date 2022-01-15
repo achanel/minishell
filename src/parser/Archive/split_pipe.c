@@ -6,6 +6,7 @@ int	*args_count(char *str, char *c, int *j)
 	int *count;
 	
 	count = malloc(sizeof(int) * 50);
+	malloc_error(count);
 	count[*j] = 0;
 	i = -1;
 	while (str[++i])
@@ -64,6 +65,7 @@ char **args_split(char *str, char *c)
 	// 	str++;
 	ac = args_count(str, c, &j);
 	av = (char **)malloc(sizeof(char *) * j);
+	malloc_error(av);
 	i = 0;
 	while (i < j)
 	{
