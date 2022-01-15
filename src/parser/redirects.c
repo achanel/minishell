@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirects.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:47:08 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/15 22:23:11 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/16 01:16:10 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ char	*str2str(char *str, int *i, char c)
 	while (ft_isalnum(str[*i]))
 		tmp[j++] = str[(*i)++];
 	tmp[j] = '\0';
+	free(str);
 	return (tmp);
 }
 
@@ -43,21 +44,21 @@ char	*redir_in(char *str, int *i, int flag, t_fd *fd)
 	j = *i;
 	tmp = ft_substr(str, 0, j);
 	file_name = str2str(str, i, '<');
-	tmp = ft_strjoin(tmp, ft_strdup(str + *i));
-	str = ft_strdup(tmp);
-	*i = j + 1;
+	str = ft_strjoin(tmp, ft_strdup(str + *i));
 	free(tmp);
+	tmp = str;
+	// free(str);
+	*i = j + 1;
 	if (flag)
 	{
 		tmp_file(file_name);
 		fd->fd_in = open("temp_del", O_RDONLY, 0644);
-		printf("fd_in == %d\n", fd->fd_in);
 	}
 	else
 		fd->fd_in = open(file_name, O_RDONLY, 0644);
 	unlink("temp_del");
-	free(tmp);
-	return (str);
+	free(file_name);
+	return (tmp);
 }
 
 char	*redir_out(char *str, int *i, int flag, t_fd *fd)
