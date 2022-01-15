@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:47:08 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/16 01:23:11 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/16 01:55:46 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*str2str(char *str, int *i, char c)
 	while (str[*i] == ' ' || str[*i] == '\t'
 		|| str[*i] == '\'' || str[*i] == '\"')
 		(*i)++;
-	while (ft_isalnum(str[*i]))
+	while (ft_isalnum(str[*i]) || str[*i] == '_')
 		tmp[j++] = str[(*i)++];
 	tmp[j] = '\0';
 	free(str);
@@ -40,14 +40,16 @@ char	*redir_in(char *str, int *i, int flag, t_fd *fd)
 	int		j;
 	char	*file_name;
 	char	*tmp;
+	char	*tmp1;
 
 	j = *i;
 	tmp = ft_substr(str, 0, j);
 	file_name = str2str(str, i, '<');
-	str = ft_strjoin(tmp, ft_strdup(str + *i));
+	tmp1 = ft_strdup(str + *i);
+	str = ft_strjoin(tmp, tmp1);
+	free(tmp1);
 	free(tmp);
 	tmp = str;
-	// free(str);§
 	*i = j + 1;
 	if (flag)
 	{
@@ -66,14 +68,17 @@ char	*redir_out(char *str, int *i, int flag, t_fd *fd)
 	int		j;
 	char	*file_name;
 	char	*tmp;
+	char	*tmp1;
 
 	j = *i;
 	tmp = ft_substr(str, 0, j);
 	file_name = str2str(str, i, '>');
-	tmp = ft_strjoin(tmp, ft_strdup(str + *i));
-	str = ft_strdup(tmp);
-	*i = j;
+	tmp1 = ft_strdup(str + *i);
+	str = ft_strjoin(tmp, tmp1);
+	free(tmp1);
 	free(tmp);
+	tmp = str;
+	*i = j;
 	if (flag)
 	{
 		fd->fd_out = open(file_name, O_CREAT | O_APPEND | O_WRONLY, 0644);
@@ -84,7 +89,8 @@ char	*redir_out(char *str, int *i, int flag, t_fd *fd)
 		fd->fd_out = open(file_name, O_CREAT | O_TRUNC | O_WRONLY, 0644);
 		printf("fd_out == %d\n", fd->fd_out);
 	}
-	return (str);
+	free(file_name);
+	return (tmp);
 }
 
 static void	parcer(char **src, t_fd *fd)
