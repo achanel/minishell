@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirects.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:47:08 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/16 01:55:46 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/16 02:27:57 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,9 @@ char	*redir_out(char *str, int *i, int flag, t_fd *fd)
 	tmp = str;
 	*i = j;
 	if (flag)
-	{
 		fd->fd_out = open(file_name, O_CREAT | O_APPEND | O_WRONLY, 0644);
-		printf("fd_out_append == %d\n", fd->fd_out);
-	}
 	else
-	{
 		fd->fd_out = open(file_name, O_CREAT | O_TRUNC | O_WRONLY, 0644);
-		printf("fd_out == %d\n", fd->fd_out);
-	}
 	free(file_name);
 	return (tmp);
 }
