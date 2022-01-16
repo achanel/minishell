@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:42:08 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/15 23:44:27 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/16 12:53:00 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,5 @@ void	main_space(char **str, t_fd *fd)
 	char	*tmp;
 
 	tmp = NULL;
-	*str = ft_strdup(space_cut(*str, fd, tmp));
+	*str = space_cut(*str, fd, tmp);
 }

@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 16:33:21 by dery_ru           #+#    #+#             */
-/*   Updated: 2022/01/16 00:06:08 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/16 13:01:54 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	preparser(char **src, t_fd *fd)
 	if ((fd->j % 2))
 		str = str_null("Error: not closed \"\n");
 	*src = str;
-	free(str);
+	// free(str);
 }	
 
 void	main_parcer(char **argv, char **env)
