@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:42:08 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/16 12:53:00 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/16 16:41:51 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static char	*space_cut(char *str, t_fd *fd, char *tmp)
 		else
 			fd->i++;
 	}
-	tmp[fd->j] = '\0';
+	tmp[fd->j] = 0;
 	temp = tmp;
 	free(tmp);
 	return (temp);

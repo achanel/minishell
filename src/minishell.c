@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/16 13:34:39 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/16 16:49:54 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,9 @@ int	main(int ac, char **av, char **env)
 			break ;
 		cmd = str_parse(str, env, fd);
 		get_builtin(cmd, env, env_lists, fd);
+		write(1, "kek\n", 4);
 		free(str);
 		free_split(cmd);
-		write(1, "kek\n", 4);
 	}
 	free_structs(env_lists, fd);
 	return (0);

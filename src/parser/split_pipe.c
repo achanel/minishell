@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:35:53 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/16 13:38:16 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/16 16:42:27 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ char	**str_parse(char *str1, char **envp, t_fd *fd)
 	char	**str2;
 
 	str2 = NULL;
-	main_space(&str1, fd);
 	main_redir(&str1, fd);
+	main_space(&str1, fd);
 	preparser(&str1, fd);
 	if (!str1)
 		return (NULL);

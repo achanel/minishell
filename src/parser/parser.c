@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 16:33:21 by dery_ru           #+#    #+#             */
-/*   Updated: 2022/01/16 14:19:58 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/16 14:23:54 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,12 @@ char	*ft_quote(char *str, int *i, char **env)
 	tmp2 = ft_substr(str, j + 1, *i - j - 1);
 	tmp3 = str + *i + 1;
 	tmp4 = ft_strjoin(tmp, tmp2);
+	free(str);
+	free(tmp);
 	tmp = ft_strjoin(tmp4, tmp3);
 	free(tmp4);
 	free(tmp2);
 	tmp2 = tmp;
-	printf("%s", tmp2);
 	return (tmp2);
 }
 
@@ -112,7 +113,6 @@ void	preparser(char **src, t_fd *fd)
 	if ((fd->j % 2))
 		str = str_null("Error: not closed \"\n");
 	*src = str;
-	// free(str);
 }	
 
 void	main_parcer(char **argv, char **env)
@@ -125,7 +125,6 @@ void	main_parcer(char **argv, char **env)
 		if (!argv || !argv[i])
 			break ;
 		parser(&argv[i], env);
-		printf("argv[%d] == %s", i, argv[i]);
 		i++;
 	}
 }

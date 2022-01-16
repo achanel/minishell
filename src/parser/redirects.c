@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirects.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:47:08 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/16 02:27:57 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/16 16:58:52 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ char	*str2str(char *str, int *i, char c)
 	int		j;
 	char	*tmp;
 
+	printf("$%s$\n", str);
 	j = 0;
 	tmp = malloc(ft_strlen(str) + 1);
 	malloc_error(tmp);
@@ -31,7 +32,7 @@ char	*str2str(char *str, int *i, char c)
 	while (ft_isalnum(str[*i]) || str[*i] == '_')
 		tmp[j++] = str[(*i)++];
 	tmp[j] = '\0';
-	free(str);
+	// free(str);
 	return (tmp);
 }
 
@@ -76,7 +77,7 @@ char	*redir_out(char *str, int *i, int flag, t_fd *fd)
 	tmp1 = ft_strdup(str + *i);
 	str = ft_strjoin(tmp, tmp1);
 	free(tmp1);
-	free(tmp);
+	// free(tmp);
 	tmp = str;
 	*i = j;
 	if (flag)
@@ -111,8 +112,8 @@ static void	parcer(char **src, t_fd *fd)
 				str = redir_out(str, &i, 0, fd);
 		}
 	}
-	*src = ft_strdup(str);
-	free(str);
+	*src = str;
+	// free(str);
 }
 
 void	main_redir(char **str, t_fd *fd)
