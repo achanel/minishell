@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:47:08 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/16 16:58:52 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/16 18:42:55 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ char	*str2str(char *str, int *i, char c)
 	int		j;
 	char	*tmp;
 
-	printf("$%s$\n", str);
 	j = 0;
 	tmp = malloc(ft_strlen(str) + 1);
 	malloc_error(tmp);
@@ -29,39 +28,36 @@ char	*str2str(char *str, int *i, char c)
 	while (str[*i] == ' ' || str[*i] == '\t'
 		|| str[*i] == '\'' || str[*i] == '\"')
 		(*i)++;
-	while (ft_isalnum(str[*i]) || str[*i] == '_')
+	while (ft_isalnum(str[*i]) || str[*i] == '_'
+		|| str[*i] == '/' || str[*i] == '.')
 		tmp[j++] = str[(*i)++];
 	tmp[j] = '\0';
-	// free(str);
 	return (tmp);
 }
 
 char	*redir_in(char *str, int *i, int flag, t_fd *fd)
 {
 	int		j;
-	char	*file_name;
 	char	*tmp;
 	char	*tmp1;
 
 	j = *i;
 	tmp = ft_substr(str, 0, j);
-	file_name = str2str(str, i, '<');
-	tmp1 = ft_strdup(str + *i);
-	str = ft_strjoin(tmp, tmp1);
+	fd->file_name = str2str(str, i, '<');
+	tmp1 = tmp;
+	free (tmp);
+	str = ft_strjoin(tmp1, str + *i);
 	free(tmp1);
-	free(tmp);
-	tmp = str;
-	*i = j + 1;
+	*i = j;
 	if (flag)
 	{
-		tmp_file(file_name);
+		tmp_file(fd->file_name);
 		fd->fd_in = open("temp_del", O_RDONLY, 0644);
 	}
 	else
-		fd->fd_in = open(file_name, O_RDONLY, 0644);
+		fd->fd_in = open(fd->file_name, O_RDONLY, 0644);
 	unlink("temp_del");
-	free(file_name);
-	return (tmp);
+	return (str);
 }
 
 char	*redir_out(char *str, int *i, int flag, t_fd *fd)
@@ -73,19 +69,17 @@ char	*redir_out(char *str, int *i, int flag, t_fd *fd)
 
 	j = *i;
 	tmp = ft_substr(str, 0, j);
-	file_name = str2str(str, i, '>');
-	tmp1 = ft_strdup(str + *i);
-	str = ft_strjoin(tmp, tmp1);
+	fd->file_name = str2str(str, i, '>');
+	tmp1 = tmp;
+	free (tmp);
+	str = ft_strjoin(tmp1, str + *i);
 	free(tmp1);
-	// free(tmp);
-	tmp = str;
 	*i = j;
 	if (flag)
-		fd->fd_out = open(file_name, O_CREAT | O_APPEND | O_WRONLY, 0644);
+		fd->fd_out = open(fd->file_name, O_CREAT | O_APPEND | O_WRONLY, 0644);
 	else
-		fd->fd_out = open(file_name, O_CREAT | O_TRUNC | O_WRONLY, 0644);
-	free(file_name);
-	return (tmp);
+		fd->fd_out = open(fd->file_name, O_CREAT | O_TRUNC | O_WRONLY, 0644);
+	return (str);
 }
 
 static void	parcer(char **src, t_fd *fd)
@@ -113,7 +107,6 @@ static void	parcer(char **src, t_fd *fd)
 		}
 	}
 	*src = str;
-	// free(str);
 }
 
 void	main_redir(char **str, t_fd *fd)

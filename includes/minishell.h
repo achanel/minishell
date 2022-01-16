@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:13 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/16 02:03:33 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/16 18:36:37 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_fd
 	int		fd_out;
 	int		fd_pipe_in;
 	int		fd_pipe_out;
+	char	*file_name;
 	char	**str;
 	int		i;
 	int		j;
@@ -102,7 +103,7 @@ char		*get_path(char **envp, char *cmd);
 char		*ft_perem(char *str, int *i, char **env);
 void		ft_error(char *str);
 void		main_redir(char **str, t_fd *fd);
-void		main_space(char **str, t_fd *fd);
+char		*main_space(char **str, t_fd *fd);
 //pipex
 int			main_pipe(char *str, char **env, t_two_env *env_lists, t_fd *fd);
 //utils_minishell

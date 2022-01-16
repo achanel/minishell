@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/16 16:49:54 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/16 18:37:17 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	fds_init(t_fd **fd)
 	(*fd)->fd_out = 1;
 	(*fd)->fd_pipe_in = 0;
 	(*fd)->fd_pipe_out = 1;
+	(*fd)->file_name = NULL;
 	(*fd)->i = 0;
 	(*fd)->k = 0;
 	(*fd)->j = 0;
