@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirects.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:47:08 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/16 19:07:12 by achanel          ###   ########.fr       */
+/*   Updated: 2022/01/16 19:14:04 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ char	*redir_in(char *str, int *i, int flag, t_fd *fd)
 	j = *i;
 	tmp = ft_substr(str, 0, j);
 	fd->file_name = str2str(str, i, '<');
-	new_line_check(fd->file_name);
 	tmp1 = tmp;
 	free (tmp);
 	str = ft_strjoin(tmp1, str + *i);
@@ -70,7 +69,6 @@ char	*redir_out(char *str, int *i, int flag, t_fd *fd)
 	j = *i;
 	tmp = ft_substr(str, 0, j);
 	fd->file_name = str2str(str, i, '>');
-	new_line_check(fd->file_name);
 	tmp1 = tmp;
 	free (tmp);
 	str = ft_strjoin(tmp1, str + *i);
