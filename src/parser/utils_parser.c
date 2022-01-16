@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 22:25:16 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/16 12:13:56 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/16 14:11:35 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	tmp_file(char *break_name)
 		write(1, "> ", 2);
 		ret = read(0, buf, 254);
 		buf[ret] = '\0';
-		if (strncmp(ft_strjoin(break_name, "\n"), buf, ft_strlen(buf)) == 0)
+		if (ft_strncmp(ft_strjoin(break_name, "\n"), buf, ft_strlen(buf)) == 0)
 			break ;
 		write(tmp, buf, ft_strlen(buf));
 	}
@@ -44,6 +44,7 @@ char	*get_envp(char *perem, char **envp)
 {
 	char	*str;
 	char	*tmp;
+	int		temp;
 	int		i;
 
 	i = -1;
@@ -58,6 +59,7 @@ char	*get_envp(char *perem, char **envp)
 	}
 	if (tmp == NULL)
 		tmp = "\0";
+	free(perem);
 	free(str);
 	return (tmp);
 }

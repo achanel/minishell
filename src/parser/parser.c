@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 16:33:21 by dery_ru           #+#    #+#             */
-/*   Updated: 2022/01/16 13:01:54 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/16 14:14:28 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ char	*ft_quote(char *str, int *i, char **env)
 	char	*tmp;
 	char	*tmp2;
 	char	*tmp3;
+	char	*tmp4;
 
 	j = *i;
 	while (str[++(*i)])
@@ -29,15 +30,13 @@ char	*ft_quote(char *str, int *i, char **env)
 	}
 	tmp = ft_substr(str, 0, j);
 	tmp2 = ft_substr(str, j + 1, *i - j - 1);
-	tmp3 = ft_strdup(str + *i + 1);
-	tmp = ft_strjoin(tmp, tmp2);
-	tmp = ft_strjoin(tmp, tmp3);
-	free(str);
+	tmp3 = str + *i + 1;
+	tmp4 = ft_strjoin(tmp, tmp2);
+	tmp = ft_strjoin(tmp4, tmp3);
+	free(tmp4);
 	free(tmp2);
 	tmp2 = tmp;
-	free(tmp);
-	free(tmp3);
-	return (tmp2);
+	return (tmp);
 }
 
 char	*ft_perem(char *str, int *i, char **env)
@@ -46,6 +45,7 @@ char	*ft_perem(char *str, int *i, char **env)
 	char	*tmp;
 	char	*tmp2;
 	char	*tmp3;
+	char	*tmp4;
 
 	j = *i;
 	while (str[++(*i)])
@@ -54,15 +54,14 @@ char	*ft_perem(char *str, int *i, char **env)
 	tmp = ft_substr(str, 0, j);
 	tmp2 = ft_substr(str, j + 1, *i - j - 1);
 	tmp2 = get_envp(tmp2, env);
-	tmp3 = ft_strdup(str + *i);
+	tmp3 = str + *i;
 	if (tmp2[0] == '\0')
 		(*i) = j;
-	tmp = ft_strjoin(tmp, tmp2);
-	tmp = ft_strjoin(tmp, tmp3);
-	free(tmp2);
+	tmp4 = ft_strjoin(tmp, tmp2);
+	free(str);
+	tmp = ft_strjoin(tmp4, tmp3);
+	free(tmp4);
 	tmp2 = tmp;
-	free(tmp);
-	free(tmp3);
 	return (tmp2);
 }
 

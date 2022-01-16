@@ -6,7 +6,7 @@
 /*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 19:11:54 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/16 13:07:22 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/16 13:38:51 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	free_structs(t_two_env *base, t_fd *fd)
 
 void	free_str(char **str)
 {
-	write(1, "lol\n", 4);
 	free(*str);
 	*str = NULL;
 }
