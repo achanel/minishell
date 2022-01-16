@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 22:25:16 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/16 14:11:35 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/16 19:06:09 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,20 @@ char	*str_null(char *str)
 	g_status = 127;
 	write(2, str, ft_strlen(str));
 	return (NULL);
+}
+
+static void	new_line_error(void)
+{
+	ft_putstr_fd(MSL, 2);
+	ft_putstr_fd(": syntax error\n", 2);
+	g_status = 258;
+}
+
+void	new_line_check(char *file_name)
+{
+	if ((ft_strncmp(file_name, " ", 0) == 0)
+		|| (ft_strncmp(file_name, "\0", 0) == 0))
+		new_line_error();
 }
 
 void	tmp_file(char *break_name)
@@ -44,7 +58,6 @@ char	*get_envp(char *perem, char **envp)
 {
 	char	*str;
 	char	*tmp;
-	int		temp;
 	int		i;
 
 	i = -1;

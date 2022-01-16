@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:13 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/16 18:36:37 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/16 19:06:18 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void		free_structs(t_two_env *base, t_fd *fd);
 void		free_str(char **str);
 void		*free_split(char **str);
 //utils_parser.c
+void		new_line_check(char *file_name);
 char		*str_null(char *str);
 void		tmp_file(char *break_name);
 char		*get_envp(char *perem, char **envp);

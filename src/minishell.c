@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 12:12:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/01/16 18:37:17 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/01/16 19:05:18 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ int	main(int ac, char **av, char **env)
 			break ;
 		cmd = str_parse(str, env, fd);
 		get_builtin(cmd, env, env_lists, fd);
-		write(1, "kek\n", 4);
 		free(str);
 		free_split(cmd);
 	}

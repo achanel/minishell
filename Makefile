@@ -39,16 +39,13 @@ SRCS_LIST	=	minishell.c\
 
 SRCS = $(addprefix $(SRCS_DIRECTORY), $(SRCS_LIST))
 
-# изменить поддтягивание файлов 			@rm -rf $(OBJS_DIRECTORY)
-
 OBJS_DIRECTORY = src/
 OBJS_LIST = $(patsubst %.c, %.o, $(SRCS_LIST))
 OBJS = $(addprefix $(OBJS_DIRECTORY), $(OBJS_LIST))
 
-CC			= gcc -g
+CC			= gcc
 
-# CFLAGS		= -Wall -Wextra -Werror
-CFLAGS		=
+CFLAGS		= -Wall -Wextra -Werror
 
 READLINE	= -lreadline -L ~/.brew/opt/readline/lib/
 
